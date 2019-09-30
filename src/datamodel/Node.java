@@ -19,4 +19,20 @@ public class Node {
         childs.add(node);
         return node;
     }
+
+    public Node getChildByAnswer(String answer){
+        for(Node child : childs){
+            if(child.answerHolder.equals(answer))
+                return child;
+        }
+        return null;
+    }
+
+    public String getQuestionContent() {
+        return questionContent;
+    }
+
+    public String getAnswerHolder() {
+        return answerHolder;
+    }
 }
