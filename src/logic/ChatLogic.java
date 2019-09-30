@@ -12,7 +12,7 @@ public class ChatLogic implements IChatLogic {
 
     @Override
     public void processMessage(String message) {
-        //Здесь обработка ответов пользователя
+        //Здесь логика обработки ответов пользователя
         handler.handle(message);
     }
 }

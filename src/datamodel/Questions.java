@@ -1,6 +1,4 @@
-package logic;
-
-import javafx.util.Pair;
+package datamodel;
 
 public class Questions {
 
