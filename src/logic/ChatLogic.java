@@ -35,4 +35,9 @@ public class ChatLogic implements IChatLogic {
         //Здесь логика обработки ответов пользователя
         handler.handle(messageToProceed);
     }
+
+    @Override
+    public boolean hasQuestions() {
+        return !currentQuestion.isTerminating();
+    }
 }

@@ -5,17 +5,31 @@ import java.util.ArrayList;
 public class Node {
     private String questionContent;
     private String answerHolder;
+    private boolean isTerminating;
     private ArrayList<Node> childs;
-
 
     public Node( String answer, String question){
         questionContent = question;
         answerHolder = answer;
+        this.isTerminating = false;
+        childs = new ArrayList<>();
+    }
+
+    public Node( String answer, String question, boolean isTerminating){
+        questionContent = question;
+        answerHolder = answer;
+        this.isTerminating = isTerminating;
         childs = new ArrayList<>();
     }
 
     public Node AddChild(String answer, String quest){
-        Node node = new Node(answer, quest);
+        Node node = new Node(answer, quest, false);
+        childs.add(node);
+        return node;
+    }
+
+    public Node AddChild(String answer, String quest, boolean isTerminating){
+        Node node = new Node(answer, quest, isTerminating);
         childs.add(node);
         return node;
     }
@@ -32,7 +46,7 @@ public class Node {
         return questionContent;
     }
 
-    public String getAnswerHolder() {
-        return answerHolder;
+    public boolean isTerminating(){
+        return isTerminating;
     }
 }

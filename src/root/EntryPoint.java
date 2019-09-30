@@ -4,7 +4,7 @@ import interfaces.IChatLogic;
 import logic.ChatLogic;
 import logic.ConsoleInputOutput;
 
-public class EntryPoint {
+public class EntryPoint{
     public static void main(String[] args)
     {
         IChatLogic logic = new ChatLogic();
@@ -12,7 +12,7 @@ public class EntryPoint {
 
         logic.subscribe(io);
 
-        while (true){
+        while (logic.hasQuestions()){
             String message = io.readLine();
             logic.processMessage(message);
         }
