@@ -9,7 +9,7 @@ public class ConsoleInputOutput implements IMessageHandler {
 
     @Override
     public void handle(String message) {
-        System.out.println("Echo " + message);
+        System.out.println(message);
     }
 
     public String readLine(){
