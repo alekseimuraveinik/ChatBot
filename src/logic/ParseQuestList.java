@@ -9,7 +9,7 @@ public class ParseQuestList {
     public Node questions;
 
     public Node ParseQuests(String filename){
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("..\\" + filename))) {
             String line;
             while ((line = br.readLine()) != null) {
                 System.out.println(line);
