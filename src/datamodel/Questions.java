@@ -1,15 +1,14 @@
 package datamodel;
 
+import datasource.ParseQuestList;
+
 public class Questions {
 
     private final Node questionRoot;
 
     public Questions(){
-        questionRoot = new Node("", "Ты за альянс или орду?");
-        questionRoot.AddChild("альянс", "Ты проиграл", true);
-        questionRoot.AddChild("орда", "Ты волшебник, воин, друид или вор")
-                .AddChild("волшебник", "Ты появился в городе, куда пойдешь - на аукцион или на арену")
-                .AddChild("арена", "Ты умер на арене", true);
+        ParseQuestList parser = new ParseQuestList();
+        questionRoot = parser.ParseQuests("questions.txt");
     }
 
     public Node getQuestionRoot() {
