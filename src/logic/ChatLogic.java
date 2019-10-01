@@ -1,17 +1,19 @@
 package logic;
 
 import datamodel.Node;
-import datamodel.Questions;
 import interfaces.IChatLogic;
 import interfaces.IMessageHandler;
+import interfaces.IQuestionGettable;
 
 public class ChatLogic implements IChatLogic {
     private IMessageHandler handler;
 
     private Node currentQuestion;
+    private Node root;
 
-    public ChatLogic(){
-        currentQuestion = new Questions().getQuestionRoot();
+    public ChatLogic(IQuestionGettable source){
+        currentQuestion = source.getQuestionRoot();
+        root = currentQuestion;
     }
 
     @Override
@@ -26,11 +28,19 @@ public class ChatLogic implements IChatLogic {
 
         String messageToProceed;
 
-        if(nextQuestion == null)
+        if (userAnswer.equals("/help") || userAnswer.equals("help") || userAnswer.equals("памагите")){
+            messageToProceed = "Это игра-квест, вы можете путешествовать по сказочному миру средиземья отвечая на вопросы" +
+            "\n\n" + currentQuestion.getQuestionContent();
+        } else if(nextQuestion == null)
             messageToProceed = "Такого варианта не предусмотрено";
         else {
             currentQuestion = nextQuestion;
             messageToProceed = currentQuestion.getQuestionContent();
+        }
+
+        if(currentQuestion.isTerminating()) {
+            currentQuestion = root;
+            messageToProceed += "\n\n"+currentQuestion.getQuestionContent();
         }
         //Здесь логика обработки ответов пользователя
         handler.handle(messageToProceed);
