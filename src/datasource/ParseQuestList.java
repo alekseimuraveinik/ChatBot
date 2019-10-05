@@ -1,12 +1,19 @@
 package datasource;
 
 import datamodel.Node;
+import interfaces.IQuestionGettable;
 
 import java.io.*;
 
-public class ParseQuestList {
+public class ParseQuestList implements IQuestionGettable {
 
-    public Node ParseQuests(String filename){
+    private String filename;
+
+    public ParseQuestList(String filename){
+        this.filename = filename;
+    }
+
+    public Node getQuestionRoot(){
         Node questions = new Node("", "Ты появился в волшебном мире, введи \"да\" чтобы начать игру");
         try (FileInputStream br = new FileInputStream(new File(filename))) {
             BufferedReader isr = new  BufferedReader (new InputStreamReader(br, "Cp1251"));
