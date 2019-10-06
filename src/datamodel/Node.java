@@ -5,16 +5,13 @@ import java.util.ArrayList;
 public class Node {
     private String questionContent;
     private String answerHolder;
-    private boolean isTerminating;
-    private ArrayList<Node> children;
+    private boolean isTerminating = true;
+    private ArrayList<Node> children = new ArrayList<>();
     public Node parent;
 
     public Node(String answer, String question){
         questionContent = question;
         answerHolder = answer;
-        isTerminating = true;
-        children = new ArrayList<>();
-        parent = null;
     }
 
     public void AddChild(String answer, String quest){

@@ -1,6 +1,6 @@
 package root;
 
-import datasource.ParseQuestList;
+import datasource.QuestionLoader;
 import interfaces.IChatLogic;
 import logic.ChatLogic;
 import logic.ConsoleInputOutput;
@@ -8,7 +8,9 @@ import logic.ConsoleInputOutput;
 public class EntryPoint{
     public static void main(String[] args)
     {
-        IChatLogic logic = new ChatLogic(new ParseQuestList("questions.txt"));
+        String filename = "questions.txt";
+        QuestionLoader loader = new QuestionLoader(filename);
+        IChatLogic logic = new ChatLogic(loader);
         ConsoleInputOutput io = new ConsoleInputOutput();
 
         logic.subscribe(io);

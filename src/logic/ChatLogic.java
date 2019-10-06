@@ -8,6 +8,13 @@ import interfaces.IQuestionGettable;
 public class ChatLogic implements IChatLogic {
     private IMessageHandler handler;
 
+    private static final String help = "help";
+    private static final String slashHelp = "/help";
+    private static final String ruHelp = "памагите";
+    private static final String gameInfo = "Это игра-квест, вы можете путешествовать по сказочному миру средиземья отвечая на вопросы";
+    private static final String noSuchVariant = "Такого варианта не предусмотрено";
+    private static final String doubleLineBreak = "\n\n";
+
     private Node currentQuestion;
     private Node root;
 
@@ -28,26 +35,20 @@ public class ChatLogic implements IChatLogic {
 
         String messageToProceed;
 
-        if (userAnswer.equals("/help") || userAnswer.equals("help") || userAnswer.equals("памагите")){
-            messageToProceed = "Это игра-квест, вы можете путешествовать по сказочному миру средиземья отвечая на вопросы" +
-            "\n\n" + currentQuestion.getQuestionContent();
-        } else if(nextQuestion == null)
-            messageToProceed = "Такого варианта не предусмотрено";
-        else {
+        if (userAnswer.equals(help) || userAnswer.equals(slashHelp) || userAnswer.equals(ruHelp)){
+            messageToProceed = gameInfo + doubleLineBreak + currentQuestion.getQuestionContent();
+        } else if(nextQuestion == null){
+            messageToProceed = noSuchVariant;
+        } else {
             currentQuestion = nextQuestion;
             messageToProceed = currentQuestion.getQuestionContent();
         }
 
         if(currentQuestion.isTerminating()) {
             currentQuestion = root;
-            messageToProceed += "\n\n"+currentQuestion.getQuestionContent();
+            messageToProceed += doubleLineBreak + currentQuestion.getQuestionContent();
         }
-        //Здесь логика обработки ответов пользователя
-        handler.handle(messageToProceed);
-    }
 
-    @Override
-    public boolean hasQuestions() {
-        return !currentQuestion.isTerminating();
+        handler.handle(messageToProceed);
     }
 }

@@ -2,13 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6e4d1b2-9d0d-4275-a4f7-330ac2c6712b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/datasource/FileReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datamodel/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datamodel/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/ParseQuestList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datasource/QuestionLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IChatLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/IChatLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/ChatLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/ChatLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/root/EntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/root/EntryPoint.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -18,6 +31,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Helper_2" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -65,6 +79,8 @@
       <workItem from="1569941694221" duration="15000" />
       <workItem from="1570271720235" duration="70000" />
       <workItem from="1570272215294" duration="211000" />
+      <workItem from="1570307084255" duration="13000" />
+      <workItem from="1570371421846" duration="1843000" />
     </task>
     <servers />
   </component>
