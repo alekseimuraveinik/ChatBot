@@ -14,7 +14,7 @@ public class Node {
         answerHolder = answer;
     }
 
-    public void AddChild(String answer, String quest){
+    public void addChild(String answer, String quest){
         Node node = new Node(answer, quest);
         children.add(node);
         node.parent = this;

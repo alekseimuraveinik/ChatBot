@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6e4d1b2-9d0d-4275-a4f7-330ac2c6712b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/datasource/FileReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/ChatLogicTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/NodeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/QuestionLoaderTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/auxiliary/MessageHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ChatBot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ChatBot.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/datamodel/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datamodel/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datasource/ParseQuestList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datasource/QuestionLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/IChatLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/IChatLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/QuestionLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datasource/QuestionLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logic/ChatLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/ChatLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/root/EntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/root/EntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/ConsoleInputOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/ConsoleInputOutput.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,6 +23,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -28,10 +32,25 @@
   </component>
   <component name="ProjectId" id="1RbgSs4CHkOl9g1tAHPexk01Rha" />
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Helper_2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="tests" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -45,7 +64,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.QuestionLoaderTest">
     <configuration name="EntryPoint" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="root.EntryPoint" />
       <module name="ChatBot" />
@@ -59,9 +78,74 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ChatLogicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChatBot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.ChatLogicTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChatLogicTest.noSuchVariant" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChatBot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.ChatLogicTest" />
+      <option name="METHOD_NAME" value="noSuchVariant" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NodeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChatBot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.NodeTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QuestionLoaderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChatBot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.QuestionLoaderTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.QuestionLoaderTest" />
+        <item itemvalue="JUnit.NodeTest" />
         <item itemvalue="Application.EntryPoint" />
+        <item itemvalue="JUnit.ChatLogicTest" />
+        <item itemvalue="JUnit.ChatLogicTest.noSuchVariant" />
       </list>
     </recent_temporary>
   </component>
@@ -80,7 +164,7 @@
       <workItem from="1570271720235" duration="70000" />
       <workItem from="1570272215294" duration="211000" />
       <workItem from="1570307084255" duration="13000" />
-      <workItem from="1570371421846" duration="1843000" />
+      <workItem from="1570371421846" duration="5404000" />
     </task>
     <servers />
   </component>

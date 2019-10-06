@@ -51,7 +51,7 @@ public class QuestionLoader implements IQuestionGettable {
 
     private String addChild(Node parent, String line){
         String[] parseLine = line.substring(1).split(";");
-        parent.AddChild(parseLine[0], parseLine[1]);
+        parent.addChild(parseLine[0], parseLine[1]);
         return parseLine[0];
     }
 

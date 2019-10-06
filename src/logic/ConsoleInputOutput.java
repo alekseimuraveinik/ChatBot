@@ -13,6 +13,6 @@ public class ConsoleInputOutput implements IMessageHandler {
     }
 
     public String readLine(){
-        return sc.next();
+        return sc.nextLine();
     }
 }

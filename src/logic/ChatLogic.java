@@ -44,11 +44,12 @@ public class ChatLogic implements IChatLogic {
             messageToProceed = currentQuestion.getQuestionContent();
         }
 
+        handler.handle(messageToProceed);
+
         if(currentQuestion.isTerminating()) {
             currentQuestion = root;
-            messageToProceed += doubleLineBreak + currentQuestion.getQuestionContent();
+            messageToProceed = doubleLineBreak + currentQuestion.getQuestionContent();
+            handler.handle(messageToProceed);
         }
-
-        handler.handle(messageToProceed);
     }
 }
