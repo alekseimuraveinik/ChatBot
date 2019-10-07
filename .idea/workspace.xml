@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c6e4d1b2-9d0d-4275-a4f7-330ac2c6712b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/tests/ChatLogicTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/NodeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/QuestionLoaderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/auxiliary/MessageHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ChatBot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ChatBot.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datamodel/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datamodel/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datasource/QuestionLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datasource/QuestionLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/ChatLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/ChatLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/ConsoleInputOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/ConsoleInputOutput.java" afterDir="false" />
-    </list>
+    <list default="true" id="c6e4d1b2-9d0d-4275-a4f7-330ac2c6712b" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,6 +154,7 @@
       <workItem from="1570272215294" duration="211000" />
       <workItem from="1570307084255" duration="13000" />
       <workItem from="1570371421846" duration="5404000" />
+      <workItem from="1570439774656" duration="148000" />
     </task>
     <servers />
   </component>
