@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c6e4d1b2-9d0d-4275-a4f7-330ac2c6712b" name="Default Changelist" comment="" />
+    <list default="true" id="c6e4d1b2-9d0d-4275-a4f7-330ac2c6712b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/newformat.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datamodel/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datamodel/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/QuestionLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datasource/QuestionLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/root/EntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/root/EntryPoint.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -53,7 +59,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ChatLogicTest">
+  <component name="RunManager" selected="Application.EntryPoint">
     <configuration name="EntryPoint" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="root.EntryPoint" />
       <module name="ChatBot" />
@@ -130,10 +136,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ChatLogicTest" />
-        <item itemvalue="JUnit.QuestionLoaderTest" />
-        <item itemvalue="JUnit.NodeTest" />
         <item itemvalue="Application.EntryPoint" />
+        <item itemvalue="JUnit.ChatLogicTest" />
+        <item itemvalue="JUnit.NodeTest" />
+        <item itemvalue="JUnit.QuestionLoaderTest" />
         <item itemvalue="JUnit.ChatLogicTest.noSuchVariant" />
       </list>
     </recent_temporary>
@@ -155,6 +161,7 @@
       <workItem from="1570307084255" duration="13000" />
       <workItem from="1570371421846" duration="5404000" />
       <workItem from="1570439774656" duration="148000" />
+      <workItem from="1570440133217" duration="3761000" />
     </task>
     <servers />
   </component>

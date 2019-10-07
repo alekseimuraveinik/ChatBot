@@ -7,7 +7,6 @@ public class Node {
     private String answerHolder;
     private boolean isTerminating = true;
     private ArrayList<Node> children = new ArrayList<>();
-    public Node parent;
 
     public Node(String answer, String question){
         questionContent = question;
@@ -17,7 +16,6 @@ public class Node {
     public void addChild(String answer, String quest){
         Node node = new Node(answer, quest);
         children.add(node);
-        node.parent = this;
         isTerminating = false;
     }
 
@@ -27,6 +25,14 @@ public class Node {
                 return child;
         }
         return null;
+    }
+
+    public Node getChildByIndex(int index){
+        try {
+            return children.get(index);
+        } catch (IndexOutOfBoundsException e){
+            return null;
+        }
     }
 
     public String getQuestionContent() {

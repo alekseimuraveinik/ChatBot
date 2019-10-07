@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class QuestionLoaderTest {
-    private static final String filename = "questions.txt";
+    private static final String filename = "newformat.txt";
 
     @Test
     void checkRootQuestion(){

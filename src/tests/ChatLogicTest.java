@@ -9,10 +9,12 @@ import tests.auxiliary.MessageHolder;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ChatLogicTest {
+    private static final String filename = "newformat.txt";
+
     @Test
     void correctGameStartingMessage(){
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader("questions.txt"));
+        IChatLogic logic = new ChatLogic(new QuestionLoader(filename));
         logic.subscribe(holder);
 
         String logicMessage = holder.getMessage();
@@ -23,7 +25,7 @@ class ChatLogicTest {
     @Test
     void allianceOrHordeQuestion(){
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader("questions.txt"));
+        IChatLogic logic = new ChatLogic(new QuestionLoader(filename));
         logic.subscribe(holder);
 
         logic.processMessage("да");
@@ -35,7 +37,7 @@ class ChatLogicTest {
     @Test
     void allianceVariantChosen(){
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader("questions.txt"));
+        IChatLogic logic = new ChatLogic(new QuestionLoader(filename));
         logic.subscribe(holder);
 
         logic.processMessage("да");
@@ -48,7 +50,7 @@ class ChatLogicTest {
     @Test
     void hordeVariantChosen(){
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader("questions.txt"));
+        IChatLogic logic = new ChatLogic(new QuestionLoader(filename));
         logic.subscribe(holder);
 
         logic.processMessage("да");
@@ -61,7 +63,7 @@ class ChatLogicTest {
     @Test
     void noSuchVariant(){
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader("questions.txt"));
+        IChatLogic logic = new ChatLogic(new QuestionLoader(filename));
         logic.subscribe(holder);
 
         logic.processMessage("не знаю");
