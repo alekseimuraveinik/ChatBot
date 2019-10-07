@@ -64,7 +64,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.QuestionLoaderTest">
+  <component name="RunManager" selected="JUnit.ChatLogicTest">
     <configuration name="EntryPoint" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="root.EntryPoint" />
       <module name="ChatBot" />
@@ -141,10 +141,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ChatLogicTest" />
         <item itemvalue="JUnit.QuestionLoaderTest" />
         <item itemvalue="JUnit.NodeTest" />
         <item itemvalue="Application.EntryPoint" />
-        <item itemvalue="JUnit.ChatLogicTest" />
         <item itemvalue="JUnit.ChatLogicTest.noSuchVariant" />
       </list>
     </recent_temporary>
