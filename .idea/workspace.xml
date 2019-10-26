@@ -2,11 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6e4d1b2-9d0d-4275-a4f7-330ac2c6712b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/newformat.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ChatBot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ChatBot.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datamodel/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datamodel/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datasource/QuestionLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datasource/QuestionLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/root/EntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/root/EntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datamodel/Node.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/FileReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/QuestionLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IChatLogic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IMessageHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IQuestionGettable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/ChatLogic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/ConsoleInputOutput.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/root/EntryPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/ChatLogicTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/NodeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/QuestionLoaderTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/auxiliary/MessageHolder.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +36,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1RbgSs4CHkOl9g1tAHPexk01Rha" />
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
@@ -38,6 +56,9 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Helper_2" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -162,6 +183,7 @@
       <workItem from="1570371421846" duration="5404000" />
       <workItem from="1570439774656" duration="148000" />
       <workItem from="1570440133217" duration="3761000" />
+      <workItem from="1572078846134" duration="3665000" />
     </task>
     <servers />
   </component>
