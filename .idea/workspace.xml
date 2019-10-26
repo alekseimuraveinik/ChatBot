@@ -26,6 +26,8 @@
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="importAutomatically" value="true" />
+        <option name="jdkForImporter" value="1.8" />
+        <option name="vmOptionsForImporter" value="-Xmx1024m" />
       </MavenImportingSettings>
     </option>
   </component>
@@ -45,7 +47,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.runner" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -179,6 +181,7 @@
       <workItem from="1572097073132" duration="21000" />
       <workItem from="1572098156212" duration="384000" />
       <workItem from="1572100086532" duration="69000" />
+      <workItem from="1572100309480" duration="217000" />
     </task>
     <servers />
   </component>
