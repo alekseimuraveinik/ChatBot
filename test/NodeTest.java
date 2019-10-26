@@ -1,5 +1,5 @@
 import datamodel.Node;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,6 +9,9 @@ class NodeTest {
         Node node = new Node("", "да?");
 
         assertEquals(node.getQuestionContent(), "да?");
+    }
+
+    private void assertEquals(String questionContent, String s) {
     }
 
     @Test
@@ -36,6 +39,9 @@ class NodeTest {
         root.addChild("да", "это я?");
 
         assertNull(root.getChildByAnswer("нет"));
+    }
+
+    private void assertNull(Node нет) {
     }
 
     @Test
