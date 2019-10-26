@@ -6,7 +6,9 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class Database {
     private static Firestore db;
@@ -19,10 +21,10 @@ public class Database {
     }
 
     private static void createDb() throws IOException {
-        GoogleCredentials credentials = GoogleCredentials.getApplicationDefault();
+        InputStream serviceAccount = new FileInputStream("firebase_api_key.json");
+        GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(credentials)
-                .setProjectId("chatbot-75891")
                 .build();
         FirebaseApp.initializeApp(options);
 

@@ -4,31 +4,8 @@
     <list default="true" id="c6e4d1b2-9d0d-4275-a4f7-330ac2c6712b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/ChatBot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ChatBot.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datamodel/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/datamodel/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/CloudStorageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/datasource/CloudStorageLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/FileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/datasource/FileReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/QuestionLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/datasource/QuestionLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/db/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interfaces/IChatLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/interfaces/IChatLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interfaces/IMessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/interfaces/IMessageHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interfaces/IQuestionGettable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/interfaces/IQuestionGettable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/logic/ChatLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/logic/ChatLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/logic/ConsoleInputOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/logic/ConsoleInputOutput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/root/EntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/root/EntryPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tests/ChatLogicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ChatLogicTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tests/CloudStorageLoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/CloudStorageLoaderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tests/NodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/NodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tests/QuestionLoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/QuestionLoaderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tests/auxiliary/MessageHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/auxiliary/MessageHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ChatBot-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tests/ChatLogicTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tests/CloudStorageLoaderTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tests/NodeTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tests/QuestionLoaderTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tests/auxiliary/MessageHolder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/db/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/db/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db/Database.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -82,12 +59,15 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Projects\Java\ChatBot" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Projects\Java\ChatBot\src" />
       <recent name="C:\Projects\Java\ChatBot" />
+      <recent name="C:\Projects\Java\ChatBot\src" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -222,6 +202,8 @@
       <workItem from="1572100567359" duration="219000" />
       <workItem from="1572100901752" duration="472000" />
       <workItem from="1572101522768" duration="384000" />
+      <workItem from="1572103512001" duration="165000" />
+      <workItem from="1572103818163" duration="92000" />
     </task>
     <servers />
   </component>
