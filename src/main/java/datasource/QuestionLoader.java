@@ -25,9 +25,11 @@ public class QuestionLoader implements IQuestionGettable {
             while (line != null){
                 String[] params = line.split(";");
 
+                String path = params[0];
+
                 Node nodeInWhichToAdd = questionRoot;
 
-                for (char index : params[0].toCharArray())
+                for (char index : path.toCharArray())
                     nodeInWhichToAdd = nodeInWhichToAdd.getChildByIndex(Character.getNumericValue(index));
 
                 nodeInWhichToAdd.addChild(params[1], params[2]);

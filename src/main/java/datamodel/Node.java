@@ -5,8 +5,11 @@ import java.util.ArrayList;
 public class Node {
     private String questionContent;
     private String answerHolder;
-    private boolean isTerminating = true;
     private ArrayList<Node> children = new ArrayList<>();
+
+    public Node(){
+
+    }
 
     public Node(String answer, String question){
         questionContent = question;
@@ -16,7 +19,30 @@ public class Node {
     public void addChild(String answer, String quest){
         Node node = new Node(answer, quest);
         children.add(node);
-        isTerminating = false;
+    }
+
+    public String getAnswerHolder() {
+        return answerHolder;
+    }
+
+    public void setAnswerHolder(String answerHolder) {
+        this.answerHolder = answerHolder;
+    }
+
+    public String getQuestionContent() {
+        return questionContent;
+    }
+
+    public void setQuestionContent(String questionContent) {
+        this.questionContent = questionContent;
+    }
+
+    public ArrayList<Node> getChildren() {
+        return children;
+    }
+
+    public void setChildren(ArrayList<Node> children) {
+        this.children = children;
     }
 
     public Node getChildByAnswer(String answer){
@@ -35,11 +61,7 @@ public class Node {
         }
     }
 
-    public String getQuestionContent() {
-        return questionContent;
-    }
-
     public boolean isTerminating(){
-        return isTerminating;
+        return children.size() == 0;
     }
 }

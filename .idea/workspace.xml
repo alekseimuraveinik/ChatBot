@@ -3,21 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="c6e4d1b2-9d0d-4275-a4f7-330ac2c6712b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/ChatBot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ChatBot.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datamodel/Node.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datasource/FileReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datasource/QuestionLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/IChatLogic.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/IMessageHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/IQuestionGettable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/ChatLogic.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/ConsoleInputOutput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/root/EntryPoint.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/ChatLogicTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/NodeTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/QuestionLoaderTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/auxiliary/MessageHolder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datamodel/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datamodel/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/QuestionLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/QuestionLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interfaces/IMessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interfaces/IMessageHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/ChatLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/ChatLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/root/EntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/EntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tests/ChatLogicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tests/ChatLogicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tests/NodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tests/NodeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tests/QuestionLoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tests/QuestionLoaderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/root/EntryPoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/root/EntryPoint.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +51,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Helper_2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -66,6 +62,9 @@
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Projects\Java\ChatBot" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -109,7 +108,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ChatLogicTest.noSuchVariant" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CloudStorageLoaderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ChatBot" />
       <extension name="coverage">
         <pattern>
@@ -118,9 +117,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.ChatLogicTest" />
-      <option name="METHOD_NAME" value="noSuchVariant" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="tests.CloudStorageLoaderTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -158,10 +156,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.EntryPoint" />
-        <item itemvalue="JUnit.ChatLogicTest" />
+        <item itemvalue="JUnit.CloudStorageLoaderTest" />
         <item itemvalue="JUnit.NodeTest" />
+        <item itemvalue="JUnit.ChatLogicTest" />
         <item itemvalue="JUnit.QuestionLoaderTest" />
-        <item itemvalue="JUnit.ChatLogicTest.noSuchVariant" />
       </list>
     </recent_temporary>
   </component>
@@ -183,7 +181,10 @@
       <workItem from="1570371421846" duration="5404000" />
       <workItem from="1570439774656" duration="148000" />
       <workItem from="1570440133217" duration="3761000" />
-      <workItem from="1572078846134" duration="3665000" />
+      <workItem from="1572078846134" duration="5555000" />
+      <workItem from="1572086275048" duration="466000" />
+      <workItem from="1572087434935" duration="990000" />
+      <workItem from="1572088546900" duration="6130000" />
     </task>
     <servers />
   </component>

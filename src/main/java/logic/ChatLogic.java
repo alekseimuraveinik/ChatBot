@@ -5,6 +5,7 @@ import interfaces.IChatLogic;
 import interfaces.IMessageHandler;
 import interfaces.IQuestionGettable;
 
+
 public class ChatLogic implements IChatLogic {
     private IMessageHandler handler;
 
@@ -18,7 +19,7 @@ public class ChatLogic implements IChatLogic {
     private Node currentQuestion;
     private Node root;
 
-    public ChatLogic(IQuestionGettable source){
+    public ChatLogic(IQuestionGettable source) {
         currentQuestion = source.getQuestionRoot();
         root = currentQuestion;
     }
