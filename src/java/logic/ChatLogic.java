@@ -2,12 +2,12 @@ package logic;
 
 import datamodel.Node;
 import interfaces.IChatLogic;
-import interfaces.IMessageHandler;
+import interfaces.IInputOutput;
 import interfaces.IQuestionGettable;
 
 
 public class ChatLogic implements IChatLogic {
-    private IMessageHandler handler;
+    private IInputOutput handler;
 
     private static final String help = "help";
     private static final String slashHelp = "/help";
@@ -18,16 +18,18 @@ public class ChatLogic implements IChatLogic {
 
     private Node currentQuestion;
     private Node root;
+    private Long chatID;
 
-    public ChatLogic(IQuestionGettable source) {
+    public ChatLogic(IQuestionGettable source, Long chatID) {
         currentQuestion = source.getQuestionRoot();
         root = currentQuestion;
+        this.chatID = chatID;
     }
 
     @Override
-    public void subscribe(IMessageHandler handler) {
+    public void subscribe(IInputOutput handler) {
         this.handler = handler;
-        handler.handle(currentQuestion.getQuestionContent());
+        handler.handle(chatID, currentQuestion.getQuestionContent());
     }
 
     @Override
@@ -45,12 +47,12 @@ public class ChatLogic implements IChatLogic {
             messageToProceed = currentQuestion.getQuestionContent();
         }
 
-        handler.handle(messageToProceed);
+        handler.handle(chatID, messageToProceed);
 
         if(currentQuestion.isTerminating()) {
             currentQuestion = root;
             messageToProceed = doubleLineBreak + currentQuestion.getQuestionContent();
-            handler.handle(messageToProceed);
+            handler.handle(chatID, messageToProceed);
         }
     }
 }

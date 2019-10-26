@@ -1,41 +1,49 @@
 package root;
 
-import telegramIO.TelegramBot;
+import datamodel.ShortMessage;
+import interfaces.IInputOutput;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import sun.plugin2.message.Message;
+import telegramLogic.TelegramBot;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 import datasource.CloudStorageLoader;
 import datasource.QuestionLoader;
 import interfaces.IChatLogic;
 import interfaces.IQuestionGettable;
 import logic.ChatLogic;
 import logic.ConsoleInputOutput;
+import telegramLogic.TelegramIO;
+
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class EntryPoint{
 
     public static void main(String[] args) {
-        ApiContextInitializer.init();
-        TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
-        try {
-            telegramBotsApi.registerBot(new TelegramBot());
-        } catch (TelegramApiRequestException e) {
-            e.printStackTrace();
-        }
 
         String newFilename = "newformat.txt";
 
         IQuestionGettable localLoader = new QuestionLoader(newFilename);
         IQuestionGettable cloudLoader = new CloudStorageLoader();
 
+        HashMap<Long, IChatLogic> logicDict = new HashMap<>();
+
+
         try {
-            IChatLogic logic = new ChatLogic(cloudLoader);
-            ConsoleInputOutput io = new ConsoleInputOutput();
-
-            logic.subscribe(io);
-
+            IInputOutput io = new TelegramIO();
             while (true){
-                String message = io.readLine();
-                logic.processMessage(message);
+                ShortMessage message = io.readLine();
+
+                if (!logicDict.containsKey(message.chatID)){
+                    IChatLogic logic = new ChatLogic(cloudLoader, message.chatID);
+                    logic.subscribe(io);
+                    Long chatID = message.chatID;
+                    logicDict.put(chatID, logic);
+                }
+                else {
+                    logicDict.get(message.chatID).processMessage(message.text);
+                }
             }
 
         } catch (Exception e) {

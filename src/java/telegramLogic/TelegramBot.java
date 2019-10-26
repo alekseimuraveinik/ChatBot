@@ -1,8 +1,6 @@
-package telegramIO;
+package telegramLogic;
 
-import interfaces.IChatLogic;
-import interfaces.IMessageHandler;
-import interfaces.IMessageReader;
+import interfaces.IInputOutput;
 import logic.ChatLogic;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -10,18 +8,19 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.util.Dictionary;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class TelegramBot extends TelegramLongPollingBot {
-    private ChatLogic chatLogic;
+    public Queue<Message> inputMessages;
+
+    TelegramBot(){
+        inputMessages = new LinkedList<>();
+    }
 
     @Override
     public void onUpdateReceived(Update upd){
-        Message msg = upd.getMessage(); // Это нам понадобится
-        Long chatId = msg.getChatId();
-        String txt = msg.getText();
-        System.out.println(txt);
-        sendMsg(chatId, txt);
+        inputMessages.add(upd.getMessage());
     }
 
     @Override
