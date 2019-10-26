@@ -3,23 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c6e4d1b2-9d0d-4275-a4f7-330ac2c6712b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/ChatBot.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/datamodel/Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/datasource/CloudStorageLoader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/datasource/FileReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/datasource/QuestionLoader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/db/Database.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interfaces/IChatLogic.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interfaces/IMessageHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interfaces/IQuestionGettable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/logic/ChatLogic.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/logic/ConsoleInputOutput.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/root/EntryPoint.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tests/ChatLogicTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tests/CloudStorageLoaderTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tests/NodeTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tests/QuestionLoaderTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tests/auxiliary/MessageHolder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -194,6 +178,7 @@
       <workItem from="1572088546900" duration="6130000" />
       <workItem from="1572097073132" duration="21000" />
       <workItem from="1572098156212" duration="384000" />
+      <workItem from="1572100086532" duration="69000" />
     </task>
     <servers />
   </component>
