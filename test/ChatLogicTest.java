@@ -1,10 +1,8 @@
-package tests;
-
 import datasource.QuestionLoader;
 import interfaces.IChatLogic;
 import logic.ChatLogic;
 import org.junit.jupiter.api.Test;
-import tests.auxiliary.MessageHolder;
+import auxiliary.MessageHolder;
 
 import static org.junit.jupiter.api.Assertions.*;
 

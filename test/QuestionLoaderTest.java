@@ -1,22 +1,22 @@
-package tests;
-
 import datamodel.Node;
-import datasource.CloudStorageLoader;
+import datasource.QuestionLoader;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CloudStorageLoaderTest {
+class QuestionLoaderTest {
+    private static final String filename = "newformat.txt";
+
     @Test
     void checkRootQuestion(){
-        Node root = new CloudStorageLoader().getQuestionRoot();
+        Node root = new QuestionLoader(filename).getQuestionRoot();
 
         assertEquals(root.getQuestionContent(), "Ты появился в волшебном мире, введи \"да\" чтобы начать игру");
     }
 
     @Test
     void checkYesVariantQuestion(){
-        Node root = new CloudStorageLoader().getQuestionRoot();
+        Node root = new QuestionLoader(filename).getQuestionRoot();
 
         Node child = root.getChildByAnswer("да");
 
@@ -25,7 +25,7 @@ class CloudStorageLoaderTest {
 
     @Test
     void checkNonsenseVariantQuestion(){
-        Node root = new CloudStorageLoader().getQuestionRoot();
+        Node root = new QuestionLoader(filename).getQuestionRoot();
 
         Node child = root.getChildByAnswer("ну наверное да");
 
@@ -34,18 +34,18 @@ class CloudStorageLoaderTest {
 
     @Test
     void checkTerminatingQuestionChildNullness(){
-        Node root = new CloudStorageLoader().getQuestionRoot();
+        Node root = new QuestionLoader(filename).getQuestionRoot();
 
         Node child = root.getChildByAnswer("да")
-                .getChildByAnswer("альянс")
-                .getChildByAnswer("печально");
+                            .getChildByAnswer("альянс")
+                            .getChildByAnswer("печально");
 
         assertNull(child);
     }
 
     @Test
     void checkNotTerminatingQuestionChildNotNullness(){
-        Node root = new CloudStorageLoader().getQuestionRoot();
+        Node root = new QuestionLoader(filename).getQuestionRoot();
 
         Node child = root.getChildByAnswer("да")
                 .getChildByAnswer("орда")
@@ -56,7 +56,7 @@ class CloudStorageLoaderTest {
 
     @Test
     void checkHordeWizardQuestion(){
-        Node root = new CloudStorageLoader().getQuestionRoot();
+        Node root = new QuestionLoader(filename).getQuestionRoot();
 
         Node child = root.getChildByAnswer("да")
                 .getChildByAnswer("орда")

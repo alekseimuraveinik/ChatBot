@@ -1,5 +1,3 @@
-package tests;
-
 import datamodel.Node;
 import org.junit.jupiter.api.Test;
 
