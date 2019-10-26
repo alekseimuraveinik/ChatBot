@@ -56,6 +56,12 @@
             <version>1.9.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.google.firebase</groupId>
+            <artifactId>firebase-admin</artifactId>
+            <version>6.10.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 
