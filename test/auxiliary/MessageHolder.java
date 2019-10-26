@@ -1,4 +1,4 @@
-package tests.auxiliary;
+package auxiliary;
 
 import interfaces.IMessageHandler;
 
