@@ -1,7 +1,9 @@
 package telegramIO;
 
+import interfaces.IChatLogic;
 import interfaces.IMessageHandler;
 import interfaces.IMessageReader;
+import logic.ChatLogic;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -10,7 +12,9 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.Dictionary;
 
-public class TelegramBot extends TelegramLongPollingBot{
+public class TelegramBot extends TelegramLongPollingBot {
+    private ChatLogic chatLogic;
+
     @Override
     public void onUpdateReceived(Update upd){
         Message msg = upd.getMessage(); // Это нам понадобится
@@ -30,7 +34,7 @@ public class TelegramBot extends TelegramLongPollingBot{
         return "959156287:AAE1iEBjxGFKbtqF_i0Zn4iqdsvJqvY7q4w";
     }
 
-    private void sendMsg(Long chatId, String text) {
+    public void sendMsg(Long chatId, String text) {
         SendMessage s = new SendMessage();
         s.setChatId(chatId);
         s.setText(text);
