@@ -11,6 +11,8 @@ public class ChatLogic implements IChatLogic {
     private IMessageHandler handler;
 
     private static final String help = "help";
+    private static final String callboard = "callboard";
+    private static final String add = "add";
     private static final String slashHelp = "/help";
     private static final String ruHelp = "памагите";
     private static final String gameInfo = "Это игра-квест, вы можете путешествовать по сказочному миру средиземья отвечая на вопросы";
@@ -41,6 +43,10 @@ public class ChatLogic implements IChatLogic {
 
         if (userAnswer.equals(help) || userAnswer.equals(slashHelp) || userAnswer.equals(ruHelp)){
             messageToProceed = gameInfo + doubleLineBreak + currentQuestion.getQuestionContent();
+        } else if(userAnswer.equals(callboard)){
+            messageToProceed = new Callboard().getCallboardRecords();
+        } else if(userAnswer.startsWith("add")){
+            messageToProceed = new Callboard().addRecord(userAnswer.substring(4));
         } else if(nextQuestion == null){
             messageToProceed = noSuchVariant;
         } else {

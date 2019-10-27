@@ -27,10 +27,6 @@ public class EntryPoint{
         try {
             TelegramIO io = new TelegramIO();
 
-            new Thread(() -> {
-
-            }).start();
-
             while (true){
                 ShortMessage message = io.readLine();
 
