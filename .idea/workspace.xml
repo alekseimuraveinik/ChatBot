@@ -2,7 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6e4d1b2-9d0d-4275-a4f7-330ac2c6712b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/datamodel/ShortMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/telegramLogic/TelegramIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/interfaces/IChatLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/interfaces/IChatLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/interfaces/IMessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/interfaces/IInputOutput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/interfaces/IMessageReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/logic/ChatLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/logic/ChatLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/logic/ConsoleInputOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/logic/ConsoleInputOutput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/root/EntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/root/EntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/telegramIO/TelegramBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/telegramLogic/TelegramBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interfaces/IChatLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interfaces/IChatLogic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interfaces/IMessageHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/logic/ChatLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/logic/ChatLogic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/logic/ConsoleInputOutput.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/logic/ConsoleInputOutput.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/root/EntryPoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/root/EntryPoint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/telegramIO/TelegramBot.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ChatLogicTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/auxiliary/MessageHolder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ChatLogicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ChatLogicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/auxiliary/MessageHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/auxiliary/MessageHolder.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,6 +33,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -25,12 +45,14 @@
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="importAutomatically" value="true" />
-        <option name="jdkForImporter" value="1.8" />
-        <option name="vmOptionsForImporter" value="-Xmx1024m" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
       </MavenImportingSettings>
     </option>
   </component>
   <component name="ProjectId" id="1RbgSs4CHkOl9g1tAHPexk01Rha" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
@@ -47,6 +69,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
   </component>
   <component name="RecentsManager">
@@ -201,10 +224,9 @@
       <workItem from="1572101522768" duration="384000" />
       <workItem from="1572103512001" duration="165000" />
       <workItem from="1572103818163" duration="92000" />
-      <workItem from="1572104393339" duration="527000" />
-      <workItem from="1572104923407" duration="2358000" />
-      <workItem from="1572110844250" duration="105000" />
-      <workItem from="1572110999734" duration="19000" />
+      <workItem from="1572104799417" duration="831000" />
+      <workItem from="1572105664536" duration="7931000" />
+      <workItem from="1572113902053" duration="7848000" />
     </task>
     <servers />
   </component>

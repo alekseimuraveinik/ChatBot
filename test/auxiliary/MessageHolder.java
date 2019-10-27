@@ -1,8 +1,8 @@
 package auxiliary;
 
-import interfaces.IMessageHandler;
+import interfaces.IInputOutput;
 
-public class MessageHolder implements IMessageHandler {
+/*public class MessageHolder implements IInputOutput {
 
     private String lastReceivedMessage;
     private boolean terminated = false;
@@ -19,4 +19,4 @@ public class MessageHolder implements IMessageHandler {
     public String getMessage(){
         return lastReceivedMessage;
     }
-}
+}*/
