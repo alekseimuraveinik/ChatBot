@@ -1,14 +1,14 @@
 package auxiliary;
 
-import interfaces.IInputOutput;
+import interfaces.IMessageHandler;
 
-/*public class MessageHolder implements IInputOutput {
+public class MessageHolder implements IMessageHandler {
 
     private String lastReceivedMessage;
     private boolean terminated = false;
 
     @Override
-    public void handle(String message) {
+    public void handle(Long userId, String message) {
         if(!terminated){
             lastReceivedMessage = message;
             if(message.substring(message.length() - 1).equals("~"))
@@ -19,4 +19,4 @@ import interfaces.IInputOutput;
     public String getMessage(){
         return lastReceivedMessage;
     }
-}*/
+}

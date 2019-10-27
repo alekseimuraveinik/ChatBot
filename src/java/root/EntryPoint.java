@@ -1,12 +1,8 @@
 package root;
 
 import datamodel.ShortMessage;
-import interfaces.IInputOutput;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import sun.plugin2.message.Message;
-import telegramLogic.TelegramBot;
-import org.telegram.telegrambots.ApiContextInitializer;
-import org.telegram.telegrambots.meta.TelegramBotsApi;
+import interfaces.IMessageHandler;
+import interfaces.IMessageReceiver;
 import datasource.CloudStorageLoader;
 import datasource.QuestionLoader;
 import interfaces.IChatLogic;
@@ -14,9 +10,7 @@ import interfaces.IQuestionGettable;
 import logic.ChatLogic;
 import logic.ConsoleInputOutput;
 import telegramLogic.TelegramIO;
-
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class EntryPoint{
 
@@ -31,7 +25,12 @@ public class EntryPoint{
 
 
         try {
-            IInputOutput io = new TelegramIO();
+            TelegramIO io = new TelegramIO();
+
+            new Thread(() -> {
+
+            }).start();
+
             while (true){
                 ShortMessage message = io.readLine();
 

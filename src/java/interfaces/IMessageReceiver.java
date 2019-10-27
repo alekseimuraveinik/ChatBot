@@ -2,7 +2,6 @@ package interfaces;
 
 import datamodel.ShortMessage;
 
-public interface IInputOutput {
-    void handle(Long userID, String message);
+public interface IMessageReceiver {
     ShortMessage readLine() throws InterruptedException;
 }

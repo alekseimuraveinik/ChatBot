@@ -1,11 +1,12 @@
 package logic;
 
 import datamodel.ShortMessage;
-import interfaces.IInputOutput;
+import interfaces.IMessageHandler;
+import interfaces.IMessageReceiver;
 
 import java.util.Scanner;
 
-public class ConsoleInputOutput implements IInputOutput {
+public class ConsoleInputOutput implements IMessageReceiver, IMessageHandler {
     private final Scanner sc = new Scanner(System.in);
 
     @Override

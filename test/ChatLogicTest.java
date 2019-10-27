@@ -2,17 +2,17 @@ import datasource.QuestionLoader;
 import interfaces.IChatLogic;
 import logic.ChatLogic;
 import org.junit.jupiter.api.Test;
-//import auxiliary.MessageHolder;
+import auxiliary.MessageHolder;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/*class ChatLogicTest {
+class ChatLogicTest {
     private static final String filename = "newformat.txt";
 
     @Test
     void correctGameStartingMessage(){
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader(filename));
+        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), 0L);
         logic.subscribe(holder);
 
         String logicMessage = holder.getMessage();
@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
     @Test
     void allianceOrHordeQuestion(){
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader(filename));
+        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), 0L);
         logic.subscribe(holder);
 
         logic.processMessage("да");
@@ -35,7 +35,7 @@ import static org.junit.jupiter.api.Assertions.*;
     @Test
     void allianceVariantChosen(){
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader(filename));
+        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), 0L);
         logic.subscribe(holder);
 
         logic.processMessage("да");
@@ -48,7 +48,7 @@ import static org.junit.jupiter.api.Assertions.*;
     @Test
     void hordeVariantChosen(){
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader(filename));
+        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), 0L);
         logic.subscribe(holder);
 
         logic.processMessage("да");
@@ -61,7 +61,7 @@ import static org.junit.jupiter.api.Assertions.*;
     @Test
     void noSuchVariant(){
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader(filename));
+        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), 0L);
         logic.subscribe(holder);
 
         logic.processMessage("не знаю");
@@ -71,4 +71,3 @@ import static org.junit.jupiter.api.Assertions.*;
         assertEquals(logicMessage, "Такого варианта не предусмотрено");
     }
 }
-*/

@@ -2,12 +2,13 @@ package logic;
 
 import datamodel.Node;
 import interfaces.IChatLogic;
-import interfaces.IInputOutput;
+import interfaces.IMessageHandler;
+import interfaces.IMessageReceiver;
 import interfaces.IQuestionGettable;
 
 
 public class ChatLogic implements IChatLogic {
-    private IInputOutput handler;
+    private IMessageHandler handler;
 
     private static final String help = "help";
     private static final String slashHelp = "/help";
@@ -27,7 +28,7 @@ public class ChatLogic implements IChatLogic {
     }
 
     @Override
-    public void subscribe(IInputOutput handler) {
+    public void subscribe(IMessageHandler handler) {
         this.handler = handler;
         handler.handle(chatID, currentQuestion.getQuestionContent());
     }
