@@ -1,4 +1,4 @@
-package logic;
+package legacy;
 
 import datamodel.ShortMessage;
 import interfaces.IMessageHandler;

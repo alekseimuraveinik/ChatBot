@@ -1,11 +1,11 @@
 import datamodel.Node;
-import datasource.QuestionLoader;
+import legacy.QuestionLoader;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class QuestionLoaderTest {
-    private static final String filename = "newformat.txt";
+    private static final String filename = "new_format.txt";
 
     @Test
     void checkRootQuestion(){

@@ -2,12 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6e4d1b2-9d0d-4275-a4f7-330ac2c6712b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/java/logic/Callboard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Alex.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/telegramLogic/UserThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telegram_data" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newformat.txt" beforeDir="false" afterPath="$PROJECT_DIR$/new_format.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/datasource/CloudStorageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/datasource/CloudStorageLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/datasource/QuestionLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/legacy/QuestionLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/db/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/db/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/logic/Callboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/logic/Callboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/logic/ChatLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/logic/ChatLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/logic/ConsoleInputOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/legacy/ConsoleInputOutput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/root/EntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/root/EntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/telegramLogic/TelegramBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/telegramLogic/TelegramBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/telegramLogic/TelegramIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/telegramLogic/TelegramIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db/Database.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/logic/ChatLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/logic/ChatLogic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/logic/ConsoleInputOutput.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/root/EntryPoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/root/EntryPoint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/telegramLogic/TelegramBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/telegramLogic/TelegramBot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/telegramLogic/TelegramIO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/telegramLogic/TelegramIO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ChatLogicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ChatLogicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/QuestionLoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/QuestionLoaderTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,18 +78,19 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="tests" />
     </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Projects\Java\ChatBot" />
+      <recent name="C:\Projects\Java\ChatBot\src" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="legacy" />
+      <recent name="" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Projects\Java\ChatBot" />
-      <recent name="C:\Projects\Java\ChatBot\src" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -214,6 +231,9 @@
       <workItem from="1572105664536" duration="7931000" />
       <workItem from="1572113902053" duration="7848000" />
       <workItem from="1572176121209" duration="3522000" />
+      <workItem from="1572199144137" duration="677000" />
+      <workItem from="1572202769658" duration="641000" />
+      <workItem from="1572259812850" duration="8646000" />
     </task>
     <servers />
   </component>

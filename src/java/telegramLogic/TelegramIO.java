@@ -9,33 +9,36 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class TelegramIO implements IMessageReceiver, IMessageHandler {
-        private TelegramBot bot;
+    private static final String SUCCESS_MESSAGE = "Success!";
+    private static final String ERROR_MESSAGE = "Connection error!";
+
+    private static final int MESSAGE_CHECKING_INTERVAL = 300;
+
+    private TelegramBot bot;
 
     public TelegramIO(){
         ApiContextInitializer.init();
         bot = new TelegramBot();
-        TelegramBotsApi botsApi = new TelegramBotsApi();
         try {
-            System.out.println("Try");
-            botsApi.registerBot(bot);
-            System.out.println("Connected!");
+            new TelegramBotsApi().registerBot(bot);
+            System.out.println(SUCCESS_MESSAGE);
         } catch (TelegramApiException e) {
-            System.out.println("Connection error");
             e.printStackTrace();
+            System.out.println(ERROR_MESSAGE);
         }
     }
 
     @Override
-    public void handle(Long userID, String message) {
+    public synchronized void handle(Long userID, String message) {
         bot.sendMsg(userID, message);
     }
 
     @Override
     public ShortMessage readLine() throws InterruptedException {
-        while (bot.inputMessages == null || bot.inputMessages.isEmpty()){
-            Thread.sleep(300);
-        }
-        Message m = bot.inputMessages.remove();
+        while (bot.isEmpty())
+            Thread.sleep(MESSAGE_CHECKING_INTERVAL);
+
+        Message m = bot.removeInputMessage();
         return new ShortMessage(m.getChatId(), m.getText());
     }
 }

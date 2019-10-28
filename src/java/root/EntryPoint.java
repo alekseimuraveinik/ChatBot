@@ -1,48 +1,51 @@
 package root;
 
 import datamodel.ShortMessage;
-import interfaces.IMessageHandler;
-import interfaces.IMessageReceiver;
 import datasource.CloudStorageLoader;
-import datasource.QuestionLoader;
+import db.Database;
 import interfaces.IChatLogic;
 import interfaces.IQuestionGettable;
 import logic.ChatLogic;
-import logic.ConsoleInputOutput;
 import telegramLogic.TelegramIO;
+import telegramLogic.UserThread;
+
 import java.util.HashMap;
+
 
 public class EntryPoint{
 
+    private static final String NEW_FORMAT_QUESTIONS_FILENAME = "new_format.txt";
+    private static final String OLD_FORMAT_QUESTIONS_FILENAME = "questions.txt";
+
     public static void main(String[] args) {
 
-        String newFilename = "newformat.txt";
+        Database.init();
 
-        IQuestionGettable localLoader = new QuestionLoader(newFilename);
         IQuestionGettable cloudLoader = new CloudStorageLoader();
 
-        HashMap<Long, IChatLogic> logicDict = new HashMap<>();
+        HashMap<Long, UserThread> logicDict = new HashMap<>();
 
+        TelegramIO io = new TelegramIO();
 
-        try {
-            TelegramIO io = new TelegramIO();
+        while (true){
+            try {
 
-            while (true){
                 ShortMessage message = io.readLine();
 
                 if (!logicDict.containsKey(message.chatID)){
                     IChatLogic logic = new ChatLogic(cloudLoader, message.chatID);
-                    logic.subscribe(io);
-                    Long chatID = message.chatID;
-                    logicDict.put(chatID, logic);
+                    UserThread userThread = new UserThread(logic, io);
+                    logicDict.put(message.chatID, userThread);
                 }
                 else {
-                    logicDict.get(message.chatID).processMessage(message.text);
+                    logicDict.get(message.chatID).transferControl(message.text);
                 }
-            }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+                break;
+            }
         }
+
     }
 }

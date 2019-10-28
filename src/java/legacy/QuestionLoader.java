@@ -1,6 +1,7 @@
-package datasource;
+package legacy;
 
 import datamodel.Node;
+import datasource.FileReader;
 import interfaces.IQuestionGettable;
 
 import java.io.IOException;

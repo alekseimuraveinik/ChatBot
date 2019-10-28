@@ -3,25 +3,27 @@ package logic;
 import datamodel.Node;
 import interfaces.IChatLogic;
 import interfaces.IMessageHandler;
-import interfaces.IMessageReceiver;
 import interfaces.IQuestionGettable;
 
 
 public class ChatLogic implements IChatLogic {
-    private IMessageHandler handler;
+    private static final String CALLBOARD = "/callboard";
+    private static final String ADD = "/add";
+    private static final String HELP = "/help";
+    private static final String UNKNOWN_COMMAND = "unknown command";
 
-    private static final String help = "help";
-    private static final String callboard = "callboard";
-    private static final String add = "add";
-    private static final String slashHelp = "/help";
-    private static final String ruHelp = "памагите";
-    private static final String gameInfo = "Это игра-квест, вы можете путешествовать по сказочному миру средиземья отвечая на вопросы";
-    private static final String noSuchVariant = "Такого варианта не предусмотрено";
-    private static final String doubleLineBreak = "\n\n";
+    private static final String GAME_INFO = "Это игра-квест, вы можете путешествовать по сказочному миру средиземья отвечая на вопросы";
+    private static final String NO_SUCH_VARIANT = "Такого варианта не предусмотрено";
+
+    private static final String DOUBLE_LINE_BREAK = "\n\n";
+    private static final String SLASH = "/";
+    private static final String SPACE = " ";
 
     private Node currentQuestion;
     private Node root;
     private Long chatID;
+
+    private IMessageHandler handler;
 
     public ChatLogic(IQuestionGettable source, Long chatID) {
         currentQuestion = source.getQuestionRoot();
@@ -37,18 +39,17 @@ public class ChatLogic implements IChatLogic {
 
     @Override
     public void processMessage(String userAnswer) {
-        Node nextQuestion = currentQuestion.getChildByAnswer(userAnswer);
+        if(userAnswer.startsWith(SLASH)){
+            handler.handle(chatID, processCommand(userAnswer));
+            return;
+        }
 
         String messageToProceed;
 
-        if (userAnswer.equals(help) || userAnswer.equals(slashHelp) || userAnswer.equals(ruHelp)){
-            messageToProceed = gameInfo + doubleLineBreak + currentQuestion.getQuestionContent();
-        } else if(userAnswer.equals(callboard)){
-            messageToProceed = new Callboard().getCallboardRecords();
-        } else if(userAnswer.startsWith("add")){
-            messageToProceed = new Callboard().addRecord(userAnswer.substring(4));
-        } else if(nextQuestion == null){
-            messageToProceed = noSuchVariant;
+        Node nextQuestion = currentQuestion.getChildByAnswer(userAnswer.toLowerCase());
+
+         if(nextQuestion == null){
+            messageToProceed = NO_SUCH_VARIANT;
         } else {
             currentQuestion = nextQuestion;
             messageToProceed = currentQuestion.getQuestionContent();
@@ -58,8 +59,26 @@ public class ChatLogic implements IChatLogic {
 
         if(currentQuestion.isTerminating()) {
             currentQuestion = root;
-            messageToProceed = doubleLineBreak + currentQuestion.getQuestionContent();
-            handler.handle(chatID, messageToProceed);
+            handler.handle(chatID, DOUBLE_LINE_BREAK + currentQuestion.getQuestionContent());
         }
+    }
+
+    private String processCommand(String command){
+        String answer;
+        String[] commandComponents = command.split(SPACE);
+        switch (commandComponents[0]){
+            case HELP:
+                answer = GAME_INFO + DOUBLE_LINE_BREAK + currentQuestion.getQuestionContent();
+                break;
+            case CALLBOARD:
+                answer = Callboard.getCallboardRecords();
+                break;
+            case ADD:
+                answer = Callboard.addRecord(command.substring(4));
+                break;
+            default:
+                answer = UNKNOWN_COMMAND;
+        }
+        return answer;
     }
 }
