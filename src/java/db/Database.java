@@ -15,14 +15,6 @@ public class Database {
 
     private static Firestore db;
 
-    public static void init(){
-        try{
-            createDb();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
     public static Firestore getInstance() throws IOException {
         if(db == null)
             createDb();

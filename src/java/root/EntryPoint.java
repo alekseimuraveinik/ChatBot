@@ -19,8 +19,6 @@ public class EntryPoint{
 
     public static void main(String[] args) {
 
-        Database.init();
-
         IQuestionGettable cloudLoader = new CloudStorageLoader();
 
         HashMap<Long, UserThread> logicDict = new HashMap<>();
