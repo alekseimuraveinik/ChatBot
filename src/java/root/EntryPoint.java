@@ -1,15 +1,11 @@
 package root;
 
-import datamodel.ShortMessage;
 import datasource.CloudStorageLoader;
-import db.Database;
 import interfaces.IChatLogic;
 import interfaces.IQuestionGettable;
 import logic.ChatLogic;
+import telegramLogic.MessagesProcessor;
 import telegramLogic.TelegramIO;
-import telegramLogic.UserThread;
-
-import java.util.HashMap;
 
 
 public class EntryPoint{
@@ -19,33 +15,17 @@ public class EntryPoint{
 
     public static void main(String[] args) {
 
-        Database.init();
-
         IQuestionGettable cloudLoader = new CloudStorageLoader();
 
-        HashMap<Long, UserThread> logicDict = new HashMap<>();
+        IChatLogic logic = new ChatLogic(cloudLoader);
+
+        MessagesProcessor processor = new MessagesProcessor(logic);
 
         TelegramIO io = new TelegramIO();
 
-        while (true){
-            try {
+        processor.subscribe(io);
+        io.subscribe(processor);
 
-                ShortMessage message = io.readLine();
-
-                if (!logicDict.containsKey(message.chatID)){
-                    IChatLogic logic = new ChatLogic(cloudLoader, message.chatID);
-                    UserThread userThread = new UserThread(logic, io);
-                    logicDict.put(message.chatID, userThread);
-                }
-                else {
-                    logicDict.get(message.chatID).transferControl(message.text);
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                break;
-            }
-        }
-
+        io.init();
     }
 }

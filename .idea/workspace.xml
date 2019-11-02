@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c6e4d1b2-9d0d-4275-a4f7-330ac2c6712b" name="Default Changelist" comment="" />
+    <list default="true" id="c6e4d1b2-9d0d-4275-a4f7-330ac2c6712b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/java/interfaces/IPlayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/logic/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/telegramLogic/MessagesProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/interfaces/IChatLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/interfaces/IChatLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/logic/Callboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/logic/Callboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/logic/ChatLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/logic/ChatLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/root/EntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/root/EntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/telegramLogic/TelegramBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/telegramLogic/TelegramBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/telegramLogic/TelegramIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/telegramLogic/TelegramIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/telegramLogic/UserThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interfaces/IChatLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interfaces/IChatLogic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/logic/ChatLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/logic/ChatLogic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/root/EntryPoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/root/EntryPoint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/telegramLogic/TelegramBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/telegramLogic/TelegramBot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/telegramLogic/TelegramIO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/telegramLogic/TelegramIO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ChatLogicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ChatLogicTest.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,6 +230,7 @@
       <workItem from="1572199144137" duration="677000" />
       <workItem from="1572202769658" duration="641000" />
       <workItem from="1572259812850" duration="8646000" />
+      <workItem from="1572693574607" duration="3471000" />
     </task>
     <servers />
   </component>

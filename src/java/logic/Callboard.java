@@ -9,7 +9,7 @@ import java.util.*;
 public class Callboard {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
-    public static String getCallboardRecords(){
+    public String getCallboardRecords(){
         StringBuilder sb = new StringBuilder();
         try{
 
@@ -30,7 +30,7 @@ public class Callboard {
         return "empty";
     }
 
-    public static String addRecord(String content){
+    public String addRecord(String content){
         try{
             Map<String, Object> docData = new HashMap<>();
             docData.put("date", getCurrentDate());
@@ -48,7 +48,7 @@ public class Callboard {
         }
     }
 
-    private static String getCurrentDate(){
+    private String getCurrentDate(){
         return DATE_FORMAT.format(new Date());
     }
 }

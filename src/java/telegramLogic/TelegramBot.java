@@ -1,5 +1,6 @@
 package telegramLogic;
 
+import datamodel.ShortMessage;
 import datasource.FileReader;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -18,10 +19,9 @@ public class TelegramBot extends TelegramLongPollingBot {
     private String botName;
     private String botToken;
 
-    private Queue<Message> inputMessages;
+    private MessagesProcessor processor;
 
     TelegramBot(){
-        inputMessages = new LinkedList<>();
         try (FileReader reader = new FileReader(filename, fileEncoding)) {
             botName = reader.readLine();
             botToken = reader.readLine();
@@ -30,9 +30,14 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
+    public void subscribe(MessagesProcessor processor){
+        this.processor = processor;
+    }
+
     @Override
     public void onUpdateReceived(Update upd){
-        inputMessages.add(upd.getMessage());
+        Message m = upd.getMessage();
+        processor.processMessage(new ShortMessage(m.getChatId(), m.getText()));
     }
 
     @Override
@@ -54,13 +59,5 @@ public class TelegramBot extends TelegramLongPollingBot {
         } catch (TelegramApiException e){
             e.printStackTrace();
         }
-    }
-
-    public boolean isEmpty(){
-        return inputMessages == null || inputMessages.isEmpty();
-    }
-
-    public Message removeInputMessage(){
-        return inputMessages.remove();
     }
 }

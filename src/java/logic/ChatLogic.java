@@ -2,7 +2,7 @@ package logic;
 
 import datamodel.Node;
 import interfaces.IChatLogic;
-import interfaces.IMessageHandler;
+import interfaces.IPlayer;
 import interfaces.IQuestionGettable;
 
 
@@ -19,28 +19,21 @@ public class ChatLogic implements IChatLogic {
     private static final String SLASH = "/";
     private static final String SPACE = " ";
 
-    private Node currentQuestion;
     private Node root;
-    private Long chatID;
 
-    private IMessageHandler handler;
-
-    public ChatLogic(IQuestionGettable source, Long chatID) {
-        currentQuestion = source.getQuestionRoot();
-        root = currentQuestion;
-        this.chatID = chatID;
+    public ChatLogic(IQuestionGettable source) {
+        root = source.getQuestionRoot();
     }
 
     @Override
-    public void subscribe(IMessageHandler handler) {
-        this.handler = handler;
-        handler.handle(chatID, currentQuestion.getQuestionContent());
+    public Node getRoot() {
+        return root;
     }
 
     @Override
-    public void processMessage(String userAnswer) {
+    public void processMessage(String userAnswer, IPlayer player, Node currentQuestion) {
         if(userAnswer.startsWith(SLASH)){
-            handler.handle(chatID, processCommand(userAnswer));
+            player.handle(processCommand(userAnswer, currentQuestion));
             return;
         }
 
@@ -51,19 +44,19 @@ public class ChatLogic implements IChatLogic {
          if(nextQuestion == null){
             messageToProceed = NO_SUCH_VARIANT;
         } else {
-            currentQuestion = nextQuestion;
-            messageToProceed = currentQuestion.getQuestionContent();
+            player.changeState(nextQuestion);
+            messageToProceed = nextQuestion.getQuestionContent();
         }
 
-        handler.handle(chatID, messageToProceed);
+        player.handle(messageToProceed);
 
-        if(currentQuestion.isTerminating()) {
-            currentQuestion = root;
-            handler.handle(chatID, DOUBLE_LINE_BREAK + currentQuestion.getQuestionContent());
+        if(nextQuestion != null && nextQuestion.isTerminating()) {
+            player.changeState(root);
+            player.handle(DOUBLE_LINE_BREAK + root.getQuestionContent());
         }
     }
 
-    private String processCommand(String command){
+    private String processCommand(String command, Node currentQuestion){
         String answer;
         String[] commandComponents = command.split(SPACE);
         switch (commandComponents[0]){
@@ -71,10 +64,10 @@ public class ChatLogic implements IChatLogic {
                 answer = GAME_INFO + DOUBLE_LINE_BREAK + currentQuestion.getQuestionContent();
                 break;
             case CALLBOARD:
-                answer = Callboard.getCallboardRecords();
+                answer = new Callboard().getCallboardRecords();
                 break;
             case ADD:
-                answer = Callboard.addRecord(command.substring(4));
+                answer = new Callboard().addRecord(command.substring(4));
                 break;
             default:
                 answer = UNKNOWN_COMMAND;
