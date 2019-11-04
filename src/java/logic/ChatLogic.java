@@ -2,6 +2,7 @@ package logic;
 
 import datamodel.Node;
 import interfaces.IChatLogic;
+import interfaces.IDatabaseLoader;
 import interfaces.IPlayer;
 import interfaces.IQuestionGettable;
 
@@ -20,8 +21,10 @@ public class ChatLogic implements IChatLogic {
     private static final String SPACE = " ";
 
     private Node root;
+    private IDatabaseLoader dbLoader;
 
-    public ChatLogic(IQuestionGettable source) {
+    public ChatLogic(IQuestionGettable source, IDatabaseLoader dbLoader) {
+        this.dbLoader = dbLoader;
         root = source.getQuestionRoot();
     }
 
@@ -64,10 +67,10 @@ public class ChatLogic implements IChatLogic {
                 answer = GAME_INFO + DOUBLE_LINE_BREAK + currentQuestion.getQuestionContent();
                 break;
             case CALLBOARD:
-                answer = new Callboard().getCallboardRecords();
+                answer = new Callboard(dbLoader).getCallboardRecords();
                 break;
             case ADD:
-                answer = new Callboard().addRecord(command.substring(4));
+                answer = new Callboard(dbLoader).addRecord(command.substring(4));
                 break;
             default:
                 answer = UNKNOWN_COMMAND;

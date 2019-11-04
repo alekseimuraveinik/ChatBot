@@ -2,24 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6e4d1b2-9d0d-4275-a4f7-330ac2c6712b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/java/interfaces/IPlayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/java/logic/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/java/telegramLogic/MessagesProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/datamodel/UserID.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/interfaces/IDatabaseLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/interfaces/IChatLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/interfaces/IChatLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/datasource/CloudStorageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/datasource/CloudStorageLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/db/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/db/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/interfaces/IMessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/interfaces/IMessageHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/legacy/ConsoleInputOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/legacy/ConsoleInputOutput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/logic/Callboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/logic/Callboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/logic/ChatLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/logic/ChatLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/logic/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/logic/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/root/EntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/root/EntryPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/telegramLogic/TelegramBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/telegramLogic/TelegramBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/telegramLogic/MessagesProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/telegramLogic/MessagesProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/telegramLogic/TelegramIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/telegramLogic/TelegramIO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/telegramLogic/UserThread.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interfaces/IChatLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interfaces/IChatLogic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db/Database.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/logic/ChatLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/logic/ChatLogic.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/root/EntryPoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/root/EntryPoint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/telegramLogic/TelegramBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/telegramLogic/TelegramBot.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/telegramLogic/TelegramIO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/telegramLogic/TelegramIO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ChatLogicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ChatLogicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/CloudStorageLoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/CloudStorageLoaderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/auxiliary/MessageHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/auxiliary/MessageHolder.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,8 +32,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -152,7 +153,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NodeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CloudStorageLoaderTest.checkHordeWizardQuestion" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ChatBot" />
       <extension name="coverage">
         <pattern>
@@ -161,8 +162,9 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="NodeTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="CloudStorageLoaderTest" />
+      <option name="METHOD_NAME" value="checkHordeWizardQuestion" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -185,10 +187,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.EntryPoint" />
-        <item itemvalue="JUnit.QuestionLoaderTest" />
         <item itemvalue="JUnit.CloudStorageLoaderTest" />
-        <item itemvalue="JUnit.NodeTest" />
+        <item itemvalue="JUnit.CloudStorageLoaderTest.checkHordeWizardQuestion" />
         <item itemvalue="JUnit.ChatLogicTest" />
+        <item itemvalue="JUnit.QuestionLoaderTest" />
       </list>
     </recent_temporary>
   </component>
@@ -231,6 +233,7 @@
       <workItem from="1572202769658" duration="641000" />
       <workItem from="1572259812850" duration="8646000" />
       <workItem from="1572693574607" duration="3471000" />
+      <workItem from="1572821061925" duration="6114000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,6 @@
 package telegramLogic;
 
+import datamodel.UserID;
 import interfaces.IMessageHandler;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
@@ -33,7 +34,7 @@ public class TelegramIO implements IMessageHandler {
     }
 
     @Override
-    public synchronized void handle(Long userID, String message) {
-        bot.sendMsg(userID, message);
+    public synchronized void handle(UserID userID, String message) {
+        bot.sendMsg(userID.id, message);
     }
 }

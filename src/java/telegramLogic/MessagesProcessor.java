@@ -1,6 +1,7 @@
 package telegramLogic;
 
 import datamodel.ShortMessage;
+import datamodel.UserID;
 import interfaces.IChatLogic;
 import interfaces.IMessageHandler;
 import interfaces.IPlayer;
@@ -24,7 +25,7 @@ public class MessagesProcessor {
 
     public void processMessage(ShortMessage message){
         if (!logicDict.containsKey(message.chatID)){
-            IPlayer player = new Player(logic, message.chatID);
+            IPlayer player = new Player(logic, new UserID(message.chatID));
             player.subscribe(handler);
             logicDict.put(message.chatID, player);
         }

@@ -5,39 +5,41 @@ import com.google.cloud.firestore.Firestore;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
+import interfaces.IDatabaseLoader;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class Database {
-    private static final String firebaseApiKeyFilename = "firebase_api_key.json";
+public class Database implements IDatabaseLoader {
+    private String firebaseApiKeyFilename;
 
-    private static Firestore db;
+    private Firestore db;
 
-    public static void init(){
-        try{
-            createDb();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+    public Database(String firebaseApiKeyFilename){
+        this.firebaseApiKeyFilename = firebaseApiKeyFilename;
     }
 
-    public static Firestore getInstance() throws IOException {
-        if(db == null)
-            createDb();
+    public Firestore getInstance() throws IOException {
+        if(db == null) {
+            synchronized (this) {
+                if(db == null) {
+                    createDb();
+                }
+            }
+        }
 
         return db;
     }
 
-    private static void createDb() throws IOException {
+    private void createDb() throws IOException {
         InputStream serviceAccount = new FileInputStream(firebaseApiKeyFilename);
         GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(credentials)
                 .build();
-        FirebaseApp.initializeApp(options);
+        FirebaseApp app = FirebaseApp.initializeApp(options, String.valueOf(FirebaseApp.getApps().size()));
 
-        db = FirestoreClient.getFirestore();
+        db = FirestoreClient.getFirestore(app);
     }
 }

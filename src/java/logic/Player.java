@@ -1,17 +1,18 @@
 package logic;
 
 import datamodel.Node;
+import datamodel.UserID;
 import interfaces.IChatLogic;
 import interfaces.IMessageHandler;
 import interfaces.IPlayer;
 
 public class Player implements IPlayer {
     private Node currentNode;
-    private Long chatId;
+    private UserID chatId;
     private IChatLogic logic;
     private IMessageHandler handler;
 
-    public Player(IChatLogic logic, Long chatId){
+    public Player(IChatLogic logic, UserID chatId){
         this.logic = logic;
         this.chatId = chatId;
         currentNode = logic.getRoot();

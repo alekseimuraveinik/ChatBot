@@ -1,7 +1,9 @@
 package root;
 
 import datasource.CloudStorageLoader;
+import db.Database;
 import interfaces.IChatLogic;
+import interfaces.IDatabaseLoader;
 import interfaces.IQuestionGettable;
 import logic.ChatLogic;
 import telegramLogic.MessagesProcessor;
@@ -14,10 +16,10 @@ public class EntryPoint{
     private static final String OLD_FORMAT_QUESTIONS_FILENAME = "questions.txt";
 
     public static void main(String[] args) {
+        IDatabaseLoader dbLoader = new Database("firebase_api_key.json");
+        IQuestionGettable cloudLoader = new CloudStorageLoader(dbLoader);
 
-        IQuestionGettable cloudLoader = new CloudStorageLoader();
-
-        IChatLogic logic = new ChatLogic(cloudLoader);
+        IChatLogic logic = new ChatLogic(cloudLoader, dbLoader);
 
         MessagesProcessor processor = new MessagesProcessor(logic);
 
