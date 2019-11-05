@@ -2,7 +2,6 @@ package datasource;
 
 import com.google.cloud.firestore.*;
 import datamodel.Node;
-import db.Database;
 import interfaces.IDatabaseLoader;
 import interfaces.IQuestionGettable;
 
@@ -21,7 +20,7 @@ public class CloudStorageLoader implements IQuestionGettable {
     @Override
     public Node getQuestionRoot() {
         try {
-            for (QueryDocumentSnapshot document : dbLoader.getInstance()
+            for (QueryDocumentSnapshot document : dbLoader.getFirestore()
                     .collection(questionsCollectionName)
                     .get()
                     .get()

@@ -4,12 +4,13 @@ import datamodel.ShortMessage;
 import datamodel.UserID;
 import interfaces.IChatLogic;
 import interfaces.IMessageHandler;
+import interfaces.IMessageProcessor;
 import interfaces.IPlayer;
 import logic.Player;
 
 import java.util.HashMap;
 
-public class MessagesProcessor {
+public class MessagesProcessor implements IMessageProcessor{
     private HashMap<Long, IPlayer> logicDict;
     private IChatLogic logic;
     private IMessageHandler handler;
@@ -19,10 +20,12 @@ public class MessagesProcessor {
         logicDict = new HashMap<>();
     }
 
+    @Override
     public void subscribe(IMessageHandler handler){
         this.handler = handler;
     }
 
+    @Override
     public void processMessage(ShortMessage message){
         if (!logicDict.containsKey(message.chatID)){
             IPlayer player = new Player(logic, new UserID(message.chatID));

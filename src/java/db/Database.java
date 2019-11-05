@@ -19,7 +19,8 @@ public class Database implements IDatabaseLoader {
         this.firebaseApiKeyFilename = firebaseApiKeyFilename;
     }
 
-    public Firestore getInstance() throws IOException {
+    @Override
+    public Firestore getFirestore() throws IOException {
         if(db == null) {
             synchronized (this) {
                 if(db == null) {

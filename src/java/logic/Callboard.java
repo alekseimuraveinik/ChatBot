@@ -1,7 +1,6 @@
 package logic;
 
 import com.google.cloud.firestore.QueryDocumentSnapshot;
-import db.Database;
 import interfaces.IDatabaseLoader;
 
 import java.text.SimpleDateFormat;
@@ -10,7 +9,7 @@ import java.util.*;
 
 public class Callboard {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-    IDatabaseLoader dbLoader;
+    private IDatabaseLoader dbLoader;
 
     public Callboard(IDatabaseLoader dbLoader){
         this.dbLoader = dbLoader;
@@ -21,7 +20,7 @@ public class Callboard {
         try{
 
             for (QueryDocumentSnapshot document :
-                    dbLoader.getInstance()
+                    dbLoader.getFirestore()
                             .collection("callboard")
                             .get()
                             .get()
@@ -42,7 +41,7 @@ public class Callboard {
             Map<String, Object> docData = new HashMap<>();
             docData.put("date", getCurrentDate());
             docData.put("content", content);
-            return "Update time : " + dbLoader.getInstance()
+            return "Update time : " + dbLoader.getFirestore()
                     .collection("callboard")
                     .document()
                     .set(docData)

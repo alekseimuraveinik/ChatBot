@@ -4,6 +4,7 @@ import datasource.CloudStorageLoader;
 import db.Database;
 import interfaces.IChatLogic;
 import interfaces.IDatabaseLoader;
+import interfaces.IMessageProcessor;
 import interfaces.IQuestionGettable;
 import logic.ChatLogic;
 import telegramLogic.MessagesProcessor;
@@ -20,7 +21,7 @@ public class EntryPoint{
         IQuestionGettable cloudLoader = new CloudStorageLoader(dbLoader);
         IChatLogic logic = new ChatLogic(cloudLoader, dbLoader);
 
-        MessagesProcessor processor = new MessagesProcessor(logic);
+        IMessageProcessor processor = new MessagesProcessor(logic);
 
         TelegramIO io = new TelegramIO();
 

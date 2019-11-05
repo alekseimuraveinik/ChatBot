@@ -2,6 +2,7 @@ package telegramLogic;
 
 import datamodel.ShortMessage;
 import datasource.FileReader;
+import interfaces.IMessageProcessor;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -19,7 +20,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     private String botName;
     private String botToken;
 
-    private MessagesProcessor processor;
+    private IMessageProcessor processor;
 
     TelegramBot(){
         try (FileReader reader = new FileReader(filename, fileEncoding)) {
@@ -30,7 +31,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
-    public void subscribe(MessagesProcessor processor){
+    public void subscribe(IMessageProcessor processor){
         this.processor = processor;
     }
 

@@ -1,4 +1,5 @@
 /*
+import db.Database;
 import legacy.QuestionLoader;
 import interfaces.IChatLogic;
 import logic.ChatLogic;
@@ -9,11 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ChatLogicTest {
     private static final String filename = "new_format.txt";
+    private static final String apiFilename = "firebase_api_key.json";
 
     @Test
     void correctGameStartingMessage(){
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), 0L);
+        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), new Database(apiFilename));
         logic.subscribe(holder);
 
         String logicMessage = holder.getMessage();
