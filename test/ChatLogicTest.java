@@ -1,3 +1,4 @@
+/*
 import legacy.QuestionLoader;
 import interfaces.IChatLogic;
 import logic.ChatLogic;
@@ -71,3 +72,4 @@ class ChatLogicTest {
         assertEquals(logicMessage, "Такого варианта не предусмотрено");
     }
 }
+*/

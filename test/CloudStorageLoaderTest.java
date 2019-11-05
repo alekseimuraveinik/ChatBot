@@ -1,21 +1,23 @@
 import datamodel.Node;
 import datasource.CloudStorageLoader;
+import db.Database;
+import interfaces.IDatabaseLoader;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CloudStorageLoaderTest {
+    private IDatabaseLoader db = new Database("firebase_api_key.json");
+    private CloudStorageLoader storageLoader = new CloudStorageLoader(db);
+    private Node root = storageLoader.getQuestionRoot();
+
     @Test
     void checkRootQuestion(){
-        Node root = new CloudStorageLoader().getQuestionRoot();
-
         assertEquals(root.getQuestionContent(), "Ты появился в волшебном мире, введи \"да\" чтобы начать игру");
     }
 
     @Test
     void checkYesVariantQuestion(){
-        Node root = new CloudStorageLoader().getQuestionRoot();
-
         Node child = root.getChildByAnswer("да");
 
         assertEquals(child.getQuestionContent(), "Ты за альянс или орду?");
@@ -23,8 +25,6 @@ class CloudStorageLoaderTest {
 
     @Test
     void checkNonsenseVariantQuestion(){
-        Node root = new CloudStorageLoader().getQuestionRoot();
-
         Node child = root.getChildByAnswer("ну наверное да");
 
         assertNull(child);
@@ -32,8 +32,6 @@ class CloudStorageLoaderTest {
 
     @Test
     void checkTerminatingQuestionChildNullness(){
-        Node root = new CloudStorageLoader().getQuestionRoot();
-
         Node child = root.getChildByAnswer("да")
                 .getChildByAnswer("альянс")
                 .getChildByAnswer("печально");
@@ -43,8 +41,6 @@ class CloudStorageLoaderTest {
 
     @Test
     void checkNotTerminatingQuestionChildNotNullness(){
-        Node root = new CloudStorageLoader().getQuestionRoot();
-
         Node child = root.getChildByAnswer("да")
                 .getChildByAnswer("орда")
                 .getChildByAnswer("волшебник");
@@ -54,8 +50,6 @@ class CloudStorageLoaderTest {
 
     @Test
     void checkHordeWizardQuestion(){
-        Node root = new CloudStorageLoader().getQuestionRoot();
-
         Node child = root.getChildByAnswer("да")
                 .getChildByAnswer("орда")
                 .getChildByAnswer("волшебник");

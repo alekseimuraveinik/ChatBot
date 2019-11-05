@@ -3,6 +3,7 @@ package datasource;
 import com.google.cloud.firestore.*;
 import datamodel.Node;
 import db.Database;
+import interfaces.IDatabaseLoader;
 import interfaces.IQuestionGettable;
 
 import java.io.IOException;
@@ -11,11 +12,16 @@ import java.util.concurrent.ExecutionException;
 public class CloudStorageLoader implements IQuestionGettable {
     private static final String questionsCollectionName = "questions";
     private static final String questionRootDocumentName = "LA";
+    private IDatabaseLoader dbLoader;
+
+    public CloudStorageLoader(IDatabaseLoader dbLoader){
+        this.dbLoader = dbLoader;
+    }
 
     @Override
     public Node getQuestionRoot() {
         try {
-            for (QueryDocumentSnapshot document : Database.getInstance()
+            for (QueryDocumentSnapshot document : dbLoader.getInstance()
                     .collection(questionsCollectionName)
                     .get()
                     .get()

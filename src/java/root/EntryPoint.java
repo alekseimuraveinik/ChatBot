@@ -1,15 +1,13 @@
 package root;
 
-import datamodel.ShortMessage;
 import datasource.CloudStorageLoader;
 import db.Database;
 import interfaces.IChatLogic;
+import interfaces.IDatabaseLoader;
 import interfaces.IQuestionGettable;
 import logic.ChatLogic;
+import telegramLogic.MessagesProcessor;
 import telegramLogic.TelegramIO;
-import telegramLogic.UserThread;
-
-import java.util.HashMap;
 
 
 public class EntryPoint{
@@ -18,32 +16,17 @@ public class EntryPoint{
     private static final String OLD_FORMAT_QUESTIONS_FILENAME = "questions.txt";
 
     public static void main(String[] args) {
+        IDatabaseLoader dbLoader = new Database("firebase_api_key.json");
+        IQuestionGettable cloudLoader = new CloudStorageLoader(dbLoader);
+        IChatLogic logic = new ChatLogic(cloudLoader, dbLoader);
 
-        IQuestionGettable cloudLoader = new CloudStorageLoader();
-
-        HashMap<Long, UserThread> logicDict = new HashMap<>();
+        MessagesProcessor processor = new MessagesProcessor(logic);
 
         TelegramIO io = new TelegramIO();
 
-        while (true){
-            try {
+        processor.subscribe(io);
+        io.subscribe(processor);
 
-                ShortMessage message = io.readLine();
-
-                if (!logicDict.containsKey(message.chatID)){
-                    IChatLogic logic = new ChatLogic(cloudLoader, message.chatID);
-                    UserThread userThread = new UserThread(logic, io);
-                    logicDict.put(message.chatID, userThread);
-                }
-                else {
-                    logicDict.get(message.chatID).transferControl(message.text);
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                break;
-            }
-        }
-
+        io.init();
     }
 }

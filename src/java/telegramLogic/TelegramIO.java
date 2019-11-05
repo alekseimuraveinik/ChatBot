@@ -1,14 +1,12 @@
 package telegramLogic;
 
-import datamodel.ShortMessage;
+import datamodel.UserID;
 import interfaces.IMessageHandler;
-import interfaces.IMessageReceiver;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-public class TelegramIO implements IMessageReceiver, IMessageHandler {
+public class TelegramIO implements IMessageHandler {
     private static final String SUCCESS_MESSAGE = "Success!";
     private static final String ERROR_MESSAGE = "Connection error!";
 
@@ -19,6 +17,9 @@ public class TelegramIO implements IMessageReceiver, IMessageHandler {
     public TelegramIO(){
         ApiContextInitializer.init();
         bot = new TelegramBot();
+    }
+
+    public void init(){
         try {
             new TelegramBotsApi().registerBot(bot);
             System.out.println(SUCCESS_MESSAGE);
@@ -28,17 +29,12 @@ public class TelegramIO implements IMessageReceiver, IMessageHandler {
         }
     }
 
-    @Override
-    public synchronized void handle(Long userID, String message) {
-        bot.sendMsg(userID, message);
+    public void subscribe(MessagesProcessor processor){
+        bot.subscribe(processor);
     }
 
     @Override
-    public ShortMessage readLine() throws InterruptedException {
-        while (bot.isEmpty())
-            Thread.sleep(MESSAGE_CHECKING_INTERVAL);
-
-        Message m = bot.removeInputMessage();
-        return new ShortMessage(m.getChatId(), m.getText());
+    public synchronized void handle(UserID userID, String message) {
+        bot.sendMsg(userID.id, message);
     }
 }

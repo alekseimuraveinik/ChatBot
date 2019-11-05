@@ -1,6 +1,7 @@
 package legacy;
 
 import datamodel.ShortMessage;
+import datamodel.UserID;
 import interfaces.IMessageHandler;
 import interfaces.IMessageReceiver;
 
@@ -10,8 +11,8 @@ public class ConsoleInputOutput implements IMessageReceiver, IMessageHandler {
     private final Scanner sc = new Scanner(System.in);
 
     @Override
-    public void handle(Long userID, String message) {
-        System.out.println(userID + ": " + message);
+    public void handle(UserID userID, String message) {
+        System.out.println(userID.id + ": " + message);
     }
 
     @Override

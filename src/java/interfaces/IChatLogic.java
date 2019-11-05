@@ -1,6 +1,8 @@
 package interfaces;
 
+import datamodel.Node;
+
 public interface IChatLogic {
-    void subscribe(IMessageHandler handler);
-    void processMessage(String message);
+    void processMessage(String message, IPlayer player, Node currentNode);
+    Node getRoot();
 }
