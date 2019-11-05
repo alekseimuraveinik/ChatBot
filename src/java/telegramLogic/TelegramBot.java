@@ -36,7 +36,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     @Override
-    public void onUpdateReceived(Update upd){
+    public synchronized void onUpdateReceived(Update upd){
         Message m = upd.getMessage();
         processor.processMessage(new ShortMessage(m.getChatId(), m.getText()));
     }
