@@ -1,8 +1,10 @@
-/*
+import datamodel.UserID;
 import db.Database;
+import interfaces.IPlayer;
 import legacy.QuestionLoader;
 import interfaces.IChatLogic;
 import logic.ChatLogic;
+import logic.Player;
 import org.junit.jupiter.api.Test;
 import auxiliary.MessageHolder;
 
@@ -16,7 +18,9 @@ class ChatLogicTest {
     void correctGameStartingMessage(){
         MessageHolder holder = new MessageHolder();
         IChatLogic logic = new ChatLogic(new QuestionLoader(filename), new Database(apiFilename));
-        logic.subscribe(holder);
+        IPlayer player = new Player(logic, new UserID(0L));
+        player.subscribe(holder);
+
 
         String logicMessage = holder.getMessage();
 
@@ -26,10 +30,11 @@ class ChatLogicTest {
     @Test
     void allianceOrHordeQuestion(){
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), 0L);
-        logic.subscribe(holder);
+        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), new Database(apiFilename));
+        IPlayer player = new Player(logic, new UserID(0L));
+        player.subscribe(holder);
 
-        logic.processMessage("да");
+        player.processMessage("да");
         String logicMessage = holder.getMessage();
 
         assertEquals(logicMessage, "Ты за альянс или орду?");
@@ -38,11 +43,12 @@ class ChatLogicTest {
     @Test
     void allianceVariantChosen(){
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), 0L);
-        logic.subscribe(holder);
+        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), new Database(apiFilename));
+        IPlayer player = new Player(logic, new UserID(0L));
+        player.subscribe(holder);
 
-        logic.processMessage("да");
-        logic.processMessage("альянс");
+        player.processMessage("да");
+        player.processMessage("альянс");
         String logicMessage = holder.getMessage();
 
         assertEquals(logicMessage, "ты проиграл~");
@@ -51,11 +57,12 @@ class ChatLogicTest {
     @Test
     void hordeVariantChosen(){
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), 0L);
-        logic.subscribe(holder);
+        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), new Database(apiFilename));
+        IPlayer player = new Player(logic, new UserID(0L));
+        player.subscribe(holder);
 
-        logic.processMessage("да");
-        logic.processMessage("орда");
+        player.processMessage("да");
+        player.processMessage("орда");
         String logicMessage = holder.getMessage();
 
         assertEquals(logicMessage, "Ты волшебник, воин, друид или вор");
@@ -64,14 +71,14 @@ class ChatLogicTest {
     @Test
     void noSuchVariant(){
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), 0L);
-        logic.subscribe(holder);
+        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), new Database(apiFilename));
+        IPlayer player = new Player(logic, new UserID(0L));
+        player.subscribe(holder);
 
-        logic.processMessage("не знаю");
+        player.processMessage("не знаю");
 
         String logicMessage = holder.getMessage();
 
         assertEquals(logicMessage, "Такого варианта не предусмотрено");
     }
 }
-*/
