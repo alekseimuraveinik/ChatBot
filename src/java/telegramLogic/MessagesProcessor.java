@@ -2,10 +2,9 @@ package telegramLogic;
 
 import datamodel.ShortMessage;
 import datamodel.UserID;
-import interfaces.IChatLogic;
-import interfaces.IMessageHandler;
-import interfaces.IMessageProcessor;
-import interfaces.IPlayer;
+import logic.IChatLogic;
+import logic.IMessageHandler;
+import logic.IPlayer;
 import logic.Player;
 
 import java.util.HashMap;

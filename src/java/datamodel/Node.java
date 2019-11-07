@@ -1,11 +1,12 @@
 package datamodel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Node {
-    private String questionContent;
-    private String answerHolder;
-    private ArrayList<Node> children = new ArrayList<>();
+    protected String questionContent;
+    protected String answerHolder;
+    protected List<Node> children = new ArrayList<>();
 
     public Node(){
 
@@ -21,28 +22,8 @@ public class Node {
         children.add(node);
     }
 
-    public String getAnswerHolder() {
-        return answerHolder;
-    }
-
-    public void setAnswerHolder(String answerHolder) {
-        this.answerHolder = answerHolder;
-    }
-
     public String getQuestionContent() {
         return questionContent;
-    }
-
-    public void setQuestionContent(String questionContent) {
-        this.questionContent = questionContent;
-    }
-
-    public ArrayList<Node> getChildren() {
-        return children;
-    }
-
-    public void setChildren(ArrayList<Node> children) {
-        this.children = children;
     }
 
     public Node getChildByAnswer(String answer){

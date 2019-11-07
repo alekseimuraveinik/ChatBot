@@ -2,9 +2,6 @@ package logic;
 
 import datamodel.Node;
 import datamodel.UserID;
-import interfaces.IChatLogic;
-import interfaces.IMessageHandler;
-import interfaces.IPlayer;
 
 public class Player implements IPlayer {
     private Node currentNode;

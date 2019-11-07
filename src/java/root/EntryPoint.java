@@ -2,10 +2,11 @@ package root;
 
 import datasource.CloudStorageLoader;
 import db.Database;
-import interfaces.IChatLogic;
-import interfaces.IDatabaseLoader;
-import interfaces.IMessageProcessor;
-import interfaces.IQuestionGettable;
+import logic.Callboard;
+import logic.IChatLogic;
+import db.IDatabaseLoader;
+import telegramLogic.IMessageProcessor;
+import datasource.IQuestionGettable;
 import logic.ChatLogic;
 import telegramLogic.MessagesProcessor;
 import telegramLogic.TelegramIO;
@@ -13,13 +14,14 @@ import telegramLogic.TelegramIO;
 
 public class EntryPoint{
 
-    private static final String NEW_FORMAT_QUESTIONS_FILENAME = "new_format.txt";
-    private static final String OLD_FORMAT_QUESTIONS_FILENAME = "questions.txt";
-
     public static void main(String[] args) {
-        IDatabaseLoader dbLoader = new Database("firebase_api_key.json");
+        String apiKeyFilename = "firebase_api_key.json";
+
+        IDatabaseLoader dbLoader = new Database(apiKeyFilename);
         IQuestionGettable cloudLoader = new CloudStorageLoader(dbLoader);
-        IChatLogic logic = new ChatLogic(cloudLoader, dbLoader);
+        Callboard callboard = new Callboard(dbLoader);
+
+        IChatLogic logic = new ChatLogic(cloudLoader, callboard);
 
         IMessageProcessor processor = new MessagesProcessor(logic);
 

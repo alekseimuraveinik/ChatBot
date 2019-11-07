@@ -1,10 +1,8 @@
 package logic;
 
 import datamodel.Node;
-import interfaces.IChatLogic;
-import interfaces.IDatabaseLoader;
-import interfaces.IPlayer;
-import interfaces.IQuestionGettable;
+import db.IDatabaseLoader;
+import datasource.IQuestionGettable;
 
 
 public class ChatLogic implements IChatLogic {
@@ -21,10 +19,10 @@ public class ChatLogic implements IChatLogic {
     private static final String SPACE = " ";
 
     private Node root;
-    private IDatabaseLoader dbLoader;
+    private ICallboard callboard;
 
-    public ChatLogic(IQuestionGettable source, IDatabaseLoader dbLoader) {
-        this.dbLoader = dbLoader;
+    public ChatLogic(IQuestionGettable source, ICallboard callboard) {
+        this.callboard = callboard;
         root = source.getQuestionRoot();
     }
 
@@ -67,10 +65,10 @@ public class ChatLogic implements IChatLogic {
                 answer = GAME_INFO + DOUBLE_LINE_BREAK + currentQuestion.getQuestionContent();
                 break;
             case CALLBOARD:
-                answer = new Callboard(dbLoader).getCallboardRecords();
+                answer = callboard.getCallboardRecords();
                 break;
             case ADD:
-                answer = new Callboard(dbLoader).addRecord(command.substring(4));
+                answer = callboard.addRecord(command.substring(4));
                 break;
             default:
                 answer = UNKNOWN_COMMAND;

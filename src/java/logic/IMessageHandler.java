@@ -1,4 +1,4 @@
-package interfaces;
+package logic;
 
 import datamodel.UserID;
 

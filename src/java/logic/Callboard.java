@@ -1,13 +1,13 @@
 package logic;
 
 import com.google.cloud.firestore.QueryDocumentSnapshot;
-import interfaces.IDatabaseLoader;
+import db.IDatabaseLoader;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-public class Callboard {
+public class Callboard implements ICallboard{
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
     private IDatabaseLoader dbLoader;
 
@@ -15,6 +15,7 @@ public class Callboard {
         this.dbLoader = dbLoader;
     }
 
+    @Override
     public String getCallboardRecords(){
         StringBuilder sb = new StringBuilder();
         try{
@@ -36,6 +37,7 @@ public class Callboard {
         return "empty";
     }
 
+    @Override
     public String addRecord(String content){
         try{
             Map<String, Object> docData = new HashMap<>();

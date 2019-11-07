@@ -2,8 +2,8 @@ package datasource;
 
 import com.google.cloud.firestore.*;
 import datamodel.Node;
-import interfaces.IDatabaseLoader;
-import interfaces.IQuestionGettable;
+import datamodel.SerializableNode;
+import db.IDatabaseLoader;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -27,7 +27,7 @@ public class CloudStorageLoader implements IQuestionGettable {
                     .getDocuments()) {
 
                 if(document.getId().equals(questionRootDocumentName))
-                    return document.toObject(Node.class);
+                    return document.toObject(SerializableNode.class);
             }
 
             return null;

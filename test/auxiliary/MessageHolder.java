@@ -1,7 +1,7 @@
 package auxiliary;
 
 import datamodel.UserID;
-import interfaces.IMessageHandler;
+import logic.IMessageHandler;
 
 public class MessageHolder implements IMessageHandler {
 

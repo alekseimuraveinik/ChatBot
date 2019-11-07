@@ -1,3 +1,4 @@
+/*
 import datamodel.Node;
 import legacy.QuestionLoader;
 import org.junit.jupiter.api.Test;
@@ -65,3 +66,4 @@ class QuestionLoaderTest {
         assertEquals(child.getQuestionContent(), "Ты появился в городе, куда пойдешь - на аукцион или на арену");
     }
 }
+*/

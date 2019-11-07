@@ -1,4 +1,4 @@
-package interfaces;
+package db;
 
 import com.google.cloud.firestore.Firestore;
 

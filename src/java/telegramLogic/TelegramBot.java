@@ -2,7 +2,6 @@ package telegramLogic;
 
 import datamodel.ShortMessage;
 import datasource.FileReader;
-import interfaces.IMessageProcessor;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -10,8 +9,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class TelegramBot extends TelegramLongPollingBot {
     private static final String filename = "telegram_data";

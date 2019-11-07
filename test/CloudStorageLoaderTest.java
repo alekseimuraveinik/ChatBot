@@ -1,7 +1,7 @@
 import datamodel.Node;
 import datasource.CloudStorageLoader;
 import db.Database;
-import interfaces.IDatabaseLoader;
+import db.IDatabaseLoader;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

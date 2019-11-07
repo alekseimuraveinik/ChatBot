@@ -1,8 +1,7 @@
 package telegramLogic;
 
 import datamodel.UserID;
-import interfaces.IMessageHandler;
-import interfaces.IMessageProcessor;
+import logic.IMessageHandler;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
