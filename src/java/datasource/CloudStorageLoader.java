@@ -26,7 +26,7 @@ public class CloudStorageLoader implements IQuestionGettable {
                     .getDocuments()) {
 
                 if(document.getId().equals(questionRootDocumentName))
-                    return document.toObject(SerializableNode.class);
+                    return document.toObject(Node.class);
             }
 
             return null;

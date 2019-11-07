@@ -13,9 +13,15 @@ import telegramLogic.MessagesProcessor;
 import telegramLogic.TelegramBot;
 import io.TelegramIO;
 
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
+
 
 public class EntryPoint{
     public static void main(String[] args) {
+
+
         String SUCCESS_MESSAGE = "Success!";
         String ERROR_MESSAGE = "Connection error!";
         String filename = "telegram_data";
@@ -28,7 +34,7 @@ public class EntryPoint{
 
         IChatLogic logic = new ChatLogic(cloudLoader, callboard);
 
-        IMessageProcessor processor = new MessagesProcessor(logic);
+        IMessageProcessor processor = new MessagesProcessor(logic, dbLoader);
 
         try (FileReader reader = new FileReader(filename)) {
             String botName = reader.readLine();
@@ -46,5 +52,10 @@ public class EntryPoint{
             e.printStackTrace();
             System.out.println(ERROR_MESSAGE);
         }
+
+        Scanner sc = new Scanner(System.in);
+        sc.nextLine();
+        sc.close();
+        System.exit(0);
     }
 }

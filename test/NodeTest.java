@@ -59,7 +59,7 @@ class NodeTest {
 
         root.addChild("да", "это я?");
 
-        assertFalse(root.isTerminating());
+        assertFalse(root.finishing());
     }
 
     @Test
@@ -68,6 +68,6 @@ class NodeTest {
 
         root.addChild("да", "это я?");
 
-        assertTrue(root.getChildByAnswer("да").isTerminating());
+        assertTrue(root.getChildByAnswer("да").finishing());
     }
 }

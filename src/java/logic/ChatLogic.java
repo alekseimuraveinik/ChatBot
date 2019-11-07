@@ -50,7 +50,7 @@ public class ChatLogic implements IChatLogic {
 
         player.handle(messageToProceed);
 
-        if(nextQuestion != null && nextQuestion.isTerminating()) {
+        if(nextQuestion != null && nextQuestion.finishing()) {
             player.changeState(root);
             player.handle(DOUBLE_LINE_BREAK + root.getQuestionContent());
         }

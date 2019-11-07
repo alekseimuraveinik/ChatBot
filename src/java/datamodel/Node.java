@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Node {
-    protected String questionContent;
-    protected String answerHolder;
-    protected List<Node> children;
+    private String questionContent;
+    private String answerHolder;
+    private List<Node> children;
 
     public Node(){
         children = new ArrayList<>();
@@ -42,7 +42,27 @@ public class Node {
         }
     }
 
-    public boolean isTerminating(){
+    public boolean finishing(){
         return children.size() == 0;
+    }
+
+    public String getAnswerHolder() {
+        return answerHolder;
+    }
+
+    public void setAnswerHolder(String answerHolder) {
+        this.answerHolder = answerHolder;
+    }
+
+    public void setQuestionContent(String questionContent) {
+        this.questionContent = questionContent;
+    }
+
+    public List<Node> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Node> children) {
+        this.children = children;
     }
 }

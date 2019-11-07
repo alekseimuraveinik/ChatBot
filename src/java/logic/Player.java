@@ -15,6 +15,30 @@ public class Player implements IPlayer {
         currentNode = logic.getRoot();
     }
 
+    public Player(){
+
+    }
+
+    public Node getCurrentNode() {
+        return currentNode;
+    }
+
+    public void setCurrentNode(Node currentNode) {
+        this.currentNode = currentNode;
+    }
+
+    public UserID getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(UserID chatId) {
+        this.chatId = chatId;
+    }
+
+    public void setLogic(IChatLogic logic) {
+        this.logic = logic;
+    }
+
     @Override
     public void processMessage(String message) {
         logic.processMessage(message, this, currentNode);
