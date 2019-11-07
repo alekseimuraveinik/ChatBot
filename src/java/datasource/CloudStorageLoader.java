@@ -2,7 +2,6 @@ package datasource;
 
 import com.google.cloud.firestore.*;
 import datamodel.Node;
-import datamodel.SerializableNode;
 import db.IDatabaseLoader;
 
 import java.io.IOException;

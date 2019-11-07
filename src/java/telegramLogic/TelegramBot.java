@@ -1,31 +1,22 @@
 package telegramLogic;
 
 import datamodel.ShortMessage;
-import datasource.FileReader;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.IOException;
 
 public class TelegramBot extends TelegramLongPollingBot {
-    private static final String filename = "telegram_data";
-    private static final String fileEncoding = "UTF-8";
-
     private String botName;
     private String botToken;
 
     private IMessageProcessor processor;
 
-    TelegramBot(){
-        try (FileReader reader = new FileReader(filename, fileEncoding)) {
-            botName = reader.readLine();
-            botToken = reader.readLine();
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
+    public TelegramBot(String botName, String botToken){
+        this.botName = botName;
+        this.botToken = botToken;
     }
 
     public void subscribe(IMessageProcessor processor){

@@ -1,4 +1,6 @@
-package datamodel;
+package datasource;
+
+import datamodel.Node;
 
 import java.util.List;
 import java.util.stream.Collectors;

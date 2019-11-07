@@ -1,6 +1,7 @@
 package root;
 
 import datasource.CloudStorageLoader;
+import datasource.FileReader;
 import db.Database;
 import logic.Callboard;
 import logic.IChatLogic;
@@ -9,13 +10,17 @@ import telegramLogic.IMessageProcessor;
 import datasource.IQuestionGettable;
 import logic.ChatLogic;
 import telegramLogic.MessagesProcessor;
-import telegramLogic.TelegramIO;
+import telegramLogic.TelegramBot;
+import io.TelegramIO;
 
 
 public class EntryPoint{
-
     public static void main(String[] args) {
+        String SUCCESS_MESSAGE = "Success!";
+        String ERROR_MESSAGE = "Connection error!";
+        String filename = "telegram_data";
         String apiKeyFilename = "firebase_api_key.json";
+
 
         IDatabaseLoader dbLoader = new Database(apiKeyFilename);
         IQuestionGettable cloudLoader = new CloudStorageLoader(dbLoader);
@@ -25,11 +30,21 @@ public class EntryPoint{
 
         IMessageProcessor processor = new MessagesProcessor(logic);
 
-        TelegramIO io = new TelegramIO();
+        try (FileReader reader = new FileReader(filename)) {
+            String botName = reader.readLine();
+            String botToken = reader.readLine();
 
-        processor.subscribe(io);
-        io.subscribe(processor);
+            TelegramIO io = new TelegramIO(botName, botToken);
 
-        io.init();
+            processor.subscribe(io);
+            io.subscribe(processor);
+
+            io.init();
+            System.out.println(SUCCESS_MESSAGE);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(ERROR_MESSAGE);
+        }
     }
 }

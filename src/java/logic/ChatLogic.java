@@ -1,7 +1,6 @@
 package logic;
 
 import datamodel.Node;
-import db.IDatabaseLoader;
 import datasource.IQuestionGettable;
 
 

@@ -6,10 +6,10 @@ import java.util.List;
 public class Node {
     protected String questionContent;
     protected String answerHolder;
-    protected List<Node> children = new ArrayList<>();
+    protected List<Node> children;
 
     public Node(){
-
+        children = new ArrayList<>();
     }
 
     public Node(String answer, String question){
