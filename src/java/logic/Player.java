@@ -1,13 +1,15 @@
 package logic;
 
+import datamodel.GraphNode;
 import datamodel.Node;
 import datamodel.UserID;
 
 public class Player implements IPlayer {
-    private Node currentNode;
+    private GraphNode currentNode;
     private UserID chatId;
     private IChatLogic logic;
     private IMessageHandler handler;
+    private static final String HELLO_MESSAGE = "Добро пожаловать в текстовый РПГ мир";
 
     public Player(IChatLogic logic, UserID chatId){
         this.logic = logic;
@@ -19,11 +21,11 @@ public class Player implements IPlayer {
 
     }
 
-    public Node getCurrentNode() {
+    public GraphNode getCurrentNode() {
         return currentNode;
     }
 
-    public void setCurrentNode(Node currentNode) {
+    public void setCurrentNode(GraphNode currentNode) {
         this.currentNode = currentNode;
     }
 
@@ -50,13 +52,15 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public void subscribe(IMessageHandler handler) {
+    public void subscribe(IMessageHandler handler, Boolean isNewPlayer) {
         this.handler = handler;
-        handler.handle(chatId, currentNode.getQuestionContent());
+        if (isNewPlayer) {
+            handler.handle(chatId, HELLO_MESSAGE + currentNode.getFormattedContentAndNextNodes());
+        }
     }
 
     @Override
-    public void changeState(Node currentNode) {
+    public void changeState(GraphNode currentNode) {
         this.currentNode = currentNode;
     }
 }

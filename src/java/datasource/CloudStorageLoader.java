@@ -7,7 +7,7 @@ import db.IDatabaseLoader;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-public class CloudStorageLoader implements IQuestionGettable {
+/*public class CloudStorageLoader implements IQuestionGettable {
     private static final String questionsCollectionName = "questions";
     private static final String questionRootDocumentName = "LA";
     private IDatabaseLoader dbLoader;
@@ -35,4 +35,4 @@ public class CloudStorageLoader implements IQuestionGettable {
             return null;
         }
     }
-}
+}*/

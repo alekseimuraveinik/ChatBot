@@ -1,7 +1,10 @@
 package logic;
 
+import datamodel.GraphNode;
 import datamodel.Node;
 import datasource.IQuestionGettable;
+
+import java.util.ArrayList;
 
 
 public class ChatLogic implements IChatLogic {
@@ -17,7 +20,7 @@ public class ChatLogic implements IChatLogic {
     private static final String SLASH = "/";
     private static final String SPACE = " ";
 
-    private Node root;
+    private GraphNode root;
     private ICallboard callboard;
 
     public ChatLogic(IQuestionGettable source, ICallboard callboard) {
@@ -26,12 +29,12 @@ public class ChatLogic implements IChatLogic {
     }
 
     @Override
-    public Node getRoot() {
+    public GraphNode getRoot() {
         return root;
     }
 
     @Override
-    public void processMessage(String userAnswer, IPlayer player, Node currentQuestion) {
+    public void processMessage(String userAnswer, IPlayer player, GraphNode currentQuestion) {
         if(userAnswer.startsWith(SLASH)){
             player.handle(processCommand(userAnswer, currentQuestion));
             return;
@@ -39,13 +42,13 @@ public class ChatLogic implements IChatLogic {
 
         String messageToProceed;
 
-        Node nextQuestion = currentQuestion.getChildByAnswer(userAnswer.toLowerCase());
+        GraphNode nextQuestion = currentQuestion.getChildByAnswer(userAnswer.toLowerCase());
 
          if(nextQuestion == null){
             messageToProceed = NO_SUCH_VARIANT;
         } else {
             player.changeState(nextQuestion);
-            messageToProceed = nextQuestion.getQuestionContent();
+            messageToProceed = nextQuestion.getFormattedContentAndNextNodes();
         }
 
         player.handle(messageToProceed);
@@ -56,7 +59,7 @@ public class ChatLogic implements IChatLogic {
         }
     }
 
-    private String processCommand(String command, Node currentQuestion){
+    private String processCommand(String command, GraphNode currentQuestion){
         String answer;
         String[] commandComponents = command.split(SPACE);
         switch (commandComponents[0]){

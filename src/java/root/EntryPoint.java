@@ -1,7 +1,8 @@
 package root;
 
-import datasource.CloudStorageLoader;
+//import datasource.CloudStorageLoader;
 import datasource.FileReader;
+import datasource.TestQuestionsLoader;
 import db.Database;
 import logic.Callboard;
 import logic.IChatLogic;
@@ -29,7 +30,7 @@ public class EntryPoint{
 
 
         IDatabaseLoader dbLoader = new Database(apiKeyFilename);
-        IQuestionGettable cloudLoader = new CloudStorageLoader(dbLoader);
+        IQuestionGettable cloudLoader = new TestQuestionsLoader();
         Callboard callboard = new Callboard(dbLoader);
 
         IChatLogic logic = new ChatLogic(cloudLoader, callboard);
