@@ -1,4 +1,5 @@
 out/
+target/
 firebase_api_key.json
 telegram_data
 workspace.xml
