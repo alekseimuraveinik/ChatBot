@@ -11,12 +11,9 @@ import telegramLogic.IMessageProcessor;
 import datasource.IQuestionGettable;
 import logic.ChatLogic;
 import telegramLogic.MessagesProcessor;
-import telegramLogic.TelegramBot;
 import io.TelegramIO;
 
-import java.io.IOException;
 import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
 
 
 public class EntryPoint{
