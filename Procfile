@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes/* HelloWorld
+web: java $JAVA_OPTS -cp target/classes/* EntryPoint
