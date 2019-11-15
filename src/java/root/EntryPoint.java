@@ -10,9 +10,7 @@ import telegramLogic.IMessageProcessor;
 import datasource.IQuestionGettable;
 import logic.ChatLogic;
 import telegramLogic.MessagesProcessor;
-import telegramLogic.TelegramBot;
 import io.TelegramIO;
-
 
 public class EntryPoint{
     public static void main(String[] args) {
