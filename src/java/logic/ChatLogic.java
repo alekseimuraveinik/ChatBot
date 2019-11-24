@@ -1,16 +1,15 @@
 package logic;
 
+import datamodel.Graph;
 import datamodel.GraphNode;
-import datamodel.Node;
 import datasource.IQuestionGettable;
-
-import java.util.ArrayList;
 
 
 public class ChatLogic implements IChatLogic {
     private static final String CALLBOARD = "/callboard";
     private static final String ADD = "/add";
     private static final String HELP = "/help";
+    private static final String INVENTORY = "/my_inventory";
     private static final String UNKNOWN_COMMAND = "unknown command";
 
     private static final String GAME_INFO = "Это игра-квест, вы можете путешествовать по сказочному миру средиземья отвечая на вопросы";
@@ -20,23 +19,23 @@ public class ChatLogic implements IChatLogic {
     private static final String SLASH = "/";
     private static final String SPACE = " ";
 
-    private GraphNode root;
     private ICallboard callboard;
+    private IQuestionGettable source;
 
     public ChatLogic(IQuestionGettable source, ICallboard callboard) {
         this.callboard = callboard;
-        root = source.getQuestionRoot();
+        this.source = source;
     }
 
     @Override
-    public GraphNode getRoot() {
-        return root;
+    public Graph getRoot() {
+        return source.getQuestionRoot();
     }
 
     @Override
-    public void processMessage(String userAnswer, IPlayer player, GraphNode currentQuestion) {
+    public void processMessage(String userAnswer, IPlayer player, Graph currentQuestion) {
         if(userAnswer.startsWith(SLASH)){
-            player.handle(processCommand(userAnswer, currentQuestion));
+            player.handle(processCommand(userAnswer, currentQuestion, player));
             return;
         }
 
@@ -47,19 +46,21 @@ public class ChatLogic implements IChatLogic {
          if(nextQuestion == null){
             messageToProceed = NO_SUCH_VARIANT;
         } else {
-            player.changeState(nextQuestion);
-            messageToProceed = nextQuestion.getFormattedContentAndNextNodes();
+            currentQuestion.currentNode = nextQuestion;
+            player.changeState(currentQuestion);
+            messageToProceed = currentQuestion.getFormattedContentAndNextNodes();
+            player.getPlayerInventory().AddOtherInventory(nextQuestion.getNodePrize());
         }
 
         player.handle(messageToProceed);
 
-        if(nextQuestion != null && nextQuestion.finishing()) {
-            player.changeState(root);
-            player.handle(DOUBLE_LINE_BREAK + root.getQuestionContent());
+        if(nextQuestion != null && currentQuestion.finishing()) {
+            currentQuestion.resetToRoot();
+            player.handle(DOUBLE_LINE_BREAK + currentQuestion.getFormattedContentAndNextNodes());
         }
     }
 
-    private String processCommand(String command, GraphNode currentQuestion){
+    private String processCommand(String command, Graph currentQuestion, IPlayer player){
         String answer;
         String[] commandComponents = command.split(SPACE);
         switch (commandComponents[0]){
@@ -71,6 +72,9 @@ public class ChatLogic implements IChatLogic {
                 break;
             case ADD:
                 answer = callboard.addRecord(command.substring(4));
+                break;
+            case INVENTORY:
+                answer = player.getPlayerInventory().ToString();
                 break;
             default:
                 answer = UNKNOWN_COMMAND;

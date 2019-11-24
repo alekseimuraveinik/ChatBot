@@ -46,7 +46,7 @@ public class Database implements IDatabaseLoader {
     }
 
     public void write(Object obj, String documentName) throws ExecutionException, InterruptedException {
-        ApiFuture<WriteResult> future = db.collection("questions").document(documentName).set(obj);
+        ApiFuture<WriteResult> future = db.collection("questions2").document(documentName).set(obj);
         System.out.println("Update time : " + future.get().getUpdateTime());
     }
 }

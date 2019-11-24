@@ -1,11 +1,12 @@
 package logic;
 
-import datamodel.GraphNode;
-import datamodel.Node;
+import datamodel.Graph;
+import datamodel.PlayerInventory;
 import datamodel.UserID;
 
 public class Player implements IPlayer {
-    private GraphNode currentNode;
+    private Graph playerGraph;
+    private PlayerInventory playerInventory;
     private UserID chatId;
     private IChatLogic logic;
     private IMessageHandler handler;
@@ -14,19 +15,24 @@ public class Player implements IPlayer {
     public Player(IChatLogic logic, UserID chatId){
         this.logic = logic;
         this.chatId = chatId;
-        currentNode = logic.getRoot();
+        playerGraph = logic.getRoot();
+        playerInventory = new PlayerInventory();
     }
 
     public Player(){
 
     }
 
-    public GraphNode getCurrentNode() {
-        return currentNode;
+    public PlayerInventory getPlayerInventory() { return playerInventory; }
+
+    public void setPlayerInventory(PlayerInventory playerInventory) { this.playerInventory = playerInventory; }
+
+    public Graph getPlayerGraph() {
+        return playerGraph;
     }
 
-    public void setCurrentNode(GraphNode currentNode) {
-        this.currentNode = currentNode;
+    public void setPlayerGraph(Graph playerGraph) {
+        this.playerGraph = playerGraph;
     }
 
     public UserID getChatId() {
@@ -43,7 +49,7 @@ public class Player implements IPlayer {
 
     @Override
     public void processMessage(String message) {
-        logic.processMessage(message, this, currentNode);
+        logic.processMessage(message, this, playerGraph);
     }
 
     @Override
@@ -55,12 +61,12 @@ public class Player implements IPlayer {
     public void subscribe(IMessageHandler handler, Boolean isNewPlayer) {
         this.handler = handler;
         if (isNewPlayer) {
-            handler.handle(chatId, HELLO_MESSAGE + currentNode.getFormattedContentAndNextNodes());
+            handler.handle(chatId, HELLO_MESSAGE + playerGraph.getFormattedContentAndNextNodes());
         }
     }
 
     @Override
-    public void changeState(GraphNode currentNode) {
-        this.currentNode = currentNode;
+    public void changeState(Graph currentNode) {
+        this.playerGraph = currentNode;
     }
 }

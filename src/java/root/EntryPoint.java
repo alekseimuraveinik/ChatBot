@@ -1,6 +1,7 @@
 package root;
 
 //import datasource.CloudStorageLoader;
+import datasource.CloudStorageLoader;
 import datasource.FileReader;
 import datasource.TestQuestionsLoader;
 import db.Database;
@@ -13,13 +14,13 @@ import logic.ChatLogic;
 import telegramLogic.MessagesProcessor;
 import io.TelegramIO;
 
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 
 public class EntryPoint{
-    public static void main(String[] args) {
-
-
+    public static void main(String[] args) throws ExecutionException, InterruptedException, IOException {
         String SUCCESS_MESSAGE = "Success!";
         String ERROR_MESSAGE = "Connection error!";
         String filename = "telegram_data";
