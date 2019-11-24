@@ -1,27 +1,25 @@
-/*
+import auxiliary.QuestionLoader;
 import datamodel.UserID;
-import db.Database;
-import logic.IPlayer;
-import legacy.QuestionLoader;
-import logic.IChatLogic;
-import logic.ChatLogic;
-import logic.Player;
+import datasource.IQuestionGettable;
+import logic.*;
 import org.junit.jupiter.api.Test;
 import auxiliary.MessageHolder;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class ChatLogicTest {
-    private static final String filename = "new_format.txt";
     private static final String apiFilename = "firebase_api_key.json";
 
     @Test
     void correctGameStartingMessage(){
+        Callboard callboard = mock(Callboard.class);
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), new Database(apiFilename));
+        IQuestionGettable getter = mock(IQuestionGettable.class);
+        when(getter.getQuestionRoot()).thenReturn(new QuestionLoader().getQuestionRoot());
+        IChatLogic logic = new ChatLogic(getter, callboard);
         IPlayer player = new Player(logic, new UserID(0L));
         player.subscribe(holder);
-
 
         String logicMessage = holder.getMessage();
 
@@ -30,8 +28,11 @@ class ChatLogicTest {
 
     @Test
     void allianceOrHordeQuestion(){
+        Callboard callboard = mock(Callboard.class);
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), new Database(apiFilename));
+        IQuestionGettable getter = mock(IQuestionGettable.class);
+        when(getter.getQuestionRoot()).thenReturn(new QuestionLoader().getQuestionRoot());
+        IChatLogic logic = new ChatLogic(getter, callboard);
         IPlayer player = new Player(logic, new UserID(0L));
         player.subscribe(holder);
 
@@ -43,8 +44,11 @@ class ChatLogicTest {
 
     @Test
     void allianceVariantChosen(){
+        Callboard callboard = mock(Callboard.class);
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), new Database(apiFilename));
+        IQuestionGettable getter = mock(IQuestionGettable.class);
+        when(getter.getQuestionRoot()).thenReturn(new QuestionLoader().getQuestionRoot());
+        IChatLogic logic = new ChatLogic(getter, callboard);
         IPlayer player = new Player(logic, new UserID(0L));
         player.subscribe(holder);
 
@@ -57,8 +61,11 @@ class ChatLogicTest {
 
     @Test
     void hordeVariantChosen(){
+        Callboard callboard = mock(Callboard.class);
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), new Database(apiFilename));
+        IQuestionGettable getter = mock(IQuestionGettable.class);
+        when(getter.getQuestionRoot()).thenReturn(new QuestionLoader().getQuestionRoot());
+        IChatLogic logic = new ChatLogic(getter, callboard);
         IPlayer player = new Player(logic, new UserID(0L));
         player.subscribe(holder);
 
@@ -71,8 +78,11 @@ class ChatLogicTest {
 
     @Test
     void noSuchVariant(){
+        Callboard callboard = mock(Callboard.class);
         MessageHolder holder = new MessageHolder();
-        IChatLogic logic = new ChatLogic(new QuestionLoader(filename), new Database(apiFilename));
+        IQuestionGettable getter = mock(IQuestionGettable.class);
+        when(getter.getQuestionRoot()).thenReturn(new QuestionLoader().getQuestionRoot());
+        IChatLogic logic = new ChatLogic(getter, callboard);
         IPlayer player = new Player(logic, new UserID(0L));
         player.subscribe(holder);
 
@@ -83,4 +93,3 @@ class ChatLogicTest {
         assertEquals(logicMessage, "Такого варианта не предусмотрено");
     }
 }
-*/

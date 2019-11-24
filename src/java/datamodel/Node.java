@@ -13,6 +13,7 @@ public class Node {
     }
 
     public Node(String answer, String question){
+        children = new ArrayList<>();
         questionContent = question;
         answerHolder = answer;
     }

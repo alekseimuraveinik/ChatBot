@@ -14,13 +14,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-public class MessagesProcessor implements IMessageProcessor{
+public class MessageProcessor implements IMessageProcessor{
     private HashMap<Long, IPlayer> logicDict;
     private IChatLogic logic;
     private IMessageHandler handler;
     private IDatabaseLoader dbLoader;
 
-    public MessagesProcessor(IChatLogic logic, IDatabaseLoader dbLoader){
+    public MessageProcessor(IChatLogic logic, IDatabaseLoader dbLoader){
         Runtime.getRuntime().addShutdownHook(new Thread(this::onShutdown, "Shutdown-thread"));
         this.dbLoader = dbLoader;
         this.logic = logic;
