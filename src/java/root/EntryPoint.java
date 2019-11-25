@@ -4,6 +4,9 @@ import datasource.FileReader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import telegramLogic.IMessageProcessor;
+import datasource.IQuestionGettable;
+import logic.ChatLogic;
+import telegramLogic.MessagesProcessor;
 import io.TelegramIO;
 
 public class EntryPoint{
