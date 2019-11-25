@@ -4,14 +4,14 @@ import datasource.FileReader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import telegramLogic.IMessageProcessor;
+import datasource.IQuestionGettable;
+import logic.ChatLogic;
+import telegramLogic.MessagesProcessor;
 import io.TelegramIO;
-
-import java.util.Scanner;
 
 
 public class EntryPoint{
     public static void main(String[] args) {
-
         String SUCCESS_MESSAGE = "Success!";
         String ERROR_MESSAGE = "Connection error!";
         String filename = "telegram_data";
@@ -35,10 +35,5 @@ public class EntryPoint{
             e.printStackTrace();
             System.out.println(ERROR_MESSAGE);
         }
-
-        Scanner sc = new Scanner(System.in);
-        sc.nextLine();
-        sc.close();
-        System.exit(0);
     }
 }

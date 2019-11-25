@@ -1,8 +1,8 @@
 package logic;
 
-import datamodel.Node;
+import datamodel.Graph;
 
 public interface IChatLogic {
-    void processMessage(String message, IPlayer player, Node currentNode);
-    Node getRoot();
+    void processMessage(String message, IPlayer player, Graph currentNode);
+    Graph getRoot();
 }

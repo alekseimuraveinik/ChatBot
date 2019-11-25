@@ -1,4 +1,4 @@
-import datamodel.Node;
+/*import datamodel.Node;
 import datasource.CloudStorageLoader;
 import db.Database;
 import db.IDatabaseLoader;
@@ -56,4 +56,4 @@ class CloudStorageLoaderTest {
 
         assertEquals(child.getQuestionContent(), "Ты появился в городе, куда пойдешь - на аукцион или на арену");
     }
-}
+}*/

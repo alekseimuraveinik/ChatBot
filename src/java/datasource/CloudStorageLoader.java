@@ -1,7 +1,7 @@
 package datasource;
 
 import com.google.cloud.firestore.*;
-import datamodel.Node;
+import datamodel.Graph;
 import db.IDatabaseLoader;
 
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutionException;
 
 public class CloudStorageLoader implements IQuestionGettable {
     private static final String questionsCollectionName = "questions";
-    private static final String questionRootDocumentName = "LA";
+    private static final String questionRootDocumentName = "NY";
     private IDatabaseLoader dbLoader;
 
     public CloudStorageLoader(IDatabaseLoader dbLoader){
@@ -17,7 +17,7 @@ public class CloudStorageLoader implements IQuestionGettable {
     }
 
     @Override
-    public Node getQuestionRoot() {
+    public Graph getQuestionRoot() {
         try {
             for (QueryDocumentSnapshot document : dbLoader.getFirestore()
                     .collection(questionsCollectionName)
@@ -26,7 +26,7 @@ public class CloudStorageLoader implements IQuestionGettable {
                     .getDocuments()) {
 
                 if(document.getId().equals(questionRootDocumentName))
-                    return document.toObject(Node.class);
+                    return document.toObject(Graph.class);
             }
 
             return null;

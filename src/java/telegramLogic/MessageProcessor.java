@@ -20,8 +20,8 @@ public class MessageProcessor implements IMessageProcessor{
     private IMessageHandler handler;
     private IDatabaseLoader dbLoader;
 
-    public MessageProcessor(IChatLogic logic, IDatabaseLoader dbLoader){
-        Runtime.getRuntime().addShutdownHook(new Thread(this::onShutdown, "Shutdown-thread"));
+    public MessagesProcessor(IChatLogic logic, IDatabaseLoader dbLoader){
+        //Runtime.getRuntime().addShutdownHook(new Thread(this::onShutdown, "Shutdown-thread"));
         this.dbLoader = dbLoader;
         this.logic = logic;
         logicDict = new HashMap<>();
@@ -31,7 +31,7 @@ public class MessageProcessor implements IMessageProcessor{
     public void subscribe(IMessageHandler handler){
         this.handler = handler;
         try{
-            restoreSavedState();
+            //restoreSavedState();
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -41,7 +41,7 @@ public class MessageProcessor implements IMessageProcessor{
     public void processMessage(ShortMessage message){
         if (!logicDict.containsKey(message.chatID)){
             IPlayer player = new Player(logic, new UserID(message.chatID));
-            player.subscribe(handler);
+            player.subscribe(handler, true);
             logicDict.put(message.chatID, player);
         }
         else {
@@ -59,7 +59,7 @@ public class MessageProcessor implements IMessageProcessor{
 
             Long id = Long.valueOf(document.getId());
             Player player = document.toObject(Player.class);
-            player.subscribe(handler);
+            player.subscribe(handler, false);
             player.setLogic(logic);
 
             logicDict.put(id, player);

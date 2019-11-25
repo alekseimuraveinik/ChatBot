@@ -47,9 +47,7 @@ public class Node {
         return children.size() == 0;
     }
 
-    public String getAnswerHolder() {
-        return answerHolder;
-    }
+    public String getAnswerHolder() { return answerHolder; }
 
     public void setAnswerHolder(String answerHolder) {
         this.answerHolder = answerHolder;

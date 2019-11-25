@@ -1,7 +1,7 @@
 package datasource;
 
-import datamodel.Node;
+import datamodel.Graph;
 
 public interface IQuestionGettable {
-    Node getQuestionRoot();
+    Graph getQuestionRoot();
 }
