@@ -10,4 +10,5 @@ public interface IPlayer {
     void processMessage(String message);
     void setPlayerInventory(PlayerInventory playerInventory);
     PlayerInventory getPlayerInventory();
+    GraphNode getCurrentNode();
 }

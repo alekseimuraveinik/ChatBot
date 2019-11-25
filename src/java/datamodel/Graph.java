@@ -42,7 +42,7 @@ public class Graph {
         oneWayConnectNodes(nodeTwo, nodeOne);
     }
 
-    private ArrayList<GraphNode> getConnectedNodes(GraphNode graphNode){
+    public ArrayList<GraphNode> getConnectedNodes(GraphNode graphNode){
         ArrayList<GraphNode> result = new ArrayList<>();
         int currentNodeIndex = graphNodes.indexOf(graphNode);
         for(IntPair edge : connections){
@@ -52,11 +52,11 @@ public class Graph {
         return result;
     }
 
-    public GraphNode getChildByAnswer(GraphNode currentNode, String answer){
-        if (!graphNodes.contains(currentNode))
+    public GraphNode getChildByAnswer(GraphNode Node, String answer){
+        if (!graphNodes.contains(Node))
             return null;
 
-        for (GraphNode graphNode : getConnectedNodes(currentNode)){
+        for (GraphNode graphNode : getConnectedNodes(Node)){
             if (graphNode.getName().toLowerCase().equals(answer))
                 return graphNode;
         }
@@ -99,7 +99,6 @@ public class Graph {
     public void setConnections(ArrayList<IntPair> connections) {
         this.connections = connections;
     }
-
 
 
     public void setRoot(GraphNode root) {

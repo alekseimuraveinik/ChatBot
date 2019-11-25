@@ -10,6 +10,7 @@ public class ChatLogic implements IChatLogic {
     private static final String ADD = "/add";
     private static final String HELP = "/help";
     private static final String INVENTORY = "/my_inventory";
+    private static final String CURRENT_LOCATION = "/current_location";
     private static final String UNKNOWN_COMMAND = "unknown command";
 
     private static final String GAME_INFO = "Это игра-квест, вы можете путешествовать по сказочному миру средиземья отвечая на вопросы";
@@ -82,6 +83,9 @@ public class ChatLogic implements IChatLogic {
                 break;
             case INVENTORY:
                 answer = player.getPlayerInventory().stringRepresentation();
+                break;
+            case CURRENT_LOCATION:
+                answer = graph.formattedContentAndNextNodes(player.getCurrentNode());
                 break;
             default:
                 answer = UNKNOWN_COMMAND;
