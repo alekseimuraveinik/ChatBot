@@ -1,21 +1,20 @@
 package logic;
 
-import datamodel.Graph;
+import datamodel.GraphNode;
 import datamodel.PlayerInventory;
 import datamodel.UserID;
 
 public class Player implements IPlayer {
-    private Graph playerGraph;
+    private GraphNode currentNode;
     private PlayerInventory playerInventory;
     private UserID chatId;
     private IChatLogic logic;
     private IMessageHandler handler;
-    private static final String HELLO_MESSAGE = "Добро пожаловать в текстовый РПГ мир";
 
     public Player(IChatLogic logic, UserID chatId){
         this.logic = logic;
         this.chatId = chatId;
-        playerGraph = logic.getRoot();
+        currentNode = logic.getRoot().getRoot();
         playerInventory = new PlayerInventory();
     }
 
@@ -23,33 +22,21 @@ public class Player implements IPlayer {
 
     }
 
-    public PlayerInventory getPlayerInventory() { return playerInventory; }
-
-    public void setPlayerInventory(PlayerInventory playerInventory) { this.playerInventory = playerInventory; }
-
-    public Graph getPlayerGraph() {
-        return playerGraph;
-    }
-
-    public void setPlayerGraph(Graph playerGraph) {
-        this.playerGraph = playerGraph;
-    }
-
     public UserID getChatId() {
         return chatId;
     }
 
-    public void setChatId(UserID chatId) {
-        this.chatId = chatId;
-    }
-
-    public void setLogic(IChatLogic logic) {
+    public void setLogic(IChatLogic logic){
         this.logic = logic;
     }
 
+    public PlayerInventory getPlayerInventory() { return playerInventory; }
+
+    public void setPlayerInventory(PlayerInventory playerInventory) { this.playerInventory = playerInventory; }
+
     @Override
     public void processMessage(String message) {
-        logic.processMessage(message, this, playerGraph);
+        logic.processMessage(message, this, currentNode);
     }
 
     @Override
@@ -61,12 +48,26 @@ public class Player implements IPlayer {
     public void subscribe(IMessageHandler handler, Boolean isNewPlayer) {
         this.handler = handler;
         if (isNewPlayer) {
-            handler.handle(chatId, HELLO_MESSAGE + playerGraph.formattedContentAndNextNodes());
+            handler.handle(chatId, logic.getNewPlayerMessage());
         }
     }
 
     @Override
-    public void changeState(Graph currentNode) {
-        this.playerGraph = currentNode;
+    public void changeState(GraphNode currentNode) {
+        this.currentNode = currentNode;
+    }
+
+    //ВСЕ ЧТО НАПИСАНО НИЖЕ ИСПОЛЬЗУЕТСЯ ДЛЯ СЕРИАЛИЗАЦИИ/ДЕСЕРИАЛИЗАЦИИ ОБЪЕКТА ПРИ РАБОТЕ С FIRESTORE
+
+    public GraphNode getCurrentNode() {
+        return currentNode;
+    }
+
+    public void setCurrentNode(GraphNode currentNode) {
+        this.currentNode = currentNode;
+    }
+
+    public void setChatId(UserID chatId) {
+        this.chatId = chatId;
     }
 }

@@ -6,72 +6,24 @@ import java.util.ArrayList;
 public class Graph {
     private ArrayList<GraphNode> graphNodes;
     private ArrayList<IntPair> connections;
-    public GraphNode currentNode;
     private GraphNode root;
     private static final String NEXT_MESSAGE = "\nВыберете куда пойти дальше дальше:";
 
-    public ArrayList<GraphNode> getGraphNodes() {
-        return graphNodes;
-    }
-
-    public void setGraphNodes(ArrayList<GraphNode> graphNodes) {
-        this.graphNodes = graphNodes;
-    }
-
-    public ArrayList<IntPair> getConnections() {
-        return connections;
-    }
-
-    public void setConnections(ArrayList<IntPair> connections) {
-        this.connections = connections;
-    }
-
-    public GraphNode getCurrentNode() {
-        return currentNode;
-    }
-
-    public void setCurrentNode(GraphNode currentNode) {
-        this.currentNode = currentNode;
-        if(graphNodes != null)
-            graphNodes.add(currentNode);
-    }
-
     public GraphNode getRoot() {
         return root;
-    }
-
-    public void setRoot(GraphNode root) {
-        this.root = root;
-    }
-
-    public Graph()
-    {
-
     }
 
     public Graph(String name, String questionContent)
     {
         graphNodes = new ArrayList<>();
         connections = new ArrayList<>();
-        currentNode = new GraphNode(name, questionContent);
-        root = currentNode;
+        root = new GraphNode(name, questionContent);
     }
 
-    public Graph(String name, String questionContent, boolean isDeadNode)
-    {
-        graphNodes = new ArrayList<>();
-        connections = new ArrayList<>();
-        currentNode = new GraphNode(name, questionContent, isDeadNode);
-        root = currentNode;
-    }
-
-    public void resetToRoot(){
-        currentNode = root;
-    }
 
     public void addIncidentNode(GraphNode node)
     {
-        connectNodes(currentNode, node);
+        connectNodes(root, node);
     }
 
     public void oneWayConnectNodes(GraphNode nodeFrom, GraphNode nodeTo){
@@ -100,9 +52,7 @@ public class Graph {
         return result;
     }
 
-    public String currentNodeQuestionContent(){ return currentNode.getQuestionContent(); }
-
-    public GraphNode getChildByAnswer(String answer){
+    public GraphNode getChildByAnswer(GraphNode currentNode, String answer){
         if (!graphNodes.contains(currentNode))
             return null;
 
@@ -114,11 +64,7 @@ public class Graph {
         return null;
     }
 
-    public boolean finishing(){
-        return currentNode.isDeadNode();
-    }
-
-    public String formattedContentAndNextNodes(){
+    public String formattedContentAndNextNodes(GraphNode currentNode){
         if (!graphNodes.contains(currentNode))
             return currentNode.getQuestionContent();
 
@@ -129,5 +75,34 @@ public class Graph {
             mesContent.append(graphNode.getName());
         }
         return mesContent.toString();
+    }
+
+    //ВСЕ ЧТО НАПИСАНО НИЖЕ ИСПОЛЬЗУЕТСЯ ДЛЯ СЕРИАЛИЗАЦИИ/ДЕСЕРИАЛИЗАЦИИ ОБЪЕКТА ПРИ РАБОТЕ С FIRESTORE
+
+    public Graph()
+    {
+
+    }
+
+    public ArrayList<GraphNode> getGraphNodes() {
+        return graphNodes;
+    }
+
+    public void setGraphNodes(ArrayList<GraphNode> graphNodes) {
+        this.graphNodes = graphNodes;
+    }
+
+    public ArrayList<IntPair> getConnections() {
+        return connections;
+    }
+
+    public void setConnections(ArrayList<IntPair> connections) {
+        this.connections = connections;
+    }
+
+
+
+    public void setRoot(GraphNode root) {
+        this.root = root;
     }
 }

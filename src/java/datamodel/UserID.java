@@ -7,9 +7,9 @@ public class UserID {
         this.id = id;
     }
 
-    public UserID(){
+    //ВСЕ ЧТО НАПИСАНО НИЖЕ ИСПОЛЬЗУЕТСЯ ДЛЯ СЕРИАЛИЗАЦИИ/ДЕСЕРИАЛИЗАЦИИ ОБЪЕКТА ПРИ РАБОТЕ С FIRESTORE
 
-    }
+    public UserID(){}
 
     public Long getId() {
         return id;

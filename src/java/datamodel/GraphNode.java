@@ -8,30 +8,6 @@ public class GraphNode {
     private boolean deadNode;
     private PlayerInventory nodePrize;
 
-    public GraphNode(){
-
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setQuestionContent(String questionContent) {
-        this.questionContent = questionContent;
-    }
-
-    public boolean isDeadNode() {
-        return deadNode;
-    }
-
-    public void setDeadNode(boolean deadNode) {
-        this.deadNode = deadNode;
-    }
-
-    public void setNodePrize(PlayerInventory nodePrize) {
-        this.nodePrize = nodePrize;
-    }
-
     public GraphNode(String name, String questionContent){
         this.name = name;
         this.questionContent = questionContent;
@@ -53,16 +29,13 @@ public class GraphNode {
         nodePrize = new PlayerInventory(0,0);
     }
 
-    public GraphNode(String name, String questionContent, boolean deadNode, PlayerInventory prize){
-        this.name = name;
-        this.questionContent = questionContent;
-        this.deadNode = deadNode;
-        this.nodePrize = prize;
-    }
-
     public String getName() { return name; }
 
     public String getQuestionContent() { return questionContent; }
+
+    public boolean isDeadNode() {
+        return deadNode;
+    }
 
     public PlayerInventory getNodePrize() { return nodePrize; }
 
@@ -80,5 +53,25 @@ public class GraphNode {
     @Override
     public int hashCode() {
         return Objects.hash(name, questionContent, deadNode, nodePrize);
+    }
+
+    //ВСЕ ЧТО НАПИСАНО НИЖЕ ИСПОЛЬЗУЕТСЯ ДЛЯ СЕРИАЛИЗАЦИИ/ДЕСЕРИАЛИЗАЦИИ ОБЪЕКТА ПРИ РАБОТЕ С FIRESTORE
+
+    public GraphNode(){}
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setQuestionContent(String questionContent) {
+        this.questionContent = questionContent;
+    }
+
+    public void setDeadNode(boolean deadNode) {
+        this.deadNode = deadNode;
+    }
+
+    public void setNodePrize(PlayerInventory nodePrize) {
+        this.nodePrize = nodePrize;
     }
 }

@@ -22,10 +22,10 @@ public class TestQuestionsLoader implements IQuestionGettable {
         root.oneWayConnectNodes(pereulok, run);
         root.oneWayConnectNodes(bar, pereulok);
         root.connectNodes(pereulok, stay);
-        root.oneWayConnectNodes(run, root.currentNode);
-        root.oneWayConnectNodes(stay, root.currentNode);
+        root.oneWayConnectNodes(run, root.getRoot());
+        root.oneWayConnectNodes(stay, root.getRoot());
         root.oneWayConnectNodes(troll, kickTroll);
-        root.connectNodes(root.currentNode, thief);
+        root.connectNodes(root.getRoot(), thief);
         return root;
     }
 }

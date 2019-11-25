@@ -3,8 +3,7 @@ package datamodel;
 import java.util.Objects;
 
 public class PlayerInventory {
-    public int gold;
-    public int exp;
+    private int gold, exp;
 
     public PlayerInventory(){
         gold = 0;
@@ -21,22 +20,6 @@ public class PlayerInventory {
         this.exp += inv.exp;
     }
 
-    public int getGold() {
-        return gold;
-    }
-
-    public void setGold(int gold) {
-        this.gold = gold;
-    }
-
-    public int getExp() {
-        return exp;
-    }
-
-    public void setExp(int exp) {
-        this.exp = exp;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -51,7 +34,25 @@ public class PlayerInventory {
         return Objects.hash(gold, exp);
     }
 
-    public String ToString(){
+    public String stringRepresentation(){
         return "Золото: " + gold + "\nОпыт: " + exp;
+    }
+
+    //ВСЕ ЧТО НАПИСАНО НИЖЕ ИСПОЛЬЗУЕТСЯ ДЛЯ СЕРИАЛИЗАЦИИ/ДЕСЕРИАЛИЗАЦИИ ОБЪЕКТА ПРИ РАБОТЕ С FIRESTORE
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
     }
 }

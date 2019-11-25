@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutionException;
 
 public class CloudStorageLoader implements IQuestionGettable {
     private static final String questionsCollectionName = "questions";
-    private static final String questionRootDocumentName = "NY";
+    private static final String questionRootDocumentName = "SF";
     private IDatabaseLoader dbLoader;
 
     public CloudStorageLoader(IDatabaseLoader dbLoader){

@@ -1,6 +1,7 @@
 package root;
 
 import datasource.CloudStorageLoader;
+import datasource.TestQuestionsLoader;
 import db.Database;
 import logic.Callboard;
 import logic.ChatLogic;
@@ -33,6 +34,11 @@ public class SpringConfiguration {
     @Bean
     public MessageProcessor messageProcessor(){
         return new MessageProcessor(chatLogic(), database());
+    }
+
+    @Bean
+    public TestQuestionsLoader testLoader(){
+        return new TestQuestionsLoader();
     }
 
 }

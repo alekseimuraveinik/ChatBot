@@ -18,11 +18,10 @@ public class MessageProcessor implements IMessageProcessor{
     private HashMap<Long, IPlayer> logicDict;
     private IChatLogic logic;
     private IMessageHandler handler;
-    private IDatabaseLoader dbLoader;
+    private IDatabaseLoader db;
 
-    public MessagesProcessor(IChatLogic logic, IDatabaseLoader dbLoader){
-        //Runtime.getRuntime().addShutdownHook(new Thread(this::onShutdown, "Shutdown-thread"));
-        this.dbLoader = dbLoader;
+    public MessageProcessor(IChatLogic logic, IDatabaseLoader db){
+        this.db = db;
         this.logic = logic;
         logicDict = new HashMap<>();
     }
@@ -31,7 +30,8 @@ public class MessageProcessor implements IMessageProcessor{
     public void subscribe(IMessageHandler handler){
         this.handler = handler;
         try{
-            //restoreSavedState();
+            restoreSavedState();
+            new Thread(this::backupLoop).start();
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class MessageProcessor implements IMessageProcessor{
 
     private void restoreSavedState() throws IOException, ExecutionException, InterruptedException {
         for (QueryDocumentSnapshot document :
-                dbLoader.getFirestore()
+                db.getFirestore()
                         .collection("state")
                         .get()
                         .get()
@@ -59,14 +59,27 @@ public class MessageProcessor implements IMessageProcessor{
 
             Long id = Long.valueOf(document.getId());
             Player player = document.toObject(Player.class);
-            player.subscribe(handler, false);
+
+            if(player.getChatId() == null)
+                continue;
+
             player.setLogic(logic);
+            player.subscribe(handler, false);
 
             logicDict.put(id, player);
         }
     }
 
-    private void onShutdown() {
+    private void backupLoop(){
+        while (true){
+            try{Thread.sleep(10000);} catch (Exception e){
+                e.printStackTrace();
+            }
+            backup();
+        }
+    }
+
+    private void backup() {
         if(logicDict.isEmpty())
             return;
 
@@ -75,12 +88,14 @@ public class MessageProcessor implements IMessageProcessor{
                 String key = String.valueOf(entry.getKey());
                 IPlayer value = entry.getValue();
 
-                String result = dbLoader.getFirestore()
+                String result = db.getFirestore()
                         .collection("state")
                         .document(key)
                         .set(value)
                         .get()
                         .getUpdateTime().toString();
+
+                System.out.println(result);
             }
 
             System.out.println("Data successfully saved");
