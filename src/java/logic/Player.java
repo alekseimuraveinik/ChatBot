@@ -61,7 +61,7 @@ public class Player implements IPlayer {
     public void subscribe(IMessageHandler handler, Boolean isNewPlayer) {
         this.handler = handler;
         if (isNewPlayer) {
-            handler.handle(chatId, HELLO_MESSAGE + playerGraph.getFormattedContentAndNextNodes());
+            handler.handle(chatId, HELLO_MESSAGE + playerGraph.formattedContentAndNextNodes());
         }
     }
 

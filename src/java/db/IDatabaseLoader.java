@@ -7,5 +7,5 @@ import java.util.concurrent.ExecutionException;
 
 public interface IDatabaseLoader {
     Firestore getFirestore() throws IOException;
-    void write(Object obj, String documentName)throws ExecutionException, InterruptedException;
+    void write(Object obj, String documentName) throws ExecutionException, InterruptedException, IOException;
 }

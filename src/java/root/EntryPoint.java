@@ -1,9 +1,7 @@
 package root;
 
-//import datasource.CloudStorageLoader;
 import datasource.CloudStorageLoader;
 import datasource.FileReader;
-import datasource.TestQuestionsLoader;
 import db.Database;
 import logic.Callboard;
 import logic.IChatLogic;
@@ -14,13 +12,9 @@ import logic.ChatLogic;
 import telegramLogic.MessagesProcessor;
 import io.TelegramIO;
 
-import java.io.IOException;
-import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
-
 
 public class EntryPoint{
-    public static void main(String[] args) throws ExecutionException, InterruptedException, IOException {
+    public static void main(String[] args) {
         String SUCCESS_MESSAGE = "Success!";
         String ERROR_MESSAGE = "Connection error!";
         String filename = "telegram_data";
@@ -28,7 +22,7 @@ public class EntryPoint{
 
 
         IDatabaseLoader dbLoader = new Database(apiKeyFilename);
-        IQuestionGettable cloudLoader = new TestQuestionsLoader();
+        IQuestionGettable cloudLoader = new CloudStorageLoader(dbLoader);
         Callboard callboard = new Callboard(dbLoader);
 
         IChatLogic logic = new ChatLogic(cloudLoader, callboard);
@@ -51,10 +45,5 @@ public class EntryPoint{
             e.printStackTrace();
             System.out.println(ERROR_MESSAGE);
         }
-
-        Scanner sc = new Scanner(System.in);
-        sc.nextLine();
-        sc.close();
-        System.exit(0);
     }
 }

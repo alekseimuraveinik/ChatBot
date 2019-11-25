@@ -48,7 +48,7 @@ public class ChatLogic implements IChatLogic {
         } else {
             currentQuestion.currentNode = nextQuestion;
             player.changeState(currentQuestion);
-            messageToProceed = currentQuestion.getFormattedContentAndNextNodes();
+            messageToProceed = currentQuestion.formattedContentAndNextNodes();
             player.getPlayerInventory().AddOtherInventory(nextQuestion.getNodePrize());
         }
 
@@ -56,7 +56,7 @@ public class ChatLogic implements IChatLogic {
 
         if(nextQuestion != null && currentQuestion.finishing()) {
             currentQuestion.resetToRoot();
-            player.handle(DOUBLE_LINE_BREAK + currentQuestion.getFormattedContentAndNextNodes());
+            player.handle(DOUBLE_LINE_BREAK + currentQuestion.formattedContentAndNextNodes());
         }
     }
 
@@ -65,7 +65,7 @@ public class ChatLogic implements IChatLogic {
         String[] commandComponents = command.split(SPACE);
         switch (commandComponents[0]){
             case HELP:
-                answer = GAME_INFO + DOUBLE_LINE_BREAK + currentQuestion.getQuestionContent();
+                answer = GAME_INFO + DOUBLE_LINE_BREAK + currentQuestion.currentNodeQuestionContent();
                 break;
             case CALLBOARD:
                 answer = callboard.getCallboardRecords();

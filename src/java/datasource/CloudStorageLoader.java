@@ -2,15 +2,14 @@ package datasource;
 
 import com.google.cloud.firestore.*;
 import datamodel.Graph;
-import datamodel.Node;
 import db.IDatabaseLoader;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 public class CloudStorageLoader implements IQuestionGettable {
-    private static final String questionsCollectionName = "questions2";
-    private static final String questionRootDocumentName = "TestQGraph1";
+    private static final String questionsCollectionName = "questions";
+    private static final String questionRootDocumentName = "NY";
     private IDatabaseLoader dbLoader;
 
     public CloudStorageLoader(IDatabaseLoader dbLoader){

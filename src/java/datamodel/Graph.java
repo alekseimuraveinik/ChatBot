@@ -1,19 +1,52 @@
 package datamodel;
 
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Graph {
     private ArrayList<GraphNode> graphNodes;
-    private ArrayList<ArrayList<Integer>> connections;
+    private ArrayList<IntPair> connections;
     public GraphNode currentNode;
     private GraphNode root;
     private static final String NEXT_MESSAGE = "\nВыберете куда пойти дальше дальше:";
 
+    public ArrayList<GraphNode> getGraphNodes() {
+        return graphNodes;
+    }
+
+    public void setGraphNodes(ArrayList<GraphNode> graphNodes) {
+        this.graphNodes = graphNodes;
+    }
+
+    public ArrayList<IntPair> getConnections() {
+        return connections;
+    }
+
+    public void setConnections(ArrayList<IntPair> connections) {
+        this.connections = connections;
+    }
+
+    public GraphNode getCurrentNode() {
+        return currentNode;
+    }
+
+    public void setCurrentNode(GraphNode currentNode) {
+        this.currentNode = currentNode;
+        if(graphNodes != null)
+            graphNodes.add(currentNode);
+    }
+
+    public GraphNode getRoot() {
+        return root;
+    }
+
+    public void setRoot(GraphNode root) {
+        this.root = root;
+    }
+
     public Graph()
     {
-        graphNodes = new ArrayList<>();
-        connections = new ArrayList<>();
+
     }
 
     public Graph(String name, String questionContent)
@@ -44,14 +77,12 @@ public class Graph {
     public void oneWayConnectNodes(GraphNode nodeFrom, GraphNode nodeTo){
         if (!graphNodes.contains(nodeFrom)){
             graphNodes.add(nodeFrom);
-            connections.add(new ArrayList<>());
         }
         if (!graphNodes.contains(nodeTo)) {
             graphNodes.add(nodeTo);
-            connections.add(new ArrayList<>());
         }
 
-        connections.get(graphNodes.indexOf(nodeFrom)).add(graphNodes.indexOf(nodeTo));
+        connections.add(new IntPair(graphNodes.indexOf(nodeFrom), graphNodes.indexOf(nodeTo)));
     }
 
     public void connectNodes(GraphNode nodeOne, GraphNode nodeTwo){
@@ -59,35 +90,43 @@ public class Graph {
         oneWayConnectNodes(nodeTwo, nodeOne);
     }
 
-    public String getQuestionContent(){ return currentNode.getQuestionContent(); }
+    private ArrayList<GraphNode> getConnectedNodes(GraphNode graphNode){
+        ArrayList<GraphNode> result = new ArrayList<>();
+        int currentNodeIndex = graphNodes.indexOf(graphNode);
+        for(IntPair edge : connections){
+            if(edge.getKey() == currentNodeIndex)
+                result.add(graphNodes.get(edge.getValue()));
+        }
+        return result;
+    }
+
+    public String currentNodeQuestionContent(){ return currentNode.getQuestionContent(); }
 
     public GraphNode getChildByAnswer(String answer){
         if (!graphNodes.contains(currentNode))
             return null;
 
-        for (Integer i : connections.get(graphNodes.indexOf(currentNode))){
-            if (graphNodes.get(i).getName().toLowerCase().equals(answer))
-                return graphNodes.get(i);
+        for (GraphNode graphNode : getConnectedNodes(currentNode)){
+            if (graphNode.getName().toLowerCase().equals(answer))
+                return graphNode;
         }
 
         return null;
     }
 
     public boolean finishing(){
-        return currentNode.getIsDead();
+        return currentNode.isDeadNode();
     }
 
-    public String getName() { return currentNode.getName(); }
-
-    public String getFormattedContentAndNextNodes(){
+    public String formattedContentAndNextNodes(){
         if (!graphNodes.contains(currentNode))
             return currentNode.getQuestionContent();
 
         StringBuilder mesContent = new StringBuilder(currentNode.getQuestionContent());
         mesContent.append(NEXT_MESSAGE);
-        for (Integer i : connections.get(graphNodes.indexOf(currentNode))){
+        for (GraphNode graphNode : getConnectedNodes(currentNode)){
             mesContent.append("\n -  ");
-            mesContent.append(graphNodes.get(i).getName());
+            mesContent.append(graphNode.getName());
         }
         return mesContent.toString();
     }
