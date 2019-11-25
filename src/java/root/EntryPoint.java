@@ -8,7 +8,7 @@ import io.TelegramIO;
 
 public class EntryPoint{
     public static void main(String[] args) {
-        /*String SUCCESS_MESSAGE = "Success!";
+        String SUCCESS_MESSAGE = "Success!";
         String ERROR_MESSAGE = "Connection error!";
         String filename = "telegram_data";
 
@@ -30,8 +30,6 @@ public class EntryPoint{
         }catch (Exception e) {
             e.printStackTrace();
             System.out.println(ERROR_MESSAGE);
-        }*/
-
-        System.out.println("IT WORKS");
+        }
     }
 }
