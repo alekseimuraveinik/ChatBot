@@ -1,6 +1,8 @@
 package root;
 
 import logic.BackupWorker;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import telegramLogic.IMessageProcessor;
@@ -8,7 +10,9 @@ import io.TelegramIO;
 import telegramLogic.MessageProcessor;
 
 public class EntryPoint{
+
     public static void main(String[] args) {
+
         String SUCCESS_MESSAGE = "Success!";
         String ERROR_MESSAGE = "Connection error!";
 
