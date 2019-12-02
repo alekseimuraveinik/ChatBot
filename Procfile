@@ -1,1 +1,1 @@
-web: java -cp target/classes/;target/dependency/* root.EntryPoint
+web: java -jar target/ChatBot-1.1-spring-boot.jar
