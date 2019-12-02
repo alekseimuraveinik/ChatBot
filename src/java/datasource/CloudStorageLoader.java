@@ -30,7 +30,7 @@ public class CloudStorageLoader implements IQuestionGettable {
             }
 
             return null;
-        } catch (IOException | InterruptedException | ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
             return null;
         }

@@ -4,6 +4,7 @@ import datamodel.GraphNode;
 import datamodel.PlayerInventory;
 import datamodel.PlayerState;
 import datamodel.UserID;
+import org.springframework.stereotype.Component;
 
 public class Player implements IPlayer {
     private UserID chatId;

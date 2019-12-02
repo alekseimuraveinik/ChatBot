@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CallboardTest {
-    private IDatabaseLoader db = new Database("firebase_api_key.json");
+    private IDatabaseLoader db = new Database();
 
     @Test
     public void LoadTest(){
