@@ -63,7 +63,7 @@ public class MessageProcessor implements IMessageProcessor{
             if(player.getChatId() == null)
                 continue;
 
-            player.setLogic(logic);
+            player.getPlayerState().setLogic(logic);
             player.subscribe(handler, false);
 
             logicDict.put(id, player);

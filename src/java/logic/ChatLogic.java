@@ -57,7 +57,7 @@ public class ChatLogic implements IChatLogic {
             currentQuestion = nextQuestion;
             player.changeState(currentQuestion);
             messageToProceed = graph.formattedContentAndNextNodes(currentQuestion);
-            player.getPlayerInventory().AddOtherInventory(nextQuestion.getNodePrize());
+            nextQuestion.getNodeModifier().modify(player);
         }
 
         player.handle(messageToProceed);
@@ -82,10 +82,10 @@ public class ChatLogic implements IChatLogic {
                 answer = callboard.addRecord(command.substring(4));
                 break;
             case INVENTORY:
-                answer = player.getPlayerInventory().stringRepresentation();
+                answer = player.getPlayerState().getPlayerInventory().stringRepresentation();
                 break;
             case CURRENT_LOCATION:
-                answer = graph.formattedContentAndNextNodes(player.getCurrentNode());
+                answer = graph.formattedContentAndNextNodes(player.getPlayerState().getCurrentNode());
                 break;
             default:
                 answer = UNKNOWN_COMMAND;
