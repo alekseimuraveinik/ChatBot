@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CloudStorageLoaderTest {
-    private IDatabaseLoader db = new Database("firebase_api_key.json");
+    private IDatabaseLoader db = new Database();
     private CloudStorageLoader storageLoader = new CloudStorageLoader(db);
     private Graph graph = storageLoader.getQuestionRoot();
 

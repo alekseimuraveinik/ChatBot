@@ -3,6 +3,7 @@ package logic;
 import datamodel.GraphNode;
 import datamodel.PlayerInventory;
 import datamodel.UserID;
+import org.springframework.stereotype.Component;
 
 public class Player implements IPlayer {
     private GraphNode currentNode;
