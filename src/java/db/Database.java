@@ -45,8 +45,14 @@ public class Database implements IDatabaseLoader {
     private void createDb() throws IOException {
         JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
         JsonObjectParser parser = new JsonObjectParser(jsonFactory);
-        GenericJson fileContents = parser.parseAndClose(
-                new FileInputStream("firebase_api_key.json"), UTF_8, GenericJson.class);
+
+        InputStream inputStream = getClass()
+                .getClassLoader().getResourceAsStream("firebase_api_key.json");
+
+        GenericJson fileContents = parser.parseAndClose(inputStream, UTF_8, GenericJson.class);
+
+        /*GenericJson fileContents = parser.parseAndClose(
+                new FileInputStream("firebase_api_key.json"), UTF_8, GenericJson.class);*/
 
         fileContents.set("private_key_id", System.getenv("PRIVATE_KEY_ID"));
         fileContents.set("private_key", System.getenv("PRIVATE_KEY").replace("\\n", "\n"));
