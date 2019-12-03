@@ -1,1 +1,1 @@
-web: java -jar target/ChatBot-1.1-spring-boot.jar
+worker: java -jar target/ChatBot-1.1-spring-boot.jar
