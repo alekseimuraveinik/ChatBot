@@ -19,15 +19,17 @@ public class CardPlayLogic implements IChatLogic {
     private final String PLAYER_WON_MOVE = "Вы победили и забираете себе карты";
     private final String PLAYER_LOSE_MOVE = "Вы проиграли и отдаете свои карты";
     private final String DRAW_MESSAGE = "Ничья, карты возвращаются";
-    private final String NEXT_MOVE = "Ваш следующий ход?";
+    private final String NEXT_MOVE = "\nВаш следующий ход?";
 
     @Override
     public void processMessage(String message, IPlayer player, GraphNode currentNode) {
         CardPlayState thisPlayerState = playersStates.get(player);
         String processMessage = "";
 
-        if (!IsParseString(message) || !thisPlayerState.cards.contains(Integer.parseInt(message)))
+        if (!IsParseString(message) || !thisPlayerState.cards.contains(Integer.parseInt(message))) {
             player.handle(WRONG_MESSAGE_ANSWER);
+            return;
+        }
 
         Integer playerCardNum = Integer.parseInt(message);
         Integer enemyCardNum = thisPlayerState.enemyCards.get(r.nextInt(thisPlayerState.enemyCards.size()));
@@ -101,7 +103,7 @@ public class CardPlayLogic implements IChatLogic {
     }
 
     private String getFormattedAllCards(CardPlayState playState){
-        StringBuilder str = new StringBuilder("Список ваших карт:\n");
+        StringBuilder str = new StringBuilder("\nСписок ваших карт:\n");
 
         str.append(playState.cards.get(0));
         for(int i = 1; i < playState.cards.size(); i++){

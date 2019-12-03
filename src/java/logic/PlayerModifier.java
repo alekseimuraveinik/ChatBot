@@ -29,4 +29,6 @@ public class PlayerModifier {
             player.handle(newLogic.getNewPlayerMessage(player));
         }
     }
+
+    public IChatLogic getNewLogic() { return  newLogic; }
 }

@@ -60,7 +60,8 @@ public class ChatLogic implements IChatLogic {
             nextQuestion.getNodeModifier().modify(player);
         }
 
-         if (player.getPlayerState().getLogic() != this)
+         if (currentQuestion.getNodeModifier().getNewLogic() != null
+             && currentQuestion.getNodeModifier().getNewLogic() != this)
              return;
 
         player.handle(messageToProceed);

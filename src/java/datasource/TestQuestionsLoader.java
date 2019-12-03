@@ -23,7 +23,7 @@ public class TestQuestionsLoader implements IQuestionGettable {
         GraphNode won = new GraphNode("Won", "Вы победили тролля и получаете 150 золота",
                 new PlayerModifier(new PlayerInventory(150, 10, 1)));
         GraphNode lose = new GraphNode("Lose", "Вы проиграли и теряете 150 золота",
-                new PlayerModifier(new PlayerInventory(150, 10, 0)));
+                new PlayerModifier(new PlayerInventory(-150, 10, 0)));
         GraphNode noCards = new GraphNode("nocards", "нененене братан тащи карты иначе не получится поиграть");
         GraphNode kickTroll = new GraphNode("Ударить тролля", "Пустошь поглатила вас", true);
         GraphNode pereulok = new GraphNode("Подворотня", "Ты зашел в подворотню, перед тобой стоят 2 неприятных типа(возможно они из альянса)");
