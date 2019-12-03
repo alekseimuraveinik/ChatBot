@@ -2,43 +2,34 @@ package logic;
 
 import datamodel.GraphNode;
 import datamodel.PlayerInventory;
+import datamodel.PlayerState;
 import datamodel.UserID;
 import org.springframework.stereotype.Component;
 
 public class Player implements IPlayer {
-    private GraphNode currentNode;
-    private PlayerInventory playerInventory;
     private UserID chatId;
-    private IChatLogic logic;
     private IMessageHandler handler;
+    public final PlayerState state;
 
     public Player(IChatLogic logic, UserID chatId){
-        this.logic = logic;
         this.chatId = chatId;
-        currentNode = logic.getRoot().getRoot();
-        playerInventory = new PlayerInventory();
+        state = new PlayerState(logic.getRoot().getRoot(), new PlayerInventory(), logic);
     }
 
     public Player(){
-
+        state = new PlayerState();
     }
 
     public UserID getChatId() {
         return chatId;
     }
 
-    public void setLogic(IChatLogic logic){
-        this.logic = logic;
-    }
-
-    public PlayerInventory getPlayerInventory() { return playerInventory; }
-
-    public void setPlayerInventory(PlayerInventory playerInventory) { this.playerInventory = playerInventory; }
-
     @Override
     public void processMessage(String message) {
-        logic.processMessage(message, this, currentNode);
+        state.getLogic().processMessage(message, this, state.getCurrentNode());
     }
+
+    public PlayerState getPlayerState() { return state; }
 
     @Override
     public void handle(String processedMessage){
@@ -49,24 +40,16 @@ public class Player implements IPlayer {
     public void subscribe(IMessageHandler handler, Boolean isNewPlayer) {
         this.handler = handler;
         if (isNewPlayer) {
-            handler.handle(chatId, logic.getNewPlayerMessage());
+            handler.handle(chatId, state.getLogic().getNewPlayerMessage(this));
         }
     }
 
     @Override
     public void changeState(GraphNode currentNode) {
-        this.currentNode = currentNode;
+        this.state.setCurrentNode(currentNode);
     }
 
     //ВСЕ ЧТО НАПИСАНО НИЖЕ ИСПОЛЬЗУЕТСЯ ДЛЯ СЕРИАЛИЗАЦИИ/ДЕСЕРИАЛИЗАЦИИ ОБЪЕКТА ПРИ РАБОТЕ С FIRESTORE
-
-    public GraphNode getCurrentNode() {
-        return currentNode;
-    }
-
-    public void setCurrentNode(GraphNode currentNode) {
-        this.currentNode = currentNode;
-    }
 
     public void setChatId(UserID chatId) {
         this.chatId = chatId;

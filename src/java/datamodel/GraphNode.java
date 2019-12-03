@@ -1,32 +1,34 @@
 package datamodel;
 
+import logic.PlayerModifier;
+
 import java.util.Objects;
 
 public class GraphNode {
     private String name;
     private String questionContent;
     private boolean deadNode;
-    private PlayerInventory nodePrize;
+    private PlayerModifier nodeModifier;
 
     public GraphNode(String name, String questionContent){
         this.name = name;
         this.questionContent = questionContent;
         deadNode = false;
-        nodePrize = new PlayerInventory(0,0);
+        nodeModifier = new PlayerModifier();
     }
 
-    public GraphNode(String name, String questionContent, PlayerInventory prize){
+    public GraphNode(String name, String questionContent, PlayerModifier nodeModifier){
         this.name = name;
         this.questionContent = questionContent;
         deadNode = false;
-        this.nodePrize = prize;
+        this.nodeModifier = nodeModifier;
     }
 
     public GraphNode(String name, String questionContent, boolean deadNode){
         this.name = name;
         this.questionContent = questionContent;
         this.deadNode = deadNode;
-        nodePrize = new PlayerInventory(0,0);
+        nodeModifier = new PlayerModifier();
     }
 
     public String getName() { return name; }
@@ -37,7 +39,7 @@ public class GraphNode {
         return deadNode;
     }
 
-    public PlayerInventory getNodePrize() { return nodePrize; }
+    public PlayerModifier getNodeModifier() { return nodeModifier; }
 
     @Override
     public boolean equals(Object o) {
@@ -47,12 +49,12 @@ public class GraphNode {
         return deadNode == graphNode.deadNode &&
                 Objects.equals(name, graphNode.name) &&
                 Objects.equals(questionContent, graphNode.questionContent) &&
-                Objects.equals(nodePrize, graphNode.nodePrize);
+                Objects.equals(nodeModifier, graphNode.nodeModifier);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, questionContent, deadNode, nodePrize);
+        return Objects.hash(name, questionContent, deadNode, nodeModifier);
     }
 
     //ВСЕ ЧТО НАПИСАНО НИЖЕ ИСПОЛЬЗУЕТСЯ ДЛЯ СЕРИАЛИЗАЦИИ/ДЕСЕРИАЛИЗАЦИИ ОБЪЕКТА ПРИ РАБОТЕ С FIRESTORE
@@ -71,7 +73,7 @@ public class GraphNode {
         this.deadNode = deadNode;
     }
 
-    public void setNodePrize(PlayerInventory nodePrize) {
-        this.nodePrize = nodePrize;
+    public void setNodeModifier(PlayerModifier nodeModifier) {
+        this.nodeModifier = nodeModifier;
     }
 }

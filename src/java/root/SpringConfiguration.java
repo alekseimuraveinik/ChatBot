@@ -35,7 +35,7 @@ public class SpringConfiguration {
 
     @Bean
     public ChatLogic chatLogic(){
-        return new ChatLogic(cloudLoader(), callboard());
+        return new ChatLogic(testLoader(), callboard());
     }
 
     @Bean
@@ -54,7 +54,7 @@ public class SpringConfiguration {
             if(player.getChatId() == null)
                 continue;
 
-            player.setLogic(chatLogic());
+            player.getPlayerState().setLogic(chatLogic());
             player.subscribe(telegramIO(), false);
 
             state.add(id, player);
