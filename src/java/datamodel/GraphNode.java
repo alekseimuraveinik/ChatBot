@@ -1,7 +1,6 @@
 package datamodel;
 
-import logic.DefaultPlayerModifier;
-import logic.IPlayerModifier;
+import logic.PlayerModifier;
 
 import java.util.Objects;
 
@@ -9,16 +8,16 @@ public class GraphNode {
     private String name;
     private String questionContent;
     private boolean deadNode;
-    private IPlayerModifier nodeModifier;
+    private PlayerModifier nodeModifier;
 
     public GraphNode(String name, String questionContent){
         this.name = name;
         this.questionContent = questionContent;
         deadNode = false;
-        nodeModifier = new DefaultPlayerModifier();
+        nodeModifier = new PlayerModifier();
     }
 
-    public GraphNode(String name, String questionContent, IPlayerModifier nodeModifier){
+    public GraphNode(String name, String questionContent, PlayerModifier nodeModifier){
         this.name = name;
         this.questionContent = questionContent;
         deadNode = false;
@@ -29,7 +28,7 @@ public class GraphNode {
         this.name = name;
         this.questionContent = questionContent;
         this.deadNode = deadNode;
-        nodeModifier = new DefaultPlayerModifier();
+        nodeModifier = new PlayerModifier();
     }
 
     public String getName() { return name; }
@@ -40,7 +39,7 @@ public class GraphNode {
         return deadNode;
     }
 
-    public IPlayerModifier getNodeModifier() { return nodeModifier; }
+    public PlayerModifier getNodeModifier() { return nodeModifier; }
 
     @Override
     public boolean equals(Object o) {
@@ -74,7 +73,7 @@ public class GraphNode {
         this.deadNode = deadNode;
     }
 
-    public void setNodeModifier(IPlayerModifier nodeModifier) {
+    public void setNodeModifier(PlayerModifier nodeModifier) {
         this.nodeModifier = nodeModifier;
     }
 }

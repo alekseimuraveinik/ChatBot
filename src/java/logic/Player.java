@@ -40,7 +40,7 @@ public class Player implements IPlayer {
     public void subscribe(IMessageHandler handler, Boolean isNewPlayer) {
         this.handler = handler;
         if (isNewPlayer) {
-            handler.handle(chatId, state.getLogic().getNewPlayerMessage());
+            handler.handle(chatId, state.getLogic().getNewPlayerMessage(this));
         }
     }
 

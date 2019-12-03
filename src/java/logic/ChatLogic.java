@@ -31,7 +31,7 @@ public class ChatLogic implements IChatLogic {
     }
 
     @Override
-    public String getNewPlayerMessage() {
+    public String getNewPlayerMessage(IPlayer player) {
         return HELLO_MESSAGE + graph.formattedContentAndNextNodes(graph.getRoot());
     }
 
@@ -59,6 +59,9 @@ public class ChatLogic implements IChatLogic {
             messageToProceed = graph.formattedContentAndNextNodes(currentQuestion);
             nextQuestion.getNodeModifier().modify(player);
         }
+
+         if (player.getPlayerState().getLogic() != this)
+             return;
 
         player.handle(messageToProceed);
 

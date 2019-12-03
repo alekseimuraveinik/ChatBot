@@ -1,6 +1,7 @@
 import datamodel.Graph;
 import datamodel.GraphNode;
 import datamodel.PlayerInventory;
+import logic.PlayerModifier;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,8 +32,8 @@ public class GraphTest {
 
     @Test
     public void testGraphNodeEquals(){
-        GraphNode g1 = new GraphNode("1", "2", new PlayerInventory(10, 11));
-        GraphNode g2 = new GraphNode("1", "2", new PlayerInventory(10, 11));
+        GraphNode g1 = new GraphNode("1", "2", new PlayerModifier(new PlayerInventory(10, 11, 0)));
+        GraphNode g2 = new GraphNode("1", "2", new PlayerModifier(new PlayerInventory(10, 11, 0)));
 
         assertEquals(g1, g2);
     }

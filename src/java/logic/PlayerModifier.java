@@ -2,30 +2,31 @@ package logic;
 
 import datamodel.PlayerInventory;
 
-public class DefaultPlayerModifier implements IPlayerModifier {
+public class PlayerModifier {
     private PlayerInventory addingInventory;
     private IChatLogic newLogic;
 
-    public DefaultPlayerModifier(PlayerInventory addingInventory, IChatLogic newLogic){
+    public PlayerModifier(PlayerInventory addingInventory, IChatLogic newLogic){
         this.addingInventory = addingInventory;
         this.newLogic = newLogic;
     }
 
-    public DefaultPlayerModifier(PlayerInventory addingInventory){
+    public PlayerModifier(PlayerInventory addingInventory){
         this.addingInventory = addingInventory;
         this.newLogic = null;
     }
 
-    public DefaultPlayerModifier(){
+    public PlayerModifier(){
         this.addingInventory = new PlayerInventory();
         this.newLogic = null;
     }
 
-    @Override
     public void modify(IPlayer player) {
-        if (newLogic != null)
-            player.getPlayerState().setLogic(newLogic);
-
         player.getPlayerState().getPlayerInventory().AddOtherInventory(addingInventory);
+
+        if (newLogic != null) {
+            player.getPlayerState().setLogic(newLogic);
+            player.handle(newLogic.getNewPlayerMessage(player));
+        }
     }
 }
