@@ -1,5 +1,7 @@
 package root;
 
+import datasource.TestQuestionsLoader;
+import db.Database;
 import logic.BackupWorker;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -15,6 +17,13 @@ public class EntryPoint{
         String ERROR_MESSAGE = "Connection error!";
 
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+
+        /*try {
+            context.getBean(Database.class).write(new TestQuestionsLoader().getQuestionRoot(), "SF");
+        } catch (Exception e){
+            e.printStackTrace();
+        }*/
+
         IMessageProcessor processor = context.getBean(MessageProcessor.class);
 
         try {
@@ -26,8 +35,8 @@ public class EntryPoint{
             io.init();
             System.out.println(SUCCESS_MESSAGE);
 
-            //BackupWorker worker = context.getBean(BackupWorker.class);
-            //new Thread(worker).start();
+            BackupWorker worker = context.getBean(BackupWorker.class);
+            new Thread(worker).start();
 
         }catch (Exception e) {
             e.printStackTrace();

@@ -3,8 +3,12 @@ package datamodel;
 import java.util.Objects;
 
 public class Item {
-    public final String name;
-    public final int itemId;
+    public String name;
+    public int itemId;
+
+    public Item(){
+
+    }
 
     public Item(String name, int id){
         this.name = name;

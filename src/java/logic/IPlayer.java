@@ -9,5 +9,5 @@ public interface IPlayer {
     void subscribe(IMessageHandler handler, Boolean isNewPlayer);
     void changeState(GraphNode currentNode);
     void processMessage(String message);
-    PlayerState getPlayerState();
+    PlayerState getState();
 }

@@ -4,20 +4,19 @@ import datamodel.GraphNode;
 import datamodel.PlayerInventory;
 import datamodel.PlayerState;
 import datamodel.UserID;
-import org.springframework.stereotype.Component;
 
 public class Player implements IPlayer {
     private UserID chatId;
     private IMessageHandler handler;
-    public final PlayerState state;
+    public PlayerState state = new PlayerState();
 
     public Player(IChatLogic logic, UserID chatId){
         this.chatId = chatId;
-        state = new PlayerState(logic.getRoot().getRoot(), new PlayerInventory(), logic);
+        state = new PlayerState(logic.getGraph().getRoot(), new PlayerInventory(), logic);
     }
 
     public Player(){
-        state = new PlayerState();
+
     }
 
     public UserID getChatId() {
@@ -26,10 +25,10 @@ public class Player implements IPlayer {
 
     @Override
     public void processMessage(String message) {
-        state.getLogic().processMessage(message, this, state.getCurrentNode());
+        state.logic().processMessage(message, this, state.getCurrentNode());
     }
 
-    public PlayerState getPlayerState() { return state; }
+    public PlayerState getState() { return state; }
 
     @Override
     public void handle(String processedMessage){
@@ -40,7 +39,7 @@ public class Player implements IPlayer {
     public void subscribe(IMessageHandler handler, Boolean isNewPlayer) {
         this.handler = handler;
         if (isNewPlayer) {
-            handler.handle(chatId, state.getLogic().getNewPlayerMessage(this));
+            handler.handle(chatId, state.logic().getNewPlayerMessage(this));
         }
     }
 
@@ -53,5 +52,9 @@ public class Player implements IPlayer {
 
     public void setChatId(UserID chatId) {
         this.chatId = chatId;
+    }
+
+    public void setState(PlayerState state) {
+        this.state = state;
     }
 }

@@ -36,7 +36,7 @@ public class ChatLogic implements IChatLogic {
     }
 
     @Override
-    public Graph getRoot() {
+    public Graph getGraph() {
         return graph;
     }
 
@@ -60,8 +60,8 @@ public class ChatLogic implements IChatLogic {
             nextQuestion.getNodeModifier().modify(player);
         }
 
-         if (currentQuestion.getNodeModifier().getNewLogic() != null
-             && currentQuestion.getNodeModifier().getNewLogic() != this)
+         if (currentQuestion.getNodeModifier().newLogic() != null
+             && currentQuestion.getNodeModifier().newLogic() != this)
              return;
 
         player.handle(messageToProceed);
@@ -86,10 +86,10 @@ public class ChatLogic implements IChatLogic {
                 answer = callboard.addRecord(command.substring(4));
                 break;
             case INVENTORY:
-                answer = player.getPlayerState().getPlayerInventory().stringRepresentation();
+                answer = player.getState().getPlayerInventory().stringRepresentation();
                 break;
             case CURRENT_LOCATION:
-                answer = graph.formattedContentAndNextNodes(player.getPlayerState().getCurrentNode());
+                answer = graph.formattedContentAndNextNodes(player.getState().getCurrentNode());
                 break;
             default:
                 answer = UNKNOWN_COMMAND;

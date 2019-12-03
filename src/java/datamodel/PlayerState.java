@@ -19,17 +19,19 @@ public class PlayerState {
     public PlayerState(){
     }
 
-    public IChatLogic getStartLogic() { return startLogic; }
+    public void resetLogic(){
+        logic = startLogic;
+    }
 
     public GraphNode getCurrentNode() { return currentNode; }
 
     public PlayerInventory getPlayerInventory() { return playerInventory; }
 
-    public IChatLogic getLogic() { return logic; }
+    public IChatLogic logic() { return logic; }
 
     public void setCurrentNode(GraphNode node) { currentNode = node; }
 
     public void setPlayerInventory(PlayerInventory inventory) { playerInventory = inventory; }
 
-    public void setLogic(IChatLogic logic) { this.logic = logic; }
+    public void subscribe(IChatLogic logic) { this.logic = logic; }
 }

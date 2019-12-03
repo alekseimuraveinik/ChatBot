@@ -54,7 +54,7 @@ public class SpringConfiguration {
             if(player.getChatId() == null)
                 continue;
 
-            player.getPlayerState().setLogic(chatLogic());
+            player.getState().subscribe(chatLogic());
             player.subscribe(telegramIO(), false);
 
             state.add(id, player);

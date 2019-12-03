@@ -100,7 +100,6 @@ public class Graph {
         this.connections = connections;
     }
 
-
     public void setRoot(GraphNode root) {
         this.root = root;
     }

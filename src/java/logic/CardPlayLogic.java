@@ -72,7 +72,7 @@ public class CardPlayLogic implements IChatLogic {
     }
 
     private void switchToDefaultLogic(String nextNodeName, IPlayer player){
-        player.getPlayerState().setLogic(player.getPlayerState().getStartLogic());
+        player.getState().resetLogic();
         player.processMessage(nextNodeName);
     }
 
@@ -93,13 +93,13 @@ public class CardPlayLogic implements IChatLogic {
     }
 
     @Override
-    public Graph getRoot() {
+    public Graph getGraph() {
         return null;
     }
 
     @Override
     public String getNewPlayerMessage(IPlayer player) {
-        if(!player.getPlayerState().getPlayerInventory().items.contains(new Item("Карты", 1))) {
+        if(!player.getState().getPlayerInventory().items.contains(new Item("Карты", 1))) {
             switchToDefaultLogic("nocards", player);
             return "У вас нет карт!";
         }
@@ -145,7 +145,7 @@ public class CardPlayLogic implements IChatLogic {
                 answer = HELLO_MESSAGE;
                 break;
             case INVENTORY:
-                answer = player.getPlayerState().getPlayerInventory().stringRepresentation();
+                answer = player.getState().getPlayerInventory().stringRepresentation();
                 break;
             case LOSE:
                 answer = "Вы сдались";
