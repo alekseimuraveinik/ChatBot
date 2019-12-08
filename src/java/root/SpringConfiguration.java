@@ -9,6 +9,7 @@ import db.Database;
 import io.TelegramIO;
 import logic.*;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
@@ -70,9 +71,12 @@ public class SpringConfiguration{
         return new State();
     }
 
+    @Autowired
+    ApplicationContext context;
+
     @Bean
     public MessageProcessor messageProcessor() throws ExecutionException, InterruptedException {
-        return new MessageProcessor(state());
+        return new MessageProcessor(state(), context);
     }
 
     @Bean
@@ -105,7 +109,7 @@ public class SpringConfiguration{
     @Bean
     @Scope("prototype")
     public Player player(UserID id){
-        Player player = new Player(id, playerState());
+        Player player = new Player(id, playerState(), context);
         player.subscribe(telegramIO(), true);
         return player;
     }

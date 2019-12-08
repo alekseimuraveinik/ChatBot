@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Import;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 
-public class Player implements IPlayer, ApplicationContextAware  {
+public class Player implements IPlayer {
     private UserID chatId;
 
     private IMessageHandler handler;
@@ -24,9 +24,10 @@ public class Player implements IPlayer, ApplicationContextAware  {
     private PlayerState state;
 
 
-    public Player(UserID chatId, PlayerState state) {
+    public Player(UserID chatId, PlayerState state, ApplicationContext context) {
         this.chatId = chatId;
         this.state = state;
+        this.context = context;
     }
 
     public Player(){
@@ -57,11 +58,6 @@ public class Player implements IPlayer, ApplicationContextAware  {
             ChatLogic c = context.getBean(ChatLogic.class);
             handler.handle(chatId, c.getNewPlayerMessage(this));
         }
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext context) {
-        this.context = context;
     }
 
     @Override

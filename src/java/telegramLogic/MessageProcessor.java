@@ -16,14 +16,14 @@ import root.SpringConfiguration;
 import java.util.HashMap;
 
 
-public class MessageProcessor implements IMessageProcessor, ApplicationContextAware {
+public class MessageProcessor implements IMessageProcessor {
 
     private State state;
     private ApplicationContext context;
 
-    public MessageProcessor(State state){
+    public MessageProcessor(State state, ApplicationContext context){
         this.state = state;
-        //this.context = context;
+        this.context = context;
     }
 
     @Override
@@ -36,10 +36,5 @@ public class MessageProcessor implements IMessageProcessor, ApplicationContextAw
         else {
             state.get(chatID).processMessage(message.text);
         }
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        context = applicationContext;
     }
 }
