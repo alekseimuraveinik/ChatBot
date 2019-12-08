@@ -1,75 +1,48 @@
 package logic;
 
 import datamodel.Graph;
-import datamodel.GraphNode;
 import datasource.IQuestionGettable;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 
-public class ChatLogic implements IChatLogic {
+public class ChatLogic implements IChatLogic, ApplicationContextAware {
     private static final String CALLBOARD = "/callboard";
     private static final String ADD = "/add";
     private static final String HELP = "/help";
     private static final String INVENTORY = "/my_inventory";
     private static final String CURRENT_LOCATION = "/current_location";
     private static final String UNKNOWN_COMMAND = "unknown command";
+    private static final String LOSE = "/lose";
 
     private static final String GAME_INFO = "Это игра-квест, вы можете путешествовать по сказочному миру средиземья отвечая на вопросы";
-    private static final String NO_SUCH_VARIANT = "Такого варианта не предусмотрено";
-
-    private static final String HELLO_MESSAGE = "Добро пожаловать в текстовый РПГ мир\n";
 
     private static final String DOUBLE_LINE_BREAK = "\n\n";
     private static final String SLASH = "/";
     private static final String SPACE = " ";
 
     private ICallboard callboard;
-    private Graph graph;
+    private ApplicationContext context;
 
     public ChatLogic(IQuestionGettable source, ICallboard callboard) {
         this.callboard = callboard;
-        graph = source.getQuestionRoot();
     }
 
     @Override
     public String getNewPlayerMessage(IPlayer player) {
-        return HELLO_MESSAGE + graph.formattedContentAndNextNodes(graph.getRoot());
+        player.getPlayerState().setMessageLogic(context.getBean(GraphWalkerLogic.class));
+        return context.getBean(GraphWalkerLogic.class).getHelloMessage(player);
     }
 
     @Override
-    public Graph getRoot() {
-        return graph;
-    }
-
-    @Override
-    public void processMessage(String userAnswer, IPlayer player, GraphNode currentQuestion) {
+    public void processMessage(String userAnswer, IPlayer player) {
         if(userAnswer.startsWith(SLASH)){
             player.handle(processCommand(userAnswer, player));
             return;
         }
 
-        String messageToProceed;
-
-        GraphNode nextQuestion = graph.getChildByAnswer(currentQuestion, userAnswer.toLowerCase());
-
-         if(nextQuestion == null){
-            messageToProceed = NO_SUCH_VARIANT;
-        } else {
-            currentQuestion = nextQuestion;
-            player.changeState(currentQuestion);
-            messageToProceed = graph.formattedContentAndNextNodes(currentQuestion);
-            nextQuestion.getNodeModifier().modify(player);
-        }
-
-         if (currentQuestion.getNodeModifier().getNewLogic() != null
-             && currentQuestion.getNodeModifier().getNewLogic() != this)
-             return;
-
-        player.handle(messageToProceed);
-
-        if(nextQuestion != null && currentQuestion.isDeadNode()) {
-            player.changeState(graph.getRoot());
-            player.handle(DOUBLE_LINE_BREAK + graph.formattedContentAndNextNodes(graph.getRoot()));
-        }
+        player.handle(player.getPlayerState().getMessageLogic().getMessageAnswer(player, userAnswer));
     }
 
     private String processCommand(String command, IPlayer player){
@@ -89,11 +62,17 @@ public class ChatLogic implements IChatLogic {
                 answer = player.getPlayerState().getPlayerInventory().stringRepresentation();
                 break;
             case CURRENT_LOCATION:
-                answer = graph.formattedContentAndNextNodes(player.getPlayerState().getCurrentNode());
+                answer = context.getBean(GraphWalkerLogic.class).getGraph()
+                        .formattedContentAndNextNodes(player.getPlayerState().getCurrentNode());
                 break;
             default:
                 answer = UNKNOWN_COMMAND;
         }
         return answer;
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        context = applicationContext;
     }
 }

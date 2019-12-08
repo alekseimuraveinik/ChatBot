@@ -65,7 +65,8 @@ public class Graph {
     }
 
     public String formattedContentAndNextNodes(GraphNode currentNode){
-        if (!graphNodes.contains(currentNode))
+        ArrayList connections = getConnectedNodes(currentNode);
+        if (connections.size() == 0)
             return currentNode.getQuestionContent();
 
         StringBuilder mesContent = new StringBuilder(currentNode.getQuestionContent());
@@ -99,7 +100,6 @@ public class Graph {
     public void setConnections(ArrayList<IntPair> connections) {
         this.connections = connections;
     }
-
 
     public void setRoot(GraphNode root) {
         this.root = root;

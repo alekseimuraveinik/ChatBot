@@ -16,9 +16,8 @@ public class EntryPoint{
 
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfiguration.class);
         IMessageProcessor processor = context.getBean(MessageProcessor.class);
-
+        
         try {
-
             TelegramIO io = context.getBean(TelegramIO.class);
 
             io.subscribe(processor);

@@ -4,7 +4,6 @@ import datamodel.Graph;
 import datamodel.GraphNode;
 
 public interface IChatLogic {
-    void processMessage(String message, IPlayer player, GraphNode currentNode);
-    Graph getRoot();
+    void processMessage(String message, IPlayer player);
     String getNewPlayerMessage(IPlayer player);
 }

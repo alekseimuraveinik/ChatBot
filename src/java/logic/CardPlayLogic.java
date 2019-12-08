@@ -4,20 +4,18 @@ import datamodel.CardPlayState;
 import datamodel.Graph;
 import datamodel.GraphNode;
 import datamodel.Item;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
+import java.applet.AppletContext;
 import java.util.HashMap;
 import java.util.Random;
 
-public class CardPlayLogic implements IChatLogic {
+public class CardPlayLogic implements IMessageLogic, ApplicationContextAware {
     private HashMap<IPlayer, CardPlayState> playersStates = new HashMap<>();
     private Random r = new Random();
-
-    private static final String SLASH = "/";
-    private static final String SPACE = " ";
-    private static final String UNKNOWN_COMMAND = "Эта команда либо сейчас не доступна, либо ее нет";
-    private static final String HELP = "/help";
-    private static final String INVENTORY = "/my_inventory";
-    private static final String LOSE = "/lose";
+    private ApplicationContext context;
 
     private final String SPLITTER = ", ";
     private final String HELLO_MESSAGE = "Добро пожаловать в карточную игру. \nПравила: игроки в закрытую выкладывают по карте. Если сумма четная, карты отдается игроку, у которого число на карте больше, если нечетное - наоборот, если равны - карты возвращаются. Побеждает тот, кто отберет у противника все карты\nСдаться - /lose";
@@ -28,19 +26,14 @@ public class CardPlayLogic implements IChatLogic {
     private final String DRAW_MESSAGE = "Ничья, карты возвращаются";
     private final String NEXT_MOVE = "\nВаш следующий ход?";
 
+
     @Override
-    public void processMessage(String message, IPlayer player, GraphNode currentNode) {
+    public String getMessageAnswer(IPlayer player, String message) {
         CardPlayState thisPlayerState = playersStates.get(player);
         String processMessage = "";
 
-        if(message.startsWith(SLASH)){
-            player.handle(processCommand(message, player));
-            return;
-        }
-
         if (!IsParseString(message) || !thisPlayerState.cards.contains(Integer.parseInt(message))) {
-            player.handle(WRONG_MESSAGE_ANSWER);
-            return;
+            return WRONG_MESSAGE_ANSWER;
         }
 
         Integer playerCardNum = Integer.parseInt(message);
@@ -48,31 +41,31 @@ public class CardPlayLogic implements IChatLogic {
 
         if ((playerCardNum + enemyCardNum) % 2 == 0) {
             processMessage += playGameMove(thisPlayerState, playerCardNum, enemyCardNum,
-                      playerCardNum > enemyCardNum, playerCardNum < enemyCardNum);
+                    playerCardNum > enemyCardNum, playerCardNum < enemyCardNum);
         } else
         if ((playerCardNum + enemyCardNum) % 2 == 1) {
             processMessage += playGameMove(thisPlayerState, playerCardNum, enemyCardNum,
-                      playerCardNum < enemyCardNum, playerCardNum > enemyCardNum);
+                    playerCardNum < enemyCardNum, playerCardNum > enemyCardNum);
         }
 
         if (thisPlayerState.cards.isEmpty()) {
             switchToDefaultLogic("Lose", player);
-            return;
+            return "1";
         }
 
         if (thisPlayerState.enemyCards.isEmpty()) {
             switchToDefaultLogic("Won", player);
-            return;
+            return "2";
         }
 
         processMessage += NEXT_MOVE + "\n";
         processMessage += getFormattedAllCards(thisPlayerState);
 
-        player.handle(processMessage);
+        return processMessage;
     }
 
     private void switchToDefaultLogic(String nextNodeName, IPlayer player){
-        player.getPlayerState().setLogic(player.getPlayerState().getStartLogic());
+        player.getPlayerState().setMessageLogic(context.getBean(GraphWalkerLogic.class));
         player.processMessage(nextNodeName);
     }
 
@@ -93,12 +86,7 @@ public class CardPlayLogic implements IChatLogic {
     }
 
     @Override
-    public Graph getRoot() {
-        return null;
-    }
-
-    @Override
-    public String getNewPlayerMessage(IPlayer player) {
+    public String getHelloMessage(IPlayer player) {
         if(!player.getPlayerState().getPlayerInventory().items.contains(new Item("Карты", 1))) {
             switchToDefaultLogic("nocards", player);
             return "У вас нет карт!";
@@ -129,31 +117,16 @@ public class CardPlayLogic implements IChatLogic {
         if (str.length() > 2)
             return false;
 
-        for (Integer i = 2; i <= 10; i++){
-            if(i.toString().equals(str))
+        for (int i = 2; i <= 10; i++){
+            if(Integer.toString(i).equals(str))
                 return true;
         }
 
         return false;
     }
 
-    private String processCommand(String command, IPlayer player){
-        String answer;
-        String[] commandComponents = command.split(SPACE);
-        switch (commandComponents[0]){
-            case HELP:
-                answer = HELLO_MESSAGE;
-                break;
-            case INVENTORY:
-                answer = player.getPlayerState().getPlayerInventory().stringRepresentation();
-                break;
-            case LOSE:
-                answer = "Вы сдались";
-                switchToDefaultLogic("lose", player);
-                break;
-            default:
-                answer = UNKNOWN_COMMAND;
-        }
-        return answer;
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        context = applicationContext;
     }
 }

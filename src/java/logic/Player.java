@@ -4,16 +4,29 @@ import datamodel.GraphNode;
 import datamodel.PlayerInventory;
 import datamodel.PlayerState;
 import datamodel.UserID;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Import;
 
-public class Player implements IPlayer {
+import javax.inject.Inject;
+import javax.validation.constraints.NotNull;
+
+public class Player implements IPlayer, ApplicationContextAware  {
     private UserID chatId;
-    private IMessageHandler handler;
-    public final PlayerState state;
 
-    public Player(IChatLogic logic, UserID chatId){
+    private IMessageHandler handler;
+
+    private ApplicationContext context;
+
+    private PlayerState state;
+
+
+    public Player(UserID chatId, PlayerState state) {
         this.chatId = chatId;
-        state = new PlayerState(logic.getRoot().getRoot(), new PlayerInventory(), logic);
+        this.state = state;
     }
 
     public Player(){
@@ -26,7 +39,8 @@ public class Player implements IPlayer {
 
     @Override
     public void processMessage(String message) {
-        state.getLogic().processMessage(message, this, state.getCurrentNode());
+        ChatLogic c = context.getBean(ChatLogic.class);
+        c.processMessage(message, this);
     }
 
     public PlayerState getPlayerState() { return state; }
@@ -40,12 +54,18 @@ public class Player implements IPlayer {
     public void subscribe(IMessageHandler handler, Boolean isNewPlayer) {
         this.handler = handler;
         if (isNewPlayer) {
-            handler.handle(chatId, state.getLogic().getNewPlayerMessage(this));
+            ChatLogic c = context.getBean(ChatLogic.class);
+            handler.handle(chatId, c.getNewPlayerMessage(this));
         }
     }
 
     @Override
-    public void changeState(GraphNode currentNode) {
+    public void setApplicationContext(ApplicationContext context) {
+        this.context = context;
+    }
+
+    @Override
+    public void changePlayerLocation(GraphNode currentNode) {
         this.state.setCurrentNode(currentNode);
     }
 

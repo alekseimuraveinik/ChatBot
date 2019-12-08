@@ -7,21 +7,23 @@ import logic.IMessageHandler;
 import logic.IPlayer;
 import logic.Player;
 import logic.State;
+import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import root.SpringConfiguration;
 
 import java.util.HashMap;
 
 
-public class MessageProcessor implements IMessageProcessor{
+public class MessageProcessor implements IMessageProcessor, ApplicationContextAware {
 
     private State state;
     private ApplicationContext context;
 
-    public MessageProcessor(State state, ApplicationContext context){
+    public MessageProcessor(State state){
         this.state = state;
-        this.context = context;
+        //this.context = context;
     }
 
     @Override
@@ -34,5 +36,10 @@ public class MessageProcessor implements IMessageProcessor{
         else {
             state.get(chatID).processMessage(message.text);
         }
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        context = applicationContext;
     }
 }

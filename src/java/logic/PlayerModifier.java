@@ -4,9 +4,9 @@ import datamodel.PlayerInventory;
 
 public class PlayerModifier {
     private PlayerInventory addingInventory;
-    private IChatLogic newLogic;
+    private IMessageLogic newLogic;
 
-    public PlayerModifier(PlayerInventory addingInventory, IChatLogic newLogic){
+    public PlayerModifier(PlayerInventory addingInventory, IMessageLogic newLogic){
         this.addingInventory = addingInventory;
         this.newLogic = newLogic;
     }
@@ -25,10 +25,10 @@ public class PlayerModifier {
         player.getPlayerState().getPlayerInventory().AddOtherInventory(addingInventory);
 
         if (newLogic != null) {
-            player.getPlayerState().setLogic(newLogic);
-            player.handle(newLogic.getNewPlayerMessage(player));
+            player.getPlayerState().setMessageLogic(newLogic);
+            player.handle(newLogic.getHelloMessage(player));
         }
     }
 
-    public IChatLogic getNewLogic() { return  newLogic; }
+    public IMessageLogic getNewLogic() { return  newLogic; }
 }
