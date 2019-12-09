@@ -1,11 +1,7 @@
 package logic;
 
-import datamodel.Graph;
-import datasource.IQuestionGettable;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 
 
 public class ChatLogic implements IChatLogic {
@@ -31,7 +27,7 @@ public class ChatLogic implements IChatLogic {
 
     @Override
     public String getNewPlayerMessage(IPlayer player) {
-        player.getPlayerState().setMessageLogic(context.getBean(GraphWalkerLogic.class));
+        player.getState().setMessageLogic(context.getBean(GraphWalkerLogic.class));
         return context.getBean(GraphWalkerLogic.class).getHelloMessage(player);
     }
 
@@ -42,7 +38,7 @@ public class ChatLogic implements IChatLogic {
             return;
         }
 
-        player.handle(player.getPlayerState().getMessageLogic().getMessageAnswer(player, userAnswer));
+        player.handle(player.getState().getMessageLogic().getMessageAnswer(player, userAnswer));
     }
 
     private String processCommand(String command, IPlayer player){
@@ -62,7 +58,7 @@ public class ChatLogic implements IChatLogic {
                 answer = player.getState().getPlayerInventory().stringRepresentation();
                 break;
             default:
-                answer = player.getPlayerState().getMessageLogic().processCommand(player, command);
+                answer = player.getState().getMessageLogic().processCommand(player, command);
         }
         return answer;
     }

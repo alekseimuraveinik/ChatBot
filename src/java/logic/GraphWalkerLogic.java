@@ -18,7 +18,7 @@ public class GraphWalkerLogic implements IMessageLogic {
 
     @Override
     public String getMessageAnswer(IPlayer player, String message) {
-        GraphNode currentQuestion = player.getPlayerState().getCurrentNode();
+        GraphNode currentQuestion = player.getState().getCurrentNode();
         String messageToProceed;
 
         GraphNode nextQuestion = graph.getChildByAnswer(currentQuestion, message.toLowerCase());
@@ -57,7 +57,7 @@ public class GraphWalkerLogic implements IMessageLogic {
         switch (command){
             case CURRENT_LOCATION:
                 answer = getGraph()
-                        .formattedContentAndNextNodes(player.getPlayerState().getCurrentNode());
+                        .formattedContentAndNextNodes(player.getState().getCurrentNode());
                 break;
             default:
                 answer = UNKNOWN_COMMAND;

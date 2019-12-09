@@ -34,8 +34,8 @@ public class EntryPoint{
             io.init();
             System.out.println(SUCCESS_MESSAGE);
 
-            BackupWorker worker = context.getBean(BackupWorker.class);
-            new Thread(worker).start();
+            /*BackupWorker worker = context.getBean(BackupWorker.class);
+            new Thread(worker).start();*/
 
         }catch (Exception e) {
             e.printStackTrace();

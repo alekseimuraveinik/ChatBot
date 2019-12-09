@@ -2,8 +2,6 @@ package logic;
 
 import datamodel.PlayerInventory;
 
-import java.util.Objects;
-
 public class PlayerModifier {
     private PlayerInventory addingInventory;
     private IMessageLogic newLogic;
@@ -24,10 +22,10 @@ public class PlayerModifier {
     }
 
     public String modify(IPlayer player) {
-        player.getPlayerState().getPlayerInventory().AddOtherInventory(addingInventory);
+        player.getState().getPlayerInventory().AddOtherInventory(addingInventory);
 
         if (newLogic != null) {
-            player.getPlayerState().setMessageLogic(newLogic);
+            player.getState().setMessageLogic(newLogic);
             return newLogic.getHelloMessage(player);
         }
 

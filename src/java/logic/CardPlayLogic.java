@@ -1,15 +1,10 @@
 package logic;
 
 import datamodel.CardPlayState;
-import datamodel.Graph;
-import datamodel.GraphNode;
 import datamodel.Item;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 
-import java.applet.AppletContext;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -97,7 +92,7 @@ public class CardPlayLogic implements IMessageLogic {
 
     @Override
     public String getHelloMessage(IPlayer player) {
-        if(!player.getPlayerState().getPlayerInventory().items.contains(new Item("Карты", 1))) {
+        if(!player.getState().getPlayerInventory().items.contains(new Item("Карты", 1))) {
             switchToDefaultLogic("nocards", player);
             return "У вас нет карт!";
         }

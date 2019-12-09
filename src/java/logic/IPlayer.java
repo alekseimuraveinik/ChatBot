@@ -10,5 +10,5 @@ public interface IPlayer {
     void changePlayerLocation(GraphNode currentNode);
     void processMessage(String message);
     void switchToDefaultLogic();
-    PlayerState getPlayerState();
+    PlayerState getState();
 }
