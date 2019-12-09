@@ -9,5 +9,6 @@ public interface IPlayer {
     void subscribe(IMessageHandler handler, Boolean isNewPlayer);
     void changePlayerLocation(GraphNode currentNode);
     void processMessage(String message);
+    void switchToDefaultLogic();
     PlayerState getPlayerState();
 }

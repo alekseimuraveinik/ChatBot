@@ -44,11 +44,17 @@ public class Player implements IPlayer {
         c.processMessage(message, this);
     }
 
+    @Override
+    public void switchToDefaultLogic() {
+        state.setMessageLogic(context.getBean(GraphWalkerLogic.class));
+    }
+
     public PlayerState getPlayerState() { return state; }
 
     @Override
     public void handle(String processedMessage){
-        handler.handle(chatId, processedMessage);
+        if (processedMessage != null && processedMessage != "")
+            handler.handle(chatId, processedMessage);
     }
 
     @Override
@@ -59,6 +65,8 @@ public class Player implements IPlayer {
             handler.handle(chatId, c.getNewPlayerMessage(this));
         }
     }
+
+
 
     @Override
     public void changePlayerLocation(GraphNode currentNode) {

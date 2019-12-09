@@ -39,11 +39,14 @@ public class SpringConfiguration{
 
     @Bean
     public ChatLogic chatLogic(){
-        return new ChatLogic(testLoader(), callboard());
+        return new ChatLogic(callboard());
     }
 
     @Bean
     public GraphWalkerLogic graphWalkerLogic() { return new GraphWalkerLogic(testLoader().getQuestionRoot()); }
+
+    @Bean
+    public CardPlayLogic cardPlayLogic() { return new CardPlayLogic(); }
 
     @Bean
     public State state() throws ExecutionException, InterruptedException {

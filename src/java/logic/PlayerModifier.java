@@ -21,14 +21,18 @@ public class PlayerModifier {
         this.newLogic = null;
     }
 
-    public void modify(IPlayer player) {
+    public String modify(IPlayer player) {
         player.getPlayerState().getPlayerInventory().AddOtherInventory(addingInventory);
 
         if (newLogic != null) {
             player.getPlayerState().setMessageLogic(newLogic);
-            player.handle(newLogic.getHelloMessage(player));
+            return newLogic.getHelloMessage(player);
         }
+
+        return null;
     }
 
     public IMessageLogic getNewLogic() { return  newLogic; }
+
+    public PlayerInventory getAddingInventory() { return addingInventory; }
 }

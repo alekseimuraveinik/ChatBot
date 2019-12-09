@@ -49,12 +49,12 @@ public class GraphNode {
         return deadNode == graphNode.deadNode &&
                 Objects.equals(name, graphNode.name) &&
                 Objects.equals(questionContent, graphNode.questionContent) &&
-                Objects.equals(nodeModifier, graphNode.nodeModifier);
+                Objects.equals(nodeModifier.getClass(), graphNode.nodeModifier.getClass());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, questionContent, deadNode, nodeModifier);
+        return Objects.hash(name, questionContent, deadNode, nodeModifier.getClass());
     }
 
     //ВСЕ ЧТО НАПИСАНО НИЖЕ ИСПОЛЬЗУЕТСЯ ДЛЯ СЕРИАЛИЗАЦИИ/ДЕСЕРИАЛИЗАЦИИ ОБЪЕКТА ПРИ РАБОТЕ С FIRESTORE

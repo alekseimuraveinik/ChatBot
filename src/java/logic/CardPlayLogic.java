@@ -5,6 +5,7 @@ import datamodel.Graph;
 import datamodel.GraphNode;
 import datamodel.Item;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
@@ -12,11 +13,20 @@ import java.applet.AppletContext;
 import java.util.HashMap;
 import java.util.Random;
 
-public class CardPlayLogic implements IMessageLogic, ApplicationContextAware {
-    private HashMap<IPlayer, CardPlayState> playersStates = new HashMap<>();
-    private Random r = new Random();
-    private ApplicationContext context;
+public class CardPlayLogic implements IMessageLogic {
+    private HashMap<IPlayer, CardPlayState> playersStates;
+    private Random r;
 
+    public CardPlayLogic(){
+        playersStates = new HashMap<>();
+        r = new Random();
+    }
+
+    @Autowired
+    ApplicationContext context;
+
+    private static final String LOSE = "/lose";
+    private static final String UNKNOWN_COMMAND = "Такой комманды не существует, или она в этой локации не поддерживается";
     private final String SPLITTER = ", ";
     private final String HELLO_MESSAGE = "Добро пожаловать в карточную игру. \nПравила: игроки в закрытую выкладывают по карте. Если сумма четная, карты отдается игроку, у которого число на карте больше, если нечетное - наоборот, если равны - карты возвращаются. Побеждает тот, кто отберет у противника все карты\nСдаться - /lose";
     private final String POST_HELLO_MESSAGE = "\nВведите номинал карты, которую хотите разыграть";
@@ -50,12 +60,12 @@ public class CardPlayLogic implements IMessageLogic, ApplicationContextAware {
 
         if (thisPlayerState.cards.isEmpty()) {
             switchToDefaultLogic("Lose", player);
-            return "1";
+            return null;
         }
 
         if (thisPlayerState.enemyCards.isEmpty()) {
             switchToDefaultLogic("Won", player);
-            return "2";
+            return null;
         }
 
         processMessage += NEXT_MOVE + "\n";
@@ -65,7 +75,7 @@ public class CardPlayLogic implements IMessageLogic, ApplicationContextAware {
     }
 
     private void switchToDefaultLogic(String nextNodeName, IPlayer player){
-        player.getPlayerState().setMessageLogic(context.getBean(GraphWalkerLogic.class));
+        player.switchToDefaultLogic();
         player.processMessage(nextNodeName);
     }
 
@@ -102,6 +112,21 @@ public class CardPlayLogic implements IMessageLogic, ApplicationContextAware {
         return HELLO_MESSAGE + getFormattedAllCards(playersStates.get(player)) + POST_HELLO_MESSAGE;
     }
 
+    @Override
+    public String processCommand(IPlayer player, String command) {
+        String answer;
+        switch (command){
+            case LOSE:
+                answer = "Вы сдались";
+                switchToDefaultLogic("Lose", player);
+                break;
+            default:
+                answer = UNKNOWN_COMMAND;
+        }
+
+        return answer;
+    }
+
     private String getFormattedAllCards(CardPlayState playState){
         StringBuilder str = new StringBuilder("\nСписок ваших карт:\n");
 
@@ -123,10 +148,5 @@ public class CardPlayLogic implements IMessageLogic, ApplicationContextAware {
         }
 
         return false;
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        context = applicationContext;
     }
 }

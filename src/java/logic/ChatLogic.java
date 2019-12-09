@@ -3,18 +3,16 @@ package logic;
 import datamodel.Graph;
 import datasource.IQuestionGettable;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 
-public class ChatLogic implements IChatLogic, ApplicationContextAware {
+public class ChatLogic implements IChatLogic {
     private static final String CALLBOARD = "/callboard";
     private static final String ADD = "/add";
     private static final String HELP = "/help";
     private static final String INVENTORY = "/my_inventory";
-    private static final String CURRENT_LOCATION = "/current_location";
-    private static final String UNKNOWN_COMMAND = "unknown command";
-    private static final String LOSE = "/lose";
 
     private static final String GAME_INFO = "Это игра-квест, вы можете путешествовать по сказочному миру средиземья отвечая на вопросы";
 
@@ -23,9 +21,11 @@ public class ChatLogic implements IChatLogic, ApplicationContextAware {
     private static final String SPACE = " ";
 
     private ICallboard callboard;
-    private ApplicationContext context;
 
-    public ChatLogic(IQuestionGettable source, ICallboard callboard) {
+    @Autowired
+    ApplicationContext context;
+
+    public ChatLogic(ICallboard callboard) {
         this.callboard = callboard;
     }
 
@@ -61,18 +61,9 @@ public class ChatLogic implements IChatLogic, ApplicationContextAware {
             case INVENTORY:
                 answer = player.getPlayerState().getPlayerInventory().stringRepresentation();
                 break;
-            case CURRENT_LOCATION:
-                answer = context.getBean(GraphWalkerLogic.class).getGraph()
-                        .formattedContentAndNextNodes(player.getPlayerState().getCurrentNode());
-                break;
             default:
-                answer = UNKNOWN_COMMAND;
+                answer = player.getPlayerState().getMessageLogic().processCommand(player, command);
         }
         return answer;
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        context = applicationContext;
     }
 }
