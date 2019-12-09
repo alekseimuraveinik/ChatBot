@@ -1,37 +1,30 @@
 package datamodel;
 
-import logic.IChatLogic;
-import logic.Player;
+import logic.IMessageLogic;
 
 public class PlayerState {
+    private IMessageLogic messageLogic;
     private GraphNode currentNode;
     private PlayerInventory playerInventory;
-    private IChatLogic logic;
-    private IChatLogic startLogic;
 
-    public PlayerState(GraphNode startNode, PlayerInventory startInventory, IChatLogic defaultChatLogic){
+    public PlayerState(GraphNode startNode, PlayerInventory startInventory){
         currentNode = startNode;
         playerInventory = startInventory;
-        logic = defaultChatLogic;
-        startLogic = defaultChatLogic;
     }
 
     public PlayerState(){
-    }
-
-    public void resetLogic(){
-        logic = startLogic;
     }
 
     public GraphNode getCurrentNode() { return currentNode; }
 
     public PlayerInventory getPlayerInventory() { return playerInventory; }
 
-    public IChatLogic logic() { return logic; }
+    public IMessageLogic getMessageLogic() { return messageLogic; }
 
     public void setCurrentNode(GraphNode node) { currentNode = node; }
 
     public void setPlayerInventory(PlayerInventory inventory) { playerInventory = inventory; }
 
-    public void subscribe(IChatLogic logic) { this.logic = logic; }
+    public void setMessageLogic(IMessageLogic logic) { this.messageLogic = logic; }
+
 }

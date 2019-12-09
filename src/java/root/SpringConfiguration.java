@@ -1,23 +1,27 @@
 package root;
 
-import com.google.cloud.firestore.QueryDocumentSnapshot;
+import datamodel.PlayerInventory;
+import datamodel.PlayerState;
 import datamodel.UserID;
 import datasource.CloudStorageLoader;
 import datasource.TestQuestionsLoader;
 import db.Database;
 import io.TelegramIO;
 import logic.*;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import telegramLogic.MessageProcessor;
 
+import javax.inject.Inject;
 import java.util.concurrent.ExecutionException;
 
 @Configuration
-public class SpringConfiguration {
+public class SpringConfiguration{
     @Bean
     public Database database(){
         return new Database();
@@ -35,12 +39,18 @@ public class SpringConfiguration {
 
     @Bean
     public ChatLogic chatLogic(){
-        return new ChatLogic(testLoader(), callboard());
+        return new ChatLogic(callboard());
     }
 
     @Bean
+    public GraphWalkerLogic graphWalkerLogic() { return new GraphWalkerLogic(testLoader().getQuestionRoot()); }
+
+    @Bean
+    public CardPlayLogic cardPlayLogic() { return new CardPlayLogic(); }
+
+    @Bean
     public State state() throws ExecutionException, InterruptedException {
-        State state = new State();
+        /*State state = new State();
         for (QueryDocumentSnapshot document :
                 database().getFirestore()
                         .collection("state")
@@ -54,13 +64,14 @@ public class SpringConfiguration {
             if(player.getChatId() == null)
                 continue;
 
-            player.getState().subscribe(chatLogic());
+            //player.getPlayerState().setMessageLogic(chatLogic());
             player.subscribe(telegramIO(), false);
 
             state.add(id, player);
         }
 
-        return state;
+        return state;*/
+        return new State();
     }
 
     @Autowired
@@ -94,8 +105,14 @@ public class SpringConfiguration {
 
     @Bean
     @Scope("prototype")
+    public PlayerState playerState(){
+        return new PlayerState(testLoader().getQuestionRoot().getRoot(), new PlayerInventory());
+    }
+
+    @Bean
+    @Scope("prototype")
     public Player player(UserID id){
-        Player player = new Player(chatLogic(), id);
+        Player player = new Player(id, playerState(), context);
         player.subscribe(telegramIO(), true);
         return player;
     }

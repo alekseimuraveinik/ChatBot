@@ -7,14 +7,16 @@ import logic.IMessageHandler;
 import logic.IPlayer;
 import logic.Player;
 import logic.State;
+import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import root.SpringConfiguration;
 
 import java.util.HashMap;
 
 
-public class MessageProcessor implements IMessageProcessor{
+public class MessageProcessor implements IMessageProcessor {
 
     private State state;
     private ApplicationContext context;

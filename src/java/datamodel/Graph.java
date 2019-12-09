@@ -65,7 +65,8 @@ public class Graph {
     }
 
     public String formattedContentAndNextNodes(GraphNode currentNode){
-        if (!graphNodes.contains(currentNode))
+        ArrayList connections = getConnectedNodes(currentNode);
+        if (connections.size() == 0)
             return currentNode.getQuestionContent();
 
         StringBuilder mesContent = new StringBuilder(currentNode.getQuestionContent());

@@ -25,9 +25,11 @@ public class PlayerInventory {
         this.gold += inv.gold;
         this.exp += inv.exp;
         this.reputation += inv.reputation;
-        for (Item item : inv.items){
-            items.add(item);
-        }
+        items.addAll(inv.items);
+    }
+
+    public boolean isCanAdd(PlayerInventory inv){
+        return gold + inv.gold >= 0;
     }
 
     @Override

@@ -4,15 +4,30 @@ import datamodel.GraphNode;
 import datamodel.PlayerInventory;
 import datamodel.PlayerState;
 import datamodel.UserID;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Import;
+
+import javax.inject.Inject;
+import javax.validation.constraints.NotNull;
 
 public class Player implements IPlayer {
     private UserID chatId;
-    private IMessageHandler handler;
-    public PlayerState state = new PlayerState();
 
-    public Player(IChatLogic logic, UserID chatId){
+    private IMessageHandler handler;
+
+    private ApplicationContext context;
+
+    private PlayerState state;
+
+
+    public Player(UserID chatId, PlayerState state, ApplicationContext context) {
         this.chatId = chatId;
-        state = new PlayerState(logic.getGraph().getRoot(), new PlayerInventory(), logic);
+        this.state = state;
+        this.context = context;
     }
 
     public Player(){
@@ -25,26 +40,36 @@ public class Player implements IPlayer {
 
     @Override
     public void processMessage(String message) {
-        state.logic().processMessage(message, this, state.getCurrentNode());
+        ChatLogic c = context.getBean(ChatLogic.class);
+        c.processMessage(message, this);
+    }
+
+    @Override
+    public void switchToDefaultLogic() {
+        state.setMessageLogic(context.getBean(GraphWalkerLogic.class));
     }
 
     public PlayerState getState() { return state; }
 
     @Override
     public void handle(String processedMessage){
-        handler.handle(chatId, processedMessage);
+        if (processedMessage != null && processedMessage != "")
+            handler.handle(chatId, processedMessage);
     }
 
     @Override
     public void subscribe(IMessageHandler handler, Boolean isNewPlayer) {
         this.handler = handler;
         if (isNewPlayer) {
-            handler.handle(chatId, state.logic().getNewPlayerMessage(this));
+            ChatLogic c = context.getBean(ChatLogic.class);
+            handler.handle(chatId, c.getNewPlayerMessage(this));
         }
     }
 
+
+
     @Override
-    public void changeState(GraphNode currentNode) {
+    public void changePlayerLocation(GraphNode currentNode) {
         this.state.setCurrentNode(currentNode);
     }
 

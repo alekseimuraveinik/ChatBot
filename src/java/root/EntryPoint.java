@@ -25,9 +25,8 @@ public class EntryPoint{
         }*/
 
         IMessageProcessor processor = context.getBean(MessageProcessor.class);
-
+        
         try {
-
             TelegramIO io = context.getBean(TelegramIO.class);
 
             io.subscribe(processor);
