@@ -1,33 +1,26 @@
 package logic;
 
 import datamodel.GraphNode;
-import datamodel.PlayerInventory;
 import datamodel.PlayerState;
 import datamodel.UserID;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.Import;
-
-import javax.inject.Inject;
-import javax.validation.constraints.NotNull;
 
 public class Player implements IPlayer {
     private UserID chatId;
-
-    private IMessageHandler handler;
-
-    private ApplicationContext context;
-
     private PlayerState state;
 
+    private IMessageHandler handler;
+    private IChatLogic logic;
+    private IMessageLogic graphWalker;
 
-    public Player(UserID chatId, PlayerState state, ApplicationContext context) {
+    public Player(UserID chatId, PlayerState state) {
         this.chatId = chatId;
         this.state = state;
-        this.context = context;
+    }
+
+    public void set(IChatLogic logic, IMessageLogic graphWalker){
+        this.logic = logic;
+        this.graphWalker = graphWalker;
     }
 
     public Player(){
@@ -40,20 +33,19 @@ public class Player implements IPlayer {
 
     @Override
     public void processMessage(String message) {
-        ChatLogic c = context.getBean(ChatLogic.class);
-        c.processMessage(message, this);
+        logic.processMessage(message, this);
     }
 
     @Override
     public void switchToDefaultLogic() {
-        state.setMessageLogic(context.getBean(GraphWalkerLogic.class));
+        state.switchLogic(graphWalker);
     }
 
     public PlayerState getState() { return state; }
 
     @Override
     public void handle(String processedMessage){
-        if (processedMessage != null && processedMessage != "")
+        if (processedMessage != null && !"".equals(processedMessage))
             handler.handle(chatId, processedMessage);
     }
 
@@ -61,8 +53,7 @@ public class Player implements IPlayer {
     public void subscribe(IMessageHandler handler, Boolean isNewPlayer) {
         this.handler = handler;
         if (isNewPlayer) {
-            ChatLogic c = context.getBean(ChatLogic.class);
-            handler.handle(chatId, c.getNewPlayerMessage(this));
+            handler.handle(chatId, logic.getNewPlayerMessage(this));
         }
     }
 

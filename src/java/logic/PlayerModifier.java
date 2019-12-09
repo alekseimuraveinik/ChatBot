@@ -4,35 +4,34 @@ import datamodel.PlayerInventory;
 
 public class PlayerModifier {
     private PlayerInventory addingInventory;
-    private IMessageLogic newLogic;
-
-    public PlayerModifier(PlayerInventory addingInventory, IMessageLogic newLogic){
-        this.addingInventory = addingInventory;
-        this.newLogic = newLogic;
-    }
+    private boolean cards = false;
 
     public PlayerModifier(PlayerInventory addingInventory){
         this.addingInventory = addingInventory;
-        this.newLogic = null;
     }
 
     public PlayerModifier(){
         this.addingInventory = new PlayerInventory();
-        this.newLogic = null;
     }
 
-    public String modify(IPlayer player) {
+    public boolean modify(IPlayer player) {
         player.getState().getPlayerInventory().AddOtherInventory(addingInventory);
-
-        if (newLogic != null) {
-            player.getState().setMessageLogic(newLogic);
-            return newLogic.getHelloMessage(player);
-        }
-
-        return null;
+        return cards;
     }
 
-    public IMessageLogic getNewLogic() { return  newLogic; }
+    public PlayerInventory getAddingInventory() {
+        return addingInventory;
+    }
 
-    public PlayerInventory getAddingInventory() { return addingInventory; }
+    public void setAddingInventory(PlayerInventory addingInventory) {
+        this.addingInventory = addingInventory;
+    }
+
+    public boolean isCards() {
+        return cards;
+    }
+
+    public void setCards(boolean cards) {
+        this.cards = cards;
+    }
 }

@@ -19,7 +19,8 @@ public class TestQuestionsLoader implements IQuestionGettable {
                 new PlayerModifier(inventoryWithCards));
         GraphNode troll = new GraphNode("Тролль", "Тролль предлагает тебе сыграть в карты, но ты должен их купить");
         GraphNode playWithTroll = new GraphNode("Сыграть в карты", "Игра началась\n",
-                new PlayerModifier(new PlayerInventory(), new CardPlayLogic()));
+                new PlayerModifier(new PlayerInventory()));
+        playWithTroll.getNodeModifier().setCards(true);
         GraphNode won = new GraphNode("Won", "Вы победили тролля и получаете 150 золота",
                 new PlayerModifier(new PlayerInventory(150, 10, 1)));
         GraphNode lose = new GraphNode("Lose", "Вы проиграли и теряете 150 золота",

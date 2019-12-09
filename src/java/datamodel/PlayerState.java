@@ -12,19 +12,19 @@ public class PlayerState {
         playerInventory = startInventory;
     }
 
+    public IMessageLogic currentLogic() { return messageLogic; }
+
+    public void switchLogic(IMessageLogic logic) { this.messageLogic = logic; }
+
     public PlayerState(){
+
     }
 
     public GraphNode getCurrentNode() { return currentNode; }
 
     public PlayerInventory getPlayerInventory() { return playerInventory; }
 
-    public IMessageLogic getMessageLogic() { return messageLogic; }
-
     public void setCurrentNode(GraphNode node) { currentNode = node; }
 
     public void setPlayerInventory(PlayerInventory inventory) { playerInventory = inventory; }
-
-    public void setMessageLogic(IMessageLogic logic) { this.messageLogic = logic; }
-
 }

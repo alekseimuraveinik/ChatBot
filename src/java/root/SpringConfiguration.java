@@ -1,5 +1,6 @@
 package root;
 
+import com.google.cloud.firestore.QueryDocumentSnapshot;
 import datamodel.PlayerInventory;
 import datamodel.PlayerState;
 import datamodel.UserID;
@@ -43,14 +44,14 @@ public class SpringConfiguration{
     }
 
     @Bean
-    public GraphWalkerLogic graphWalkerLogic() { return new GraphWalkerLogic(testLoader().getQuestionRoot()); }
+    public IMessageLogic graphWalkerLogic() { return new GraphWalkerLogic(cloudLoader().getQuestionRoot()); }
 
     @Bean
     public CardPlayLogic cardPlayLogic() { return new CardPlayLogic(); }
 
     @Bean
     public State state() throws ExecutionException, InterruptedException {
-        /*State state = new State();
+        State state = new State();
         for (QueryDocumentSnapshot document :
                 database().getFirestore()
                         .collection("state")
@@ -64,14 +65,14 @@ public class SpringConfiguration{
             if(player.getChatId() == null)
                 continue;
 
-            //player.getPlayerState().setMessageLogic(chatLogic());
+            player.getState().switchLogic(graphWalkerLogic());
+            player.set(chatLogic(), graphWalkerLogic());
             player.subscribe(telegramIO(), false);
 
             state.add(id, player);
         }
 
-        return state;*/
-        return new State();
+        return state;
     }
 
     @Autowired
@@ -88,11 +89,6 @@ public class SpringConfiguration{
     }
 
     @Bean
-    public TestQuestionsLoader testLoader(){
-        return new TestQuestionsLoader();
-    }
-
-    @Bean
     public TelegramIO telegramIO(){
         return new TelegramIO(System.getenv("BOT_NAME"), System.getenv("BOT_TOKEN"));
     }
@@ -106,13 +102,14 @@ public class SpringConfiguration{
     @Bean
     @Scope("prototype")
     public PlayerState playerState(){
-        return new PlayerState(testLoader().getQuestionRoot().getRoot(), new PlayerInventory());
+        return new PlayerState(cloudLoader().getQuestionRoot().getRoot(), new PlayerInventory());
     }
 
     @Bean
     @Scope("prototype")
     public Player player(UserID id){
-        Player player = new Player(id, playerState(), context);
+        Player player = new Player(id, playerState());
+        player.set(chatLogic(), graphWalkerLogic());
         player.subscribe(telegramIO(), true);
         return player;
     }

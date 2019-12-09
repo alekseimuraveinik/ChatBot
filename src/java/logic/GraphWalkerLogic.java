@@ -2,6 +2,7 @@ package logic;
 
 import datamodel.Graph;
 import datamodel.GraphNode;
+import root.ContextHolder;
 
 public class GraphWalkerLogic implements IMessageLogic {
     private static final String CURRENT_LOCATION = "/current_location";
@@ -30,10 +31,13 @@ public class GraphWalkerLogic implements IMessageLogic {
             player.changePlayerLocation(currentQuestion);
             messageToProceed = graph.formattedContentAndNextNodes(currentQuestion);
 
-            String postModify = currentQuestion.getNodeModifier().modify(player);
+            boolean postModify = currentQuestion.getNodeModifier().modify(player);
 
-            if (postModify != null)
-                messageToProceed = postModify;
+            if (postModify){
+                IMessageLogic l = ContextHolder.get().getBean(CardPlayLogic.class);
+                player.getState().switchLogic(l);
+                messageToProceed = l.getHelloMessage(player);
+            }
         }
 
         if(nextQuestion != null && currentQuestion.isDeadNode()) {
@@ -54,13 +58,11 @@ public class GraphWalkerLogic implements IMessageLogic {
     @Override
     public String processCommand(IPlayer player, String command) {
         String answer;
-        switch (command){
-            case CURRENT_LOCATION:
-                answer = getGraph()
-                        .formattedContentAndNextNodes(player.getState().getCurrentNode());
-                break;
-            default:
-                answer = UNKNOWN_COMMAND;
+        if (CURRENT_LOCATION.equals(command)) {
+            answer = getGraph()
+                    .formattedContentAndNextNodes(player.getState().getCurrentNode());
+        } else {
+            answer = UNKNOWN_COMMAND;
         }
 
         return answer;
