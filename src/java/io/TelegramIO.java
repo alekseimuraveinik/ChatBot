@@ -1,5 +1,6 @@
 package io;
 
+import datamodel.QuestMessage;
 import datamodel.UserID;
 import logic.IMessageHandler;
 import org.telegram.telegrambots.ApiContextInitializer;
@@ -26,7 +27,7 @@ public class TelegramIO implements IMessageHandler {
     }
 
     @Override
-    public synchronized void handle(UserID userID, String message) {
+    public synchronized void handle(UserID userID, QuestMessage message) {
         bot.sendMsg(userID.id, message);
     }
 }

@@ -2,6 +2,7 @@ package logic;
 
 import datamodel.Graph;
 import datamodel.GraphNode;
+import datamodel.QuestMessage;
 import root.ContextHolder;
 
 public class GraphWalkerLogic implements IMessageLogic {
@@ -18,18 +19,18 @@ public class GraphWalkerLogic implements IMessageLogic {
     }
 
     @Override
-    public String getMessageAnswer(IPlayer player, String message) {
+    public QuestMessage getMessageAnswer(IPlayer player, String message) {
         GraphNode currentQuestion = player.getState().getCurrentNode();
-        String messageToProceed;
+        QuestMessage messageToProceed = new QuestMessage();
 
         GraphNode nextQuestion = graph.getChildByAnswer(currentQuestion, message.toLowerCase());
 
         if(nextQuestion == null){
-            messageToProceed = NO_SUCH_VARIANT;
+            messageToProceed.addToText(NO_SUCH_VARIANT);
         } else {
             currentQuestion = nextQuestion;
             player.changePlayerLocation(currentQuestion);
-            messageToProceed = graph.formattedContentAndNextNodes(currentQuestion);
+            messageToProceed.addMessage(graph.formattedContentAndNextNodes(currentQuestion));
 
             boolean postModify = currentQuestion.getNodeModifier().modify(player);
 
@@ -42,27 +43,25 @@ public class GraphWalkerLogic implements IMessageLogic {
 
         if(nextQuestion != null && currentQuestion.isDeadNode()) {
             player.changePlayerLocation(graph.getRoot());
-            messageToProceed = currentQuestion.getQuestionContent()
-                                + DOUBLE_LINE_BREAK
-                                + graph.formattedContentAndNextNodes(graph.getRoot());
+            messageToProceed.addMessage(graph.formattedContentAndNextNodes(graph.getRoot()));
         }
 
         return messageToProceed;
     }
 
     @Override
-    public String getHelloMessage(IPlayer player) {
-        return HELLO_MESSAGE + graph.formattedContentAndNextNodes(graph.getRoot());
+    public QuestMessage getHelloMessage(IPlayer player) {
+        return new QuestMessage(HELLO_MESSAGE + graph.formattedContentAndNextNodes(graph.getRoot()));
     }
 
     @Override
-    public String processCommand(IPlayer player, String command) {
-        String answer;
+    public QuestMessage processCommand(IPlayer player, String command) {
+        QuestMessage answer;
         if (CURRENT_LOCATION.equals(command)) {
             answer = getGraph()
                     .formattedContentAndNextNodes(player.getState().getCurrentNode());
         } else {
-            answer = UNKNOWN_COMMAND;
+            answer = new QuestMessage(UNKNOWN_COMMAND);
         }
 
         return answer;

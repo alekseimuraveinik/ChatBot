@@ -1,7 +1,9 @@
 package logic;
 
+import datamodel.QuestMessage;
+
 public interface IMessageLogic {
-    String getMessageAnswer(IPlayer player, String message);
-    String getHelloMessage(IPlayer player);
-    String processCommand(IPlayer player, String command);
+    QuestMessage getMessageAnswer(IPlayer player, String message);
+    QuestMessage getHelloMessage(IPlayer player);
+    QuestMessage processCommand(IPlayer player, String command);
 }

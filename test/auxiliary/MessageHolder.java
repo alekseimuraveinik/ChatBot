@@ -1,5 +1,6 @@
 package auxiliary;
 
+import datamodel.QuestMessage;
 import datamodel.UserID;
 import logic.IMessageHandler;
 
@@ -9,10 +10,10 @@ public class MessageHolder implements IMessageHandler {
     private boolean terminated = false;
 
     @Override
-    public void handle(UserID userId, String message) {
+    public void handle(UserID userId, QuestMessage message) {
         if(!terminated){
-            lastReceivedMessage = message;
-            if(message.substring(message.length() - 1).equals("~"))
+            lastReceivedMessage = message.text;
+            if(message.text.substring(message.text.length() - 1).equals("~"))
                 terminated = true;
         }
     }

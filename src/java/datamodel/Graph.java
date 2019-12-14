@@ -64,18 +64,18 @@ public class Graph {
         return null;
     }
 
-    public String formattedContentAndNextNodes(GraphNode currentNode){
+    public QuestMessage formattedContentAndNextNodes(GraphNode currentNode){
         ArrayList connections = getConnectedNodes(currentNode);
         if (connections.size() == 0)
-            return currentNode.getQuestionContent();
+            return new QuestMessage(currentNode.getQuestionContent());
 
-        StringBuilder mesContent = new StringBuilder(currentNode.getQuestionContent());
-        mesContent.append(NEXT_MESSAGE);
+        QuestMessage mesContent = new QuestMessage(currentNode.getQuestionContent());
+        mesContent.addToText(NEXT_MESSAGE);
         for (GraphNode graphNode : getConnectedNodes(currentNode)){
-            mesContent.append("\n -  ");
-            mesContent.append(graphNode.getName());
+            mesContent.buttons.add(graphNode.getName());
         }
-        return mesContent.toString();
+
+        return mesContent;
     }
 
     //ВСЕ ЧТО НАПИСАНО НИЖЕ ИСПОЛЬЗУЕТСЯ ДЛЯ СЕРИАЛИЗАЦИИ/ДЕСЕРИАЛИЗАЦИИ ОБЪЕКТА ПРИ РАБОТЕ С FIRESTORE

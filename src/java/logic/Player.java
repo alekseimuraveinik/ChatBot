@@ -2,6 +2,7 @@ package logic;
 
 import datamodel.GraphNode;
 import datamodel.PlayerState;
+import datamodel.QuestMessage;
 import datamodel.UserID;
 import org.springframework.context.ApplicationContext;
 
@@ -44,7 +45,7 @@ public class Player implements IPlayer {
     public PlayerState getState() { return state; }
 
     @Override
-    public void handle(String processedMessage){
+    public void handle(QuestMessage processedMessage){
         if (processedMessage != null && !"".equals(processedMessage))
             handler.handle(chatId, processedMessage);
     }

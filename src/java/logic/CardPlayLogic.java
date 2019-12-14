@@ -2,6 +2,7 @@ package logic;
 
 import datamodel.CardPlayState;
 import datamodel.Item;
+import datamodel.QuestMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
@@ -33,12 +34,12 @@ public class CardPlayLogic implements IMessageLogic {
 
 
     @Override
-    public String getMessageAnswer(IPlayer player, String message) {
+    public QuestMessage getMessageAnswer(IPlayer player, String message) {
         CardPlayState thisPlayerState = playersStates.get(player);
         String processMessage = "";
 
         if (!IsParseString(message) || !thisPlayerState.cards.contains(Integer.parseInt(message))) {
-            return WRONG_MESSAGE_ANSWER;
+            return new QuestMessage(WRONG_MESSAGE_ANSWER);
         }
 
         Integer playerCardNum = Integer.parseInt(message);
@@ -66,7 +67,12 @@ public class CardPlayLogic implements IMessageLogic {
         processMessage += NEXT_MOVE + "\n";
         processMessage += getFormattedAllCards(thisPlayerState);
 
-        return processMessage;
+        QuestMessage res = new QuestMessage(processMessage);
+        for (int card : thisPlayerState.cards){
+            res.buttons.add(Integer.toString(card));
+        }
+
+        return res;
     }
 
     private void switchToDefaultLogic(String nextNodeName, IPlayer player){
@@ -91,10 +97,10 @@ public class CardPlayLogic implements IMessageLogic {
     }
 
     @Override
-    public String getHelloMessage(IPlayer player) {
+    public QuestMessage getHelloMessage(IPlayer player) {
         if(!player.getState().getPlayerInventory().items.contains(new Item("Карты", 1))) {
             switchToDefaultLogic("nocards", player);
-            return "У вас нет карт!";
+            return new QuestMessage("У вас нет карт!");
         }
 
         playersStates.put(player, new CardPlayState());
@@ -104,11 +110,18 @@ public class CardPlayLogic implements IMessageLogic {
             playersStates.get(player).enemyCards.add(r.nextInt(9) + 2);
         }
 
-        return HELLO_MESSAGE + getFormattedAllCards(playersStates.get(player)) + POST_HELLO_MESSAGE;
+        QuestMessage res = new QuestMessage(HELLO_MESSAGE
+                + getFormattedAllCards(playersStates.get(player))
+                + POST_HELLO_MESSAGE);
+        for (int card : playersStates.get(player).cards){
+            res.buttons.add(Integer.toString(card));
+        }
+        
+        return res;
     }
 
     @Override
-    public String processCommand(IPlayer player, String command) {
+    public QuestMessage processCommand(IPlayer player, String command) {
         String answer;
         switch (command){
             case LOSE:
@@ -119,7 +132,7 @@ public class CardPlayLogic implements IMessageLogic {
                 answer = UNKNOWN_COMMAND;
         }
 
-        return answer;
+        return new QuestMessage(answer);
     }
 
     private String getFormattedAllCards(CardPlayState playState){

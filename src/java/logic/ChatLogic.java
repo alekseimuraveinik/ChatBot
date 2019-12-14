@@ -1,5 +1,6 @@
 package logic;
 
+import datamodel.QuestMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
@@ -26,7 +27,7 @@ public class ChatLogic implements IChatLogic {
     }
 
     @Override
-    public String getNewPlayerMessage(IPlayer player) {
+    public QuestMessage getNewPlayerMessage(IPlayer player) {
         player.getState().switchLogic(context.getBean(GraphWalkerLogic.class));
         return context.getBean(GraphWalkerLogic.class).getHelloMessage(player);
     }
@@ -41,21 +42,21 @@ public class ChatLogic implements IChatLogic {
         player.handle(player.getState().currentLogic().getMessageAnswer(player, userAnswer));
     }
 
-    private String processCommand(String command, IPlayer player){
-        String answer;
+    private QuestMessage processCommand(String command, IPlayer player){
+        QuestMessage answer;
         String[] commandComponents = command.split(SPACE);
         switch (commandComponents[0]){
             case HELP:
-                answer = GAME_INFO + DOUBLE_LINE_BREAK;
+                answer = new QuestMessage(GAME_INFO + DOUBLE_LINE_BREAK);
                 break;
             case CALLBOARD:
-                answer = callboard.getCallboardRecords();
+                answer = new QuestMessage(callboard.getCallboardRecords());
                 break;
             case ADD:
-                answer = callboard.addRecord(command.substring(4));
+                answer = new QuestMessage(callboard.addRecord(command.substring(4)));
                 break;
             case INVENTORY:
-                answer = player.getState().getPlayerInventory().stringRepresentation();
+                answer = new QuestMessage(player.getState().getPlayerInventory().stringRepresentation());
                 break;
             default:
                 answer = player.getState().currentLogic().processCommand(player, command);
