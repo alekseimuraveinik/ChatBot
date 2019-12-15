@@ -27,6 +27,8 @@ public class ChatLogic implements IChatLogic {
 
     @Override
     public String getNewPlayerMessage(IPlayer player) {
+        if(player.getState().getNickname() == null)
+            return "Введите свое имя";
         player.getState().switchLogic(context.getBean(GraphWalkerLogic.class));
         return context.getBean(GraphWalkerLogic.class).getHelloMessage(player);
     }
@@ -35,6 +37,12 @@ public class ChatLogic implements IChatLogic {
     public void processMessage(String userAnswer, IPlayer player) {
         if(userAnswer.startsWith(SLASH)){
             player.handle(processCommand(userAnswer, player));
+            return;
+        }
+
+        if(player.getState().getNickname() == null){
+            player.getState().setNickname(userAnswer);
+            player.handle(getNewPlayerMessage(player));
             return;
         }
 

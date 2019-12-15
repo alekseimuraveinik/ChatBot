@@ -6,6 +6,7 @@ public class PlayerState {
     private IMessageLogic messageLogic;
     private GraphNode currentNode;
     private PlayerInventory playerInventory;
+    private String nickname;
 
     public PlayerState(GraphNode startNode, PlayerInventory startInventory){
         currentNode = startNode;
@@ -27,4 +28,12 @@ public class PlayerState {
     public void setCurrentNode(GraphNode node) { currentNode = node; }
 
     public void setPlayerInventory(PlayerInventory inventory) { playerInventory = inventory; }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 }
